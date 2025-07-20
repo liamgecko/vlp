@@ -1,0 +1,6 @@
+img.image {
+    height: auto;
+    /* width: clamp(10rem, 50vw, 60rem); */
+    width: 100vw;
+    max-width: none;
+}

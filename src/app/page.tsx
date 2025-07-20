@@ -1,103 +1,104 @@
-import Image from "next/image";
+import Hero from "@/components/Hero";
+import ImageText from "@/components/ImageText";
+import ImageSlider from "@/components/ImageSlider";
+import ImageTextCarousel from "@/components/ImageTextCarousel";
+import ScrollSections from "@/components/ScrollSections";
+import { Layout484 } from "@/components/ScrollRevealText";
+import { Layout357 } from "@/components/AccordionScroll";
+import CallToAction from "@/components/CallToAction";
+import Footer from "@/components/Footer";
+import FullWidthImage from "@/components/FullWidthImage";
+import LatestWeddings from "@/components/LatestWeddings";
+
 
 export default function Home() {
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
-
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+    <>
+      <Hero />
+      <ImageText
+        title="Not your typical wedding photographer!"
+        description="Hello, I'm Vicki—a seasoned wedding photographer in Fife but capturing hearts and moments across the world, including, British Columbia, Cyprus, Ibiza, Thailand and beyond. Passionate about nature, dogs, and epic landscapes, I bring a blend of enthusiasm, energy, and a hint of playful innuendo to every wedding. Your wedding day should be a joyous celebration, filled with hugs, dance moves, and romantic moments that feel like a scene out of a fairytale. It’s about enjoying every second with your loved ones, immersed in laughter and love. As your wedding photographer, my goal is to make your special day unforgettable by capturing every genuine emotion and spontaneous moment."
+        imageSrc="/vicki.jpg"
+        imageAlt="Victoria Photography"
+        variant="left"
+        buttonText="Learn More"
+        buttonLink="/about"
+      />
+      <ScrollSections />
+      <ImageText
+        title="Say goodbye to those awkward photos!"
+        description="Hello, I'm Vicki—a seasoned wedding photographer in Fife but capturing hearts and moments across the world, including, British Columbia, Cyprus, Ibiza, Thailand and beyond. Passionate about nature, dogs, and epic landscapes, I bring a blend of enthusiasm, energy, and a hint of playful innuendo to every wedding."
+        imageSrc="/vicki.jpg"
+        imageAlt="Victoria Photography"
+        variant="right"
+        buttonText="Get Started"
+        buttonLink="/contact"
+      />
+      <div className="w-full py-16 flex justify-center bg-slate-950">
+        <div className="w-full max-w-[1600px] mx-auto px-4">
+          <ImageSlider 
+            images={[
+              {
+                src: '/vlp-01.jpg',
+                alt: 'Wedding Photography'
+              },
+              {
+                src: '/vlp-02.jpg',
+                alt: 'Natural Photography'
+              },
+              {
+                src: '/vlp-03.jpg',
+                alt: 'Artistic Photography'
+              },
+              {
+                src: '/vlp-04.jpg',
+                alt: 'Wedding Photography'
+              },
+              {
+                src: '/vlp-05.jpg',
+                alt: 'Wedding Photography'
+              }
+            ]}
+            autoplay={false}
+            autoplayDelay={4000}
+            showNavigation={true}
+          />
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+      </div>
+      <Layout484 />
+      <ImageTextCarousel
+        slides={[
+          {
+            imageSrc: '/vlp-01.jpg',
+            imageAlt: 'Wedding Photography',
+            title: 'Capturing Love Stories',
+            description: 'Every couple has a unique story to tell. I specialize in capturing the authentic moments, genuine emotions, and beautiful connections that make your love story special.',
+          },
+          {
+            imageSrc: '/vlp-02.jpg',
+            imageAlt: 'Natural Photography',
+            title: 'Natural & Authentic',
+            description: 'Say goodbye to stiff, posed photos. My approach focuses on natural moments, real emotions, and authentic connections that reflect who you truly are.',
+          },
+          {
+            imageSrc: '/vlp-03.jpg',
+            imageAlt: 'Artistic Photography',
+            title: 'Artistic Excellence',
+            description: 'Every image is crafted with artistic vision and technical expertise. From composition to lighting, I ensure each photograph is a work of art.',
+          }
+        ]}
+        autoplay={false}
+        autoplayDelay={6000}
+        showNavigation={true}
+      />
+      <Layout357 />
+      <FullWidthImage 
+        imageSrc="/vlp-05.jpg" 
+        imageAlt="Beautiful wedding photography moment"
+      />
+      <CallToAction />
+      <LatestWeddings />
+      <Footer />
+    </>
   );
 }
