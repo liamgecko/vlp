@@ -7,14 +7,12 @@ interface CallToActionProps {
   title?: string;
   description?: string;
   buttonText?: string;
-  buttonLink?: string;
 }
 
 const CallToAction = ({ 
   title = "Ready to capture your special day?",
   description = "Let's create beautiful memories together. Get in touch to discuss your wedding photography needs and start planning your perfect day.",
-  buttonText = "Get In Touch",
-  buttonLink = "/contact"
+  buttonText = "Get In Touch"
 }: CallToActionProps) => {
   const handleClick = () => {
     // Handle button click - could navigate to contact page or open contact form

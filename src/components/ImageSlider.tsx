@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
+import type { Swiper as SwiperType } from 'swiper/types';
 import Image from 'next/image';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination, Autoplay } from 'swiper/modules';
@@ -36,7 +37,7 @@ const ImageSlider = ({
   const [isMounted, setIsMounted] = useState(false);
   const prevRef = useRef<HTMLDivElement>(null);
   const nextRef = useRef<HTMLDivElement>(null);
-  const [swiperInstance, setSwiperInstance] = useState<any>(null);
+  const [swiperInstance, setSwiperInstance] = useState<SwiperType | null>(null);
 
   useEffect(() => {
     setIsMounted(true);
@@ -49,7 +50,9 @@ const ImageSlider = ({
       prevRef.current &&
       nextRef.current &&
       swiperInstance.params &&
-      swiperInstance.navigation
+      swiperInstance.navigation &&
+      swiperInstance.params.navigation &&
+      typeof swiperInstance.params.navigation !== "boolean"
     ) {
       swiperInstance.params.navigation.prevEl = prevRef.current;
       swiperInstance.params.navigation.nextEl = nextRef.current;
@@ -110,7 +113,7 @@ const ImageSlider = ({
                 <div className="absolute inset-0 bg-black/30 flex items-center justify-center rounded-lg">
                   <div className="text-center text-white max-w-4xl mx-auto px-6">
                     {image.title && (
-                      <h2 className="font-heading text-4xl md:text-6xl font-bold mb-4">
+                      <h2 className="font-heading text-4xl font-bold mb-4">
                         {image.title}
                       </h2>
                     )}

@@ -2,6 +2,7 @@
 
 import React from "react";
 import Image from "next/image";
+import Link from "next/link";
 
 const Footer = () => {
   // Fake Instagram feed data
@@ -53,11 +54,11 @@ const Footer = () => {
           {/* Menu */}
           <nav className="text-center mb-12">
             <ul className="flex flex-wrap justify-center gap-8 text-lg">
-              <li><a href="/" className="hover:text-slate-300 transition-colors">Home</a></li>
-              <li><a href="/about" className="hover:text-slate-300 transition-colors">About</a></li>
-              <li><a href="/portfolio" className="hover:text-slate-300 transition-colors">Portfolio</a></li>
-              <li><a href="/services" className="hover:text-slate-300 transition-colors">Services</a></li>
-              <li><a href="/contact" className="hover:text-slate-300 transition-colors">Contact</a></li>
+              <li><Link href="/" className="hover:text-slate-300 transition-colors">Home</Link></li>
+              <li><Link href="/about" className="hover:text-slate-300 transition-colors">About</Link></li>
+              <li><Link href="/portfolio" className="hover:text-slate-300 transition-colors">Portfolio</Link></li>
+              <li><Link href="/services" className="hover:text-slate-300 transition-colors">Services</Link></li>
+              <li><Link href="/contact" className="hover:text-slate-300 transition-colors">Contact</Link></li>
             </ul>
           </nav>
 

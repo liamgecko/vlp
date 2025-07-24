@@ -33,7 +33,7 @@ const LatestWeddings = ({ posts = defaultPosts.slice(0, 4) }: LatestWeddingsProp
         {/* Header */}
         <div className="text-center mb-16">
           <motion.h2 
-            className="font-heading text-4xl md:text-5xl font-bold text-slate-950 mb-6"
+            className="font-heading text-4xl font-bold text-slate-950 mb-6"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, ease: "easeOut" }}
@@ -48,7 +48,7 @@ const LatestWeddings = ({ posts = defaultPosts.slice(0, 4) }: LatestWeddingsProp
             transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
             viewport={{ once: true, amount: 0.3 }}
           >
-            Discover the beautiful love stories I've had the privilege to capture. Each wedding is unique, and every couple has their own special story to tell.
+            Discover the beautiful love stories I&apos;ve had the privilege to capture. Each wedding is unique, and every couple has their own special story to tell.
           </motion.p>
         </div>
 
@@ -86,7 +86,7 @@ const LatestWeddings = ({ posts = defaultPosts.slice(0, 4) }: LatestWeddingsProp
                 </div>
                 
                 <h3 className="font-heading text-xl font-bold text-slate-950 group-hover:text-slate-600 transition-colors duration-200">
-                  {post.title}
+                  {post.title.replace(/'/g, "&apos;")}
                 </h3>
                 
                 <p className="font-sans text-slate-600 leading-relaxed">
@@ -94,7 +94,7 @@ const LatestWeddings = ({ posts = defaultPosts.slice(0, 4) }: LatestWeddingsProp
                 </p>
                 
                 <a className="text-slate-950 font-semibold hover:text-slate-600 transition-colors duration-200" href="#" role="button" tabIndex={0} aria-label="Read More" onKeyDown={e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); /* handle click here if needed */ } }}>
-                  Read More →
+                  Read More &rarr;
                 </a>
               </div>
             </motion.article>

@@ -1,9 +1,7 @@
 "use client";
 
-import type { ButtonProps } from "@relume_io/relume-ui";
 import clsx from "clsx";
 import React, { useRef } from "react";
-import { ChevronRight } from "lucide-react";
 import Image from "next/image";
 import { motion, useScroll, useTransform } from "framer-motion";
 
@@ -23,7 +21,6 @@ type Feature = {
   tagline: string;
   heading: string;
   description: string;
-  buttons: ButtonProps[];
   image: ImageProps;
 };
 
@@ -151,15 +148,7 @@ export const Layout357Defaults: Props = {
       heading: "I'll meet you for a coffee to get to know you",
       description:
         "I'll meet you for a coffee to get to know you. I'll ask you about your love story, your wedding plans, and your expectations for your wedding photos. I'll also show you my portfolio and answer any questions you have.",
-      buttons: [
-        { title: "View Gallery", variant: "secondary" },
-        {
-          title: "Learn More",
-          variant: "link",
-          size: "link",
-          iconRight: <ChevronRight />,
-        },
-      ],
+      
       image: {
         src: "/vlp-01.jpg",
         alt: "Natural wedding photography capturing genuine moments",
@@ -175,15 +164,6 @@ export const Layout357Defaults: Props = {
       heading: "Pre-nuptial photoshoot",
       description:
         "I'll meet you for a coffee to get to know you. I'll ask you about your love story, your wedding plans, and your expectations for your wedding photos. I'll also show you my portfolio and answer any questions you have.",
-      buttons: [
-        { title: "See Locations", variant: "secondary" },
-        {
-          title: "Book Now",
-          variant: "link",
-          size: "link",
-          iconRight: <ChevronRight />,
-        },
-      ],
       image: {
         src: "/vlp-02.jpg",
         alt: "Wedding photography with stunning Scottish landscapes",
@@ -199,15 +179,6 @@ export const Layout357Defaults: Props = {
       heading: "I'll be there to capture your special day",
       description:
         "Your wedding photos should be more than just snapshots - they should be works of art. I combine technical expertise with creative vision to create images that are both beautiful and meaningful. From composition and lighting to post-processing, every detail is carefully considered.",
-      buttons: [
-        { title: "View Portfolio", variant: "secondary" },
-        {
-          title: "Get In Touch",
-          variant: "link",
-          size: "link",
-          iconRight: <ChevronRight />,
-        },
-      ],
       image: {
         src: "/vlp-03.jpg",
         alt: "Artistic wedding photography with creative vision",
@@ -223,15 +194,6 @@ export const Layout357Defaults: Props = {
       heading: "I'll be there to capture your special day",
       description:
         "I'm not just there to take photos - I'm there to be part of your wedding experience. I'll help you feel comfortable, guide you through the day, and ensure you have fun while creating beautiful memories. Your wedding day should be enjoyable, not stressful, and I'm here to make that happen.",
-      buttons: [
-        { title: "Read Reviews", variant: "secondary" },
-        {
-          title: "Contact Me",
-          variant: "link",
-          size: "link",
-          iconRight: <ChevronRight />,
-        },
-      ],
       image: {
         src: "/vlp-04.jpg",
         alt: "Personal wedding photography experience",
