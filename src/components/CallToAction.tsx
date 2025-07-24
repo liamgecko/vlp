@@ -42,16 +42,21 @@ const CallToAction = ({
         >
           {description}
         </motion.p>
-        <motion.button
+        <motion.a
+          href="#"
           onClick={handleClick}
           className="bg-white text-slate-950 px-6 py-4 uppercase font-semibold tracking-widest rounded-full hover:bg-gray-100 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-slate-950"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.4, ease: "easeOut" }}
           viewport={{ once: true, amount: 0.3 }}
+          role="button"
+          tabIndex={0}
+          aria-label="Contact: Get In Touch"
+          onKeyDown={e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); handleClick(); } }}
         >
           {buttonText}
-        </motion.button>
+        </motion.a>
       </div>
     </section>
   );

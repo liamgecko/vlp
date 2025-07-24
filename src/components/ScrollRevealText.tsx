@@ -76,5 +76,5 @@ export const Layout484 = (props: Layout484Props) => {
 
 export const Layout484Defaults: Props = {
   heading:
-    "We couldn't recommend or thank her enough for her amazing work that she does! From making us feel super comfortable in front of the camera and putting up with our awkwardness, everyone who has seen the photos have thought they were amazing.",
+    "We couldn't recommend or thank her enough for her amazing work that she does! From making us feel super comfortable in front of the camera and putting up with our awkwardness, everyone who has seen the photos have thought they were amazing. ",
 };

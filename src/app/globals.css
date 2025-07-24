@@ -9,6 +9,10 @@ h1, h2 {
   line-height: 1.05;
 }
 
+a {
+  cursor: pointer;
+}
+
 :root {
   --font-poppins: 'Poppins', sans-serif;
   --font-caprasimo: 'Caprasimo', serif;

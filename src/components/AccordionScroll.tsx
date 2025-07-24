@@ -3,7 +3,7 @@
 import type { ButtonProps } from "@relume_io/relume-ui";
 import clsx from "clsx";
 import React, { useRef } from "react";
-import { RxChevronRight } from "react-icons/rx";
+import { ChevronRight } from "lucide-react";
 import Image from "next/image";
 import { motion, useScroll, useTransform } from "framer-motion";
 
@@ -49,7 +49,7 @@ export const Layout357 = (props: Layout357Props) => {
             transition={{ duration: 0.6, ease: "easeOut" }}
             viewport={{ once: true, amount: 0.3 }}
           >
-            What to expect on your big day?
+            Accordion scroll heading.
           </motion.h2>
           <motion.p 
             className="font-sans text-lg mt-4"
@@ -58,7 +58,7 @@ export const Layout357 = (props: Layout357Props) => {
             transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
             viewport={{ once: true, amount: 0.3 }}
           >
-            I&apos;m a Scottish wedding photographer for couples who want something different.
+            Accordion scroll description.
           </motion.p>
         </div>
       </div>
@@ -157,7 +157,7 @@ export const Layout357Defaults: Props = {
           title: "Learn More",
           variant: "link",
           size: "link",
-          iconRight: <RxChevronRight />,
+          iconRight: <ChevronRight />,
         },
       ],
       image: {
@@ -181,7 +181,7 @@ export const Layout357Defaults: Props = {
           title: "Book Now",
           variant: "link",
           size: "link",
-          iconRight: <RxChevronRight />,
+          iconRight: <ChevronRight />,
         },
       ],
       image: {
@@ -205,7 +205,7 @@ export const Layout357Defaults: Props = {
           title: "Get In Touch",
           variant: "link",
           size: "link",
-          iconRight: <RxChevronRight />,
+          iconRight: <ChevronRight />,
         },
       ],
       image: {
@@ -229,7 +229,7 @@ export const Layout357Defaults: Props = {
           title: "Contact Me",
           variant: "link",
           size: "link",
-          iconRight: <RxChevronRight />,
+          iconRight: <ChevronRight />,
         },
       ],
       image: {

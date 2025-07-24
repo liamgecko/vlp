@@ -16,7 +16,7 @@ export default function Home() {
     <>
       <Hero />
       <ImageText
-        title="Not your typical wedding photographer!"
+        title="Image left with text right heading."
         description="Hello, I'm Vicki—a seasoned wedding photographer in Fife but capturing hearts and moments across the world, including, British Columbia, Cyprus, Ibiza, Thailand and beyond. Passionate about nature, dogs, and epic landscapes, I bring a blend of enthusiasm, energy, and a hint of playful innuendo to every wedding. Your wedding day should be a joyous celebration, filled with hugs, dance moves, and romantic moments that feel like a scene out of a fairytale. It’s about enjoying every second with your loved ones, immersed in laughter and love. As your wedding photographer, my goal is to make your special day unforgettable by capturing every genuine emotion and spontaneous moment."
         imageSrc="/vicki.jpg"
         imageAlt="Victoria Photography"
@@ -26,7 +26,7 @@ export default function Home() {
       />
       <ScrollSections />
       <ImageText
-        title="Say goodbye to those awkward photos!"
+        title="Image right with text left heading."
         description="Hello, I'm Vicki—a seasoned wedding photographer in Fife but capturing hearts and moments across the world, including, British Columbia, Cyprus, Ibiza, Thailand and beyond. Passionate about nature, dogs, and epic landscapes, I bring a blend of enthusiasm, energy, and a hint of playful innuendo to every wedding."
         imageSrc="/vicki.jpg"
         imageAlt="Victoria Photography"

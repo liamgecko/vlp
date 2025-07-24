@@ -32,19 +32,24 @@ const ImageText = ({ title, description, imageSrc, imageAlt, variant, buttonText
       animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: isLeftVariant ? 50 : -50 }}
       transition={{ duration: 0.6, ease: "easeOut" }}
     >
-      <h2 className="font-heading text-4xl md:text-5xl font-bold text-slate-900 text-left text-balance">
+      <h2 className="font-heading text-4xl font-bold text-slate-900 text-left text-balance">
         {title}
       </h2>          
       <p className="font-sans text-base text-slate-900 text-left mt-8">
         {description}
       </p>
       {buttonText && (
-        <button
+        <a
+          href="#"
           onClick={handleClick}
           className="bg-slate-950 text-white px-6 py-4 uppercase font-semibold tracking-widest rounded-full hover:bg-slate-800 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-slate-950 w-fit mt-8 border border-white"
+          role="button"
+          tabIndex={0}
+          aria-label={buttonText}
+          onKeyDown={e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); handleClick(); } }}
         >
           {buttonText}
-        </button>
+        </a>
       )}
     </motion.div>
   );

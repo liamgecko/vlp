@@ -93,9 +93,9 @@ const LatestWeddings = ({ posts = defaultPosts.slice(0, 4) }: LatestWeddingsProp
                   {post.excerpt}
                 </p>
                 
-                <button className="text-slate-950 font-semibold hover:text-slate-600 transition-colors duration-200">
+                <a className="text-slate-950 font-semibold hover:text-slate-600 transition-colors duration-200" href="#" role="button" tabIndex={0} aria-label="Read More" onKeyDown={e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); /* handle click here if needed */ } }}>
                   Read More →
-                </button>
+                </a>
               </div>
             </motion.article>
           ))}
@@ -103,15 +103,20 @@ const LatestWeddings = ({ posts = defaultPosts.slice(0, 4) }: LatestWeddingsProp
 
         {/* View All Button */}
         <div className="text-center mt-12">
-          <motion.button 
+          <motion.a 
+            href="#"
             className="bg-slate-950 text-white px-8 py-4 uppercase font-semibold tracking-widest rounded-full hover:bg-slate-800 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-slate-950 focus:ring-offset-2"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 1.0, ease: "easeOut" }}
             viewport={{ once: true, amount: 0.3 }}
+            role="button"
+            tabIndex={0}
+            aria-label="View All Weddings"
+            onKeyDown={e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); /* handle click here if needed */ } }}
           >
             View All Weddings
-          </motion.button>
+          </motion.a>
         </div>
       </div>
     </section>

@@ -58,25 +58,32 @@ const Navigation = () => {
         {/* Mobile CTA Button and Menu */}
         <div className="flex items-center gap-4">
           {/* CTA Button */}
-          <button
+          <a
+            href="#"
             className="hidden sm:block rounded-full border-2 border-slate-900 bg-white text-slate-900 px-6 py-2 font-sans font-semibold text-sm focus:outline-none focus:ring-2 focus:ring-slate-900 focus:ring-offset-2 hover:bg-slate-900 hover:text-white transition cursor-pointer"
             aria-label="Save the date"
             tabIndex={0}
+            role="button"
+            onKeyDown={e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); /* handle click here if needed */ } }}
           >
             Save the date
-          </button>
+          </a>
 
           {/* Mobile Menu Button */}
-          <button
+          <a
+            href="#"
             className="lg:hidden flex flex-col justify-center items-center w-8 h-8 space-y-1.5 focus:outline-none focus:ring-2 focus:ring-slate-900 focus:ring-offset-2 rounded"
             onClick={handleToggleMenu}
             aria-label="Toggle mobile menu"
             aria-expanded={isMenuOpen}
+            tabIndex={0}
+            role="button"
+            onKeyDown={e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); handleToggleMenu(); } }}
           >
             <span className={`block w-6 h-0.5 bg-slate-900 transition-all duration-300 ${isMenuOpen ? 'rotate-45 translate-y-2' : ''}`}></span>
             <span className={`block w-6 h-0.5 bg-slate-900 transition-all duration-300 ${isMenuOpen ? 'opacity-0' : ''}`}></span>
             <span className={`block w-6 h-0.5 bg-slate-900 transition-all duration-300 ${isMenuOpen ? '-rotate-45 -translate-y-2' : ''}`}></span>
-          </button>
+          </a>
         </div>
       </nav>
 
@@ -93,14 +100,18 @@ const Navigation = () => {
             {/* Close Button - Positioned same as hamburger */}
             <div className="w-full max-w-screen-xl lg:max-w-screen-2xl mx-auto flex items-center justify-between py-6 px-4">
               <div></div> {/* Empty div to maintain spacing */}
-              <button
+              <a
+                href="#"
                 className="flex justify-center items-center w-8 h-8 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 rounded relative"
                 onClick={handleCloseMenu}
                 aria-label="Close mobile menu"
+                tabIndex={0}
+                role="button"
+                onKeyDown={e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); handleCloseMenu(); } }}
               >
                 <span className="absolute block w-6 h-0.5 bg-white rotate-45"></span>
                 <span className="absolute block w-6 h-0.5 bg-white -rotate-45"></span>
-              </button>
+              </a>
             </div>
 
             {/* Mobile Menu Content */}
@@ -134,14 +145,17 @@ const Navigation = () => {
               </ul>
 
               {/* Mobile CTA Button */}
-              <button
+              <a
+                href="#"
                 className="rounded-full border-2 border-white bg-transparent text-white px-8 py-3 font-sans font-semibold text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 hover:bg-white hover:text-slate-950 transition cursor-pointer"
                 aria-label="Save the date"
                 tabIndex={0}
+                role="button"
                 onClick={handleCloseMenu}
+                onKeyDown={e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); handleCloseMenu(); } }}
               >
                 Save the date
-              </button>
+              </a>
             </div>
           </motion.div>
         )}

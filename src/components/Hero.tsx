@@ -24,16 +24,19 @@ const Hero: FC = () => (
           <SplitText className="font-heading text-white text-3xl md:text-5xl font-bold leading-[1.2]">
             When you&apos;re not just mouth happy, you&apos;re eyeball happy!
           </SplitText>
-          <motion.button
+          <motion.a
+            href="#"
             className="bg-white text-slate-950 px-6 py-4 uppercase font-semibold tracking-widest rounded-full hover:bg-gray-100 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-slate-950 mt-8"
             aria-label="Save the date"
             tabIndex={0}  
             initial={{ opacity: 0 }}
             animate={{ opacity: 1}}
             transition={{ delay: 2, duration: 0.6, ease: "easeIn" }}
+            role="button"
+            onKeyDown={e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); /* handle click here if needed */ } }}
           >
             Save the date
-          </motion.button>
+          </motion.a>
         </div>
       </div>
     </div>

@@ -18,7 +18,7 @@ const ScrollSections = () => {
             animate={introInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
             transition={{ duration: 0.6, ease: "easeOut" }}
           >
-            So, you want something different?
+            Sticky scroll sections heading.
           </motion.h2>
           <motion.p 
             className="font-sans text-lg mt-4"
@@ -26,7 +26,7 @@ const ScrollSections = () => {
             animate={introInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
             transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
           >
-            I&apos;m a Scottish wedding photographer for couples who want something different.
+            Sticky scroll sections description.
           </motion.p>
         </div>
       </section>

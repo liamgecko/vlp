@@ -36,10 +36,27 @@ const ImageSlider = ({
   const [isMounted, setIsMounted] = useState(false);
   const prevRef = useRef<HTMLDivElement>(null);
   const nextRef = useRef<HTMLDivElement>(null);
+  const [swiperInstance, setSwiperInstance] = useState<any>(null);
 
   useEffect(() => {
     setIsMounted(true);
   }, []);
+
+  // Effect to update Swiper navigation when refs are ready
+  useEffect(() => {
+    if (
+      swiperInstance &&
+      prevRef.current &&
+      nextRef.current &&
+      swiperInstance.params &&
+      swiperInstance.navigation
+    ) {
+      swiperInstance.params.navigation.prevEl = prevRef.current;
+      swiperInstance.params.navigation.nextEl = nextRef.current;
+      swiperInstance.navigation.init();
+      swiperInstance.navigation.update();
+    }
+  }, [swiperInstance, prevRef, nextRef]);
 
   if (!isMounted) {
     return null;
@@ -55,7 +72,7 @@ const ImageSlider = ({
           transition={{ duration: 0.6, ease: "easeOut" }}
           viewport={{ once: true, amount: 0.3 }}
         >
-          So, you want something different?
+          Image slider heading.
         </motion.h2>
         <motion.p 
           className="font-sans text-lg mt-4"
@@ -64,7 +81,7 @@ const ImageSlider = ({
           transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
           viewport={{ once: true, amount: 0.3 }}
         >
-          I&apos;m a Scottish wedding photographer for couples who want something different.
+          Image slider description.
         </motion.p>
       </div>
       <Swiper
@@ -77,16 +94,7 @@ const ImageSlider = ({
         autoplay={autoplay ? { delay: autoplayDelay, disableOnInteraction: false } : false}
         loop={true}
         className="w-full h-full"
-        onSwiper={(swiper) => {
-          if (showNavigation) {
-            setTimeout(() => {
-              if (prevRef.current && nextRef.current) {
-                swiper.navigation.init();
-                swiper.navigation.update();
-              }
-            }, 0);
-          }
-        }}
+        onSwiper={setSwiperInstance}
       >
         {images.map((image, index) => (
           <SwiperSlide key={index} className="relative">

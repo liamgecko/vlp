@@ -63,7 +63,7 @@ const ImageTextCarousel = ({
               transition={{ duration: 0.6, ease: "easeOut" }}
               viewport={{ once: true, amount: 0.3 }}
             >
-              So, you want something different?
+              Carousel heading.
             </motion.h2>
             <motion.p 
               className="font-sans text-lg mt-4"
@@ -72,7 +72,7 @@ const ImageTextCarousel = ({
               transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
               viewport={{ once: true, amount: 0.3 }}
             >
-              I&apos;m a Scottish wedding photographer for couples who want something different.
+              Carousel description.
             </motion.p>
         </div>
       <div className="w-full max-w-7xl mx-auto px-4 text-center pb-16 px-16">
@@ -107,12 +107,17 @@ const ImageTextCarousel = ({
                       {slide.description}
                     </p>
                     {slide.buttonText && (
-                      <button
+                      <a
+                        href="#"
                         onClick={() => handleClick(slide.buttonLink)}
                         className="bg-white text-slate-950 px-6 py-4 uppercase font-semibold tracking-widest rounded-full hover:bg-gray-100 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-slate-950 w-fit"
+                        role="button"
+                        tabIndex={0}
+                        aria-label={slide.buttonText}
+                        onKeyDown={e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); handleClick(slide.buttonLink); } }}
                       >
                         {slide.buttonText}
-                      </button>
+                      </a>
                     )}
                   </div>
                 </div>
@@ -125,24 +130,32 @@ const ImageTextCarousel = ({
         {/* Controls below carousel, center aligned on small screens, right aligned on larger screens */}
         {showNavigation && slides.length > 1 && (
           <div className="flex flex-row gap-2 mt-6 justify-center md:justify-end">
-            <button
+            <a
+              href="#"
               onClick={goToPrevious}
               className="w-11 h-11 flex items-center justify-center border border-slate-950 rounded-full cursor-pointer text-2xl select-none transition hover:bg-slate-950/10 text-slate-950"
               aria-label="Previous slide"
+              role="button"
+              tabIndex={0}
+              onKeyDown={e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); goToPrevious(); } }}
             >
               <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
               </svg>
-            </button>
-            <button
+            </a>
+            <a
+              href="#"
               onClick={goToNext}
               className="w-11 h-11 flex items-center justify-center border border-slate-950 rounded-full cursor-pointer text-2xl select-none transition hover:bg-slate-950/10 text-slate-950"
               aria-label="Next slide"
+              role="button"
+              tabIndex={0}
+              onKeyDown={e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); goToNext(); } }}
             >
               <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
               </svg>
-            </button>
+            </a>
           </div>
         )}
       </div>
