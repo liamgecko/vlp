@@ -15,11 +15,25 @@ interface BlogPost {
   slug: string;
 }
 
-interface LatestWeddingsProps {
+interface CardGridProps {
   posts?: BlogPost[];
+  heading?: string;
+  description?: string;
+  buttonText?: string;
+  buttonLink?: string;
+  showHeading?: boolean;
+  className?: string;
 }
 
-const LatestWeddings = ({ posts = defaultPosts.slice(0, 4) }: LatestWeddingsProps) => {
+const CardGrid = ({ 
+  posts = defaultPosts.slice(0, 4),
+  heading = "Latest Weddings",
+  description = "Discover the beautiful love stories I've had the privilege to capture. Each wedding is unique, and every couple has their own special story to tell.",
+  buttonText = "View All Weddings",
+  buttonLink = "/weddings",
+  showHeading = true,
+  className = ""
+}: CardGridProps) => {
   // Show 4 cards on smaller screens, 3 on larger screens
   const displayPosts = posts.slice(0, 4);
   const handleClick = (slug: string) => {
@@ -28,29 +42,31 @@ const LatestWeddings = ({ posts = defaultPosts.slice(0, 4) }: LatestWeddingsProp
   };
 
   return (
-    <section className="w-full bg-white py-24">
+    <section className={`w-full bg-white py-24 ${className}`}>
       <div className="container mx-auto px-4">
         {/* Header */}
-        <div className="text-center mb-16">
-          <motion.h2 
-            className="font-heading text-4xl font-bold text-slate-950 mb-6"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, ease: "easeOut" }}
-            viewport={{ once: true, amount: 0.3 }}
-          >
-            Latest Weddings
-          </motion.h2>
-          <motion.p 
-            className="font-sans text-lg text-slate-600 max-w-2xl mx-auto"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
-            viewport={{ once: true, amount: 0.3 }}
-          >
-            Discover the beautiful love stories I&apos;ve had the privilege to capture. Each wedding is unique, and every couple has their own special story to tell.
-          </motion.p>
-        </div>
+        {showHeading && (
+          <div className="text-center mb-16">
+            <motion.h2 
+              className="font-heading text-4xl font-bold text-slate-950 mb-6"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, ease: "easeOut" }}
+              viewport={{ once: true, amount: 0.3 }}
+            >
+              {heading}
+            </motion.h2>
+            <motion.p 
+              className="font-sans text-lg text-slate-600 max-w-2xl mx-auto"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
+              viewport={{ once: true, amount: 0.3 }}
+            >
+              {description}
+            </motion.p>
+          </div>
+        )}
 
         {/* 4 Column Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -104,18 +120,18 @@ const LatestWeddings = ({ posts = defaultPosts.slice(0, 4) }: LatestWeddingsProp
         {/* View All Button */}
         <div className="text-center mt-12">
           <motion.a 
-            href="#"
+            href={buttonLink}
             className="bg-slate-950 text-white px-8 py-4 uppercase font-semibold tracking-widest rounded-full hover:bg-slate-800 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-slate-950 focus:ring-offset-2 inline-block"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 1.0, ease: "easeOut" }}
-            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
+            viewport={{ once: true, amount: 0.1 }}
             role="button"
             tabIndex={0}
-            aria-label="View All Weddings"
+            aria-label={buttonText}
             onKeyDown={e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); /* handle click here if needed */ } }}
           >
-            View All Weddings
+            {buttonText}
           </motion.a>
         </div>
       </div>
@@ -187,4 +203,4 @@ const defaultPosts: BlogPost[] = [
   }
 ];
 
-export default LatestWeddings; 
+export default CardGrid; 

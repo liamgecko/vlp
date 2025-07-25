@@ -53,7 +53,7 @@ const Footer = () => {
 
           {/* Menu */}
           <nav className="text-center mb-12">
-            <ul className="flex flex-wrap justify-center gap-8 text-lg">
+            <ul className="flex flex-wrap justify-center gap-8 text-base">
               <li><Link href="/" className="hover:text-slate-300 transition-colors">Home</Link></li>
               <li><Link href="/about" className="hover:text-slate-300 transition-colors">About</Link></li>
               <li><Link href="/portfolio" className="hover:text-slate-300 transition-colors">Portfolio</Link></li>

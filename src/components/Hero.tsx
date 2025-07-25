@@ -4,12 +4,36 @@ import type { FC } from "react";
 import SplitText from "@/components/SplitText";
 import { motion } from "framer-motion";
 
-const Hero: FC = () => (
-  <section className="w-full max-w-[1920px] mx-auto flex justify-center p-4 pt-0 h-[calc(100vh-92px)]">
+interface HeroProps {
+  backgroundImage?: {
+    src: string;
+    alt: string;
+  };
+  subtitle?: string;
+  heading?: string;
+  buttonText?: string;
+  buttonLink?: string;
+  buttonAriaLabel?: string;
+  className?: string;
+}
+
+const Hero: FC<HeroProps> = ({
+  backgroundImage = {
+    src: "/vlp-01.jpg",
+    alt: "Victoria Photography Hero"
+  },
+  subtitle = "Wedding photography in scotland",
+  heading = "When you're not just mouth happy, you're eyeball happy!",
+  buttonText = "Save the date",
+  buttonLink = "#",
+  buttonAriaLabel,
+  className = ""
+}) => (
+  <section className={`w-full max-w-[1920px] mx-auto flex justify-center p-4 pt-0 h-[calc(100vh-92px)] ${className}`}>
     <div className="relative w-full h-full">
       <Image
-        src="/vlp-01.jpg"
-        alt="Victoria Photography Hero"
+        src={backgroundImage.src}
+        alt={backgroundImage.alt}
         fill
         priority
         className="object-cover object-center rounded-xl"
@@ -19,15 +43,15 @@ const Hero: FC = () => (
       <div className="absolute inset-0 flex flex-col items-center justify-end text-center px-4 pb-12 z-20">
         <div className="w-full max-w-2xl mx-auto">
           <SplitText className="!font-sans uppercase tracking-widest text-white text-sm md:text-base font-medium mb-2">
-            Wedding photography in scotland
+            {subtitle}
           </SplitText>
           <SplitText className="font-heading text-white text-3xl md:text-5xl font-bold leading-[1.2]">
-            When you&apos;re not just mouth happy, you&apos;re eyeball happy!
+            {heading}
           </SplitText>
           <motion.a
-            href="#"
+            href={buttonLink}
             className="bg-white text-slate-950 px-6 py-4 uppercase font-semibold tracking-widest rounded-full hover:bg-gray-100 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-slate-950 mt-8 inline-block"
-            aria-label="Save the date"
+            aria-label={buttonAriaLabel || buttonText}
             tabIndex={0}  
             initial={{ opacity: 0 }}
             animate={{ opacity: 1}}
@@ -35,7 +59,7 @@ const Hero: FC = () => (
             role="button"
             onKeyDown={e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); /* handle click here if needed */ } }}
           >
-            Save the date
+            {buttonText}
           </motion.a>
         </div>
       </div>

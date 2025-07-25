@@ -24,41 +24,47 @@ type Feature = {
   image: ImageProps;
 };
 
-type Props = {
+interface AccordionScrollProps {
   features: Feature[];
-};
+  heading?: string;
+  description?: string;
+  showHeading?: boolean;
+  className?: string;
+}
 
-export type Layout357Props = React.ComponentPropsWithoutRef<"section"> & Partial<Props>;
-
-export const Layout357 = (props: Layout357Props) => {
-  const { features } = {
-    ...Layout357Defaults,
-    ...props,
-  };
+export const AccordionScroll: React.FC<AccordionScrollProps> = ({
+  features,
+  heading = "Accordion scroll heading.",
+  description = "Accordion scroll description.",
+  showHeading = true,
+  className = ""
+}) => {
   return (
-    <section>
-      <div className="bg-slate-950 text-white">
-        <div className="container mx-auto px-4 text-center py-24">
-          <motion.h2 
-            className="font-heading text-4xl"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, ease: "easeOut" }}
-            viewport={{ once: true, amount: 0.3 }}
-          >
-            Accordion scroll heading.
-          </motion.h2>
-          <motion.p 
-            className="font-sans text-lg mt-4"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
-            viewport={{ once: true, amount: 0.3 }}
-          >
-            Accordion scroll description.
-          </motion.p>
+    <section className={className}>
+      {showHeading && (
+        <div className="bg-slate-950 text-white">
+          <div className="container mx-auto px-4 text-center py-24">
+            <motion.h2 
+              className="font-heading text-4xl"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, ease: "easeOut" }}
+              viewport={{ once: true, amount: 0.3 }}
+            >
+              {heading}
+            </motion.h2>
+            <motion.p 
+              className="font-sans text-lg mt-4"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
+              viewport={{ once: true, amount: 0.3 }}
+            >
+              {description}
+            </motion.p>
+          </div>
         </div>
-      </div>
+      )}
       <div className="sticky top-0">
         {features.map((feature, index) => (
           <React.Fragment key={index}>
@@ -135,68 +141,6 @@ const FeatureCard = (feature: Feature & { index: number }) => {
   );
 };
 
-export const Layout357Defaults: Props = {
-  features: [
-    {
-      anchor: {
-        url: "#",
-        number: "01",
-        title: "It starts before your big day!",
-      },
-      tagline: "Pre-wedding",
-      heading: "I'll meet you for a coffee to get to know you",
-      description:
-        "I'll meet you for a coffee to get to know you. I'll ask you about your love story, your wedding plans, and your expectations for your wedding photos. I'll also show you my portfolio and answer any questions you have.",
-      
-      image: {
-        src: "/vlp-01.jpg",
-        alt: "Natural wedding photography capturing genuine moments",
-      },
-    },
-    {
-      anchor: {
-        url: "#",
-        number: "02",
-        title: "It's finally here!",
-      },
-      tagline: "On the day",
-      heading: "Pre-nuptial photoshoot",
-      description:
-        "I'll meet you for a coffee to get to know you. I'll ask you about your love story, your wedding plans, and your expectations for your wedding photos. I'll also show you my portfolio and answer any questions you have.",
-      image: {
-        src: "/vlp-02.jpg",
-        alt: "Wedding photography with stunning Scottish landscapes",
-      },
-    },
-    {
-      anchor: {
-        url: "#",
-        number: "03",
-        title: "Time to say 'I do'",
-      },
-      tagline: "Your wedding day",
-      heading: "I'll be there to capture your special day",
-      description:
-        "Your wedding photos should be more than just snapshots - they should be works of art. I combine technical expertise with creative vision to create images that are both beautiful and meaningful. From composition and lighting to post-processing, every detail is carefully considered.",
-      image: {
-        src: "/vlp-03.jpg",
-        alt: "Artistic wedding photography with creative vision",
-      },
-    },
-    {
-      anchor: {
-        url: "#",
-        number: "04",
-        title: "Now it's time to relax (or let your hair down)",
-      },
-      tagline: "Dinner and dancing",
-      heading: "I'll be there to capture your special day",
-      description:
-        "I'm not just there to take photos - I'm there to be part of your wedding experience. I'll help you feel comfortable, guide you through the day, and ensure you have fun while creating beautiful memories. Your wedding day should be enjoyable, not stressful, and I'm here to make that happen.",
-      image: {
-        src: "/vlp-04.jpg",
-        alt: "Personal wedding photography experience",
-      },
-    },
-  ],
-};
+// Legacy export for backward compatibility
+export const Layout357 = AccordionScroll;
+export type Layout357Props = AccordionScrollProps;

@@ -35,16 +35,15 @@ const ExampleImageSlider = () => {
   ];
 
   return (
-    <div className="w-full">
-      <ImageSlider 
-        images={sampleImages}
-        autoplay={true}
-        autoplayDelay={4000}
-        showNavigation={true}
-        showPagination={true}
-        className="w-full"
-      />
-    </div>
+    <ImageSlider 
+      images={sampleImages}
+      autoplay={true}
+      autoplayDelay={4000}
+      showNavigation={true}
+      showPagination={true}
+      heading="Beautiful Wedding Photography"
+      description="Capturing your special moments with artistry and passion"
+    />
   );
 };
 

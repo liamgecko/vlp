@@ -18,13 +18,19 @@ interface ImageTextCarouselProps {
   autoplay?: boolean;
   autoplayDelay?: number;
   showNavigation?: boolean;
+  heading?: string;
+  description?: string;
+  showHeading?: boolean;
 }
 
 const ImageTextCarousel = ({ 
   slides, 
   autoplay = true, 
   autoplayDelay = 5000, 
-  showNavigation = true 
+  showNavigation = true,
+  heading = "Carousel heading.",
+  description = "Carousel description.",
+  showHeading = true
 }: ImageTextCarouselProps) => {
   const [currentSlide, setCurrentSlide] = useState(0);
 
@@ -57,26 +63,28 @@ const ImageTextCarousel = ({
 
   return (
     <section className="w-full bg-white py-24">
-        <div className="container mx-auto px-4 text-center pb-16">
-            <motion.h2 
-              className="font-heading text-4xl"
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, ease: "easeOut" }}
-              viewport={{ once: true, amount: 0.3 }}
-            >
-              Carousel heading.
-            </motion.h2>
-            <motion.p 
-              className="font-sans text-lg mt-4"
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
-              viewport={{ once: true, amount: 0.3 }}
-            >
-              Carousel description.
-            </motion.p>
-        </div>
+        {showHeading && (
+          <div className="container mx-auto px-4 text-center pb-16">
+              <motion.h2 
+                className="font-heading text-4xl"
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, ease: "easeOut" }}
+                viewport={{ once: true, amount: 0.3 }}
+              >
+                {heading}
+              </motion.h2>
+              <motion.p 
+                className="font-sans text-lg mt-4"
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
+                viewport={{ once: true, amount: 0.3 }}
+              >
+                {description}
+              </motion.p>
+          </div>
+        )}
       <div className="w-full max-w-7xl mx-auto px-4 text-center pb-16 px-16">
         {/* Carousel Container */}
         <div className="relative w-full max-w-7xl mx-auto">

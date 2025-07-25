@@ -3,11 +3,12 @@
 import React, { useRef } from "react";
 import { motion, MotionStyle, useScroll, useTransform, MotionValue } from "framer-motion";
 
-type Props = {
+interface TestimonialSectionProps {
   heading: string;
-};
-
-export type Layout484Props = React.ComponentPropsWithoutRef<"section"> & Partial<Props>;
+  author?: string;
+  backgroundImage?: string;
+  className?: string;
+}
 
 // Individual word component that can use its own useTransform hook
 const AnimatedWord = ({ word, index, totalWords, scrollYProgress }: {
@@ -27,12 +28,12 @@ const AnimatedWord = ({ word, index, totalWords, scrollYProgress }: {
   );
 };
 
-export const Layout484 = (props: Layout484Props) => {
-  const { heading } = {
-    ...Layout484Defaults,
-    ...props,
-  };
-
+export const TestimonialSection: React.FC<TestimonialSectionProps> = ({
+  heading,
+  author = "— Sarah & James",
+  backgroundImage = "/vlp-01.jpg",
+  className = ""
+}) => {
   const headingRef = useRef<HTMLHeadingElement>(null);
 
   const { scrollYProgress } = useScroll({
@@ -44,9 +45,9 @@ export const Layout484 = (props: Layout484Props) => {
 
   return (
     <section 
-      className="overflow-hidden px-16 md:px-[5%] py-16 md:py-24 lg:py-42 bg-cover bg-center bg-no-repeat relative"
+      className={`overflow-hidden px-16 md:px-[5%] py-16 md:py-24 lg:py-42 bg-cover bg-center bg-no-repeat relative ${className}`}
       style={{
-        backgroundImage: "url('/vlp-01.jpg')"
+        backgroundImage: `url('${backgroundImage}')`
       }}
     >
       {/* Dark overlay for better text readability */}
@@ -66,15 +67,16 @@ export const Layout484 = (props: Layout484Props) => {
             </React.Fragment>
           ))}
         </h3>
-        <div className="mt-8 text-left">
-          <p className="text-xl font-medium text-white/80">— Sarah & James</p>
-        </div>
+        {author && (
+          <div className="mt-8 text-left">
+            <p className="text-xl font-medium text-white/80">{author}</p>
+          </div>
+        )}
       </div>
     </section>
   );
 };
 
-export const Layout484Defaults: Props = {
-  heading:
-    "We couldn't recommend or thank her enough for her amazing work that she does! From making us feel super comfortable in front of the camera and putting up with our awkwardness, everyone who has seen the photos have thought they were amazing. ",
-};
+// Legacy export for backward compatibility
+export const Layout484 = TestimonialSection;
+export type Layout484Props = TestimonialSectionProps;
