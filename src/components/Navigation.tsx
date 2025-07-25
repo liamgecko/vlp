@@ -35,6 +35,7 @@ const Navigation = () => {
               width={208}
               height={52}
               priority
+              className="w-full h-auto"
             />
           </Link>
         </div>
@@ -60,7 +61,7 @@ const Navigation = () => {
           {/* CTA Button */}
           <a
             href="#"
-            className="hidden sm:block rounded-full border-2 border-slate-900 bg-white text-slate-900 px-6 py-2 font-sans font-semibold text-sm focus:outline-none focus:ring-2 focus:ring-slate-900 focus:ring-offset-2 hover:bg-slate-900 hover:text-white transition cursor-pointer"
+            className="hidden sm:block rounded-full border-2 border-slate-900 bg-white text-slate-900 px-6 py-2 font-sans font-semibold text-xs focus:outline-none focus:ring-2 focus:ring-slate-900 focus:ring-offset-2 hover:bg-slate-900 hover:text-white transition cursor-pointer uppercase tracking-widest"
             aria-label="Save the date"
             tabIndex={0}
             role="button"
@@ -147,7 +148,7 @@ const Navigation = () => {
               {/* Mobile CTA Button */}
               <a
                 href="#"
-                className="rounded-full border-2 border-white bg-transparent text-white px-8 py-3 font-sans font-semibold text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 hover:bg-white hover:text-slate-950 transition cursor-pointer"
+                className="rounded-full border-2 border-white bg-transparent text-white px-8 py-3 font-sans font-semibold text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 hover:bg-white hover:text-slate-950 transition cursor-pointer uppercase"
                 aria-label="Save the date"
                 tabIndex={0}
                 role="button"

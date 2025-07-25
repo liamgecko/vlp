@@ -47,7 +47,7 @@ const Footer = () => {
               alt="Victoria Photography"
               width={200}
               height={60}
-              className="mx-auto brightness-0 invert"
+              className="mx-auto brightness-0 invert h-auto"
             />
           </div>
 

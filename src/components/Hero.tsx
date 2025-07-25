@@ -26,7 +26,7 @@ const Hero: FC = () => (
           </SplitText>
           <motion.a
             href="#"
-            className="bg-white text-slate-950 px-6 py-4 uppercase font-semibold tracking-widest rounded-full hover:bg-gray-100 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-slate-950 mt-8"
+            className="bg-white text-slate-950 px-6 py-4 uppercase font-semibold tracking-widest rounded-full hover:bg-gray-100 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-slate-950 mt-8 inline-block"
             aria-label="Save the date"
             tabIndex={0}  
             initial={{ opacity: 0 }}

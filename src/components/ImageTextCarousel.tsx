@@ -45,11 +45,13 @@ const ImageTextCarousel = ({
     }
   };
 
-  const goToNext = () => {
+  const goToNext = (e: React.MouseEvent) => {
+    e.preventDefault();
     setCurrentSlide((prev) => (prev + 1) % slides.length);
   };
 
-  const goToPrevious = () => {
+  const goToPrevious = (e: React.MouseEvent) => {
+    e.preventDefault();
     setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length);
   };
 
@@ -130,32 +132,26 @@ const ImageTextCarousel = ({
         {/* Controls below carousel, center aligned on small screens, right aligned on larger screens */}
         {showNavigation && slides.length > 1 && (
           <div className="flex flex-row gap-2 mt-6 justify-center md:justify-end">
-            <a
-              href="#"
+            <button
               onClick={goToPrevious}
               className="w-11 h-11 flex items-center justify-center border border-slate-950 rounded-full cursor-pointer text-2xl select-none transition hover:bg-slate-950/10 text-slate-950"
               aria-label="Previous slide"
-              role="button"
-              tabIndex={0}
-              onKeyDown={e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); goToPrevious(); } }}
+              type="button"
             >
               <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
               </svg>
-            </a>
-            <a
-              href="#"
+            </button>
+            <button
               onClick={goToNext}
               className="w-11 h-11 flex items-center justify-center border border-slate-950 rounded-full cursor-pointer text-2xl select-none transition hover:bg-slate-950/10 text-slate-950"
               aria-label="Next slide"
-              role="button"
-              tabIndex={0}
-              onKeyDown={e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); goToNext(); } }}
+              type="button"
             >
               <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
               </svg>
-            </a>
+            </button>
           </div>
         )}
       </div>

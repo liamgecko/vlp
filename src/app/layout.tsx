@@ -28,7 +28,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${poppins.variable} ${caprasimo.variable} antialiased`}
+        className={`${poppins.variable} ${caprasimo.variable} antialiased relative`}
       >
         <Navigation />
         {children}

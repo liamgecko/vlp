@@ -36,7 +36,7 @@ export const Layout357 = (props: Layout357Props) => {
     ...props,
   };
   return (
-    <section id="relume">
+    <section>
       <div className="bg-slate-950 text-white">
         <div className="container mx-auto px-4 text-center py-24">
           <motion.h2 
@@ -125,7 +125,6 @@ const FeatureCard = (feature: Feature & { index: number }) => {
                 width={1600}
                 height={600}
                 className="h-[25rem] w-full object-cover sm:h-[30rem] lg:h-[60vh] rounded-2xl relative z-10"
-                style={{ width: "100%", height: "auto" }}
                 sizes="(max-width: 1024px) 100vw, 800px"
               />
             </div>
