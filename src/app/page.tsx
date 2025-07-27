@@ -35,26 +35,26 @@ export default function Home() {
         buttonLink="/about"
       />
       <ScrollSections 
-        introHeading="Capturing Your Love Story"
-        introDescription="Every couple has a unique journey. Let me document yours with creativity, passion, and artistic vision."
+        introHeading="Sticky scrolling sections"
+        introDescription="This is a sticky scrolling sections component. It's a great way to add some extra content to your page."
         sections={[
           {
             image: {
               src: "/vlp-01.jpg",
               alt: "Wedding Photography - Beautiful couple in love"
             },
-            heading: "For the bold and the creative",
-            description: "From intimate elopements to grand celebrations, I'm here to document your love story with creativity, passion, and a touch of artistic flair.",
+            heading: "For the bold",
+            description: "This is a sticky scrolling sections component. It's a great way to add some extra content to your page.",
             buttonText: "Book me",
             buttonLink: "/contact"
           },
           {
             image: {
               src: "/vlp-03.jpg",
-              alt: "Natural Photography - Authentic moments captured"
+              alt: "Sticky scrolling sections - Beautiful couple in love"
             },
-            heading: "Natural & Authentic",
-            description: "My approach is documentary-style photography that captures the real moments. No forced poses, just authentic emotions and genuine connections.",
+            heading: "For the daring",
+            description: "This is a sticky scrolling sections component. It's a great way to add some extra content to your page.",
             buttonText: "Book me",
             buttonLink: "/contact"
           },
@@ -63,8 +63,8 @@ export default function Home() {
               src: "/vlp-05.jpg",
               alt: "Artistic Photography - Timeless wedding memories"
             },
-            heading: "Timeless Memories",
-            description: "Creating beautiful, lasting memories that you'll treasure forever. Your love story deserves to be told with artistry and care.",
+            heading: "For the creative",
+            description: "This is a sticky scrolling sections component. It's a great way to add some extra content to your page.",
             buttonText: "Book me",
             buttonLink: "/contact"
           }
@@ -106,8 +106,8 @@ export default function Home() {
         autoplayDelay={4000}
         showNavigation={true}
         showHeading={true}
-        heading="Beautiful Wedding Photography"
-        description="Capturing your special moments with artistry and passion"
+        heading="Image slider"
+        description="This is a image slider component. It's a great way to add some extra content to your page."
       />
       <TestimonialSection 
         heading="We couldn't recommend or thank her enough for her amazing work that she does! From making us feel super comfortable in front of the camera and putting up with our awkwardness, everyone who has seen the photos have thought they were amazing."
@@ -119,32 +119,32 @@ export default function Home() {
           {
             imageSrc: '/vlp-01.jpg',
             imageAlt: 'Wedding Photography',
-            title: 'Capturing Love Stories',
-            description: 'Every couple has a unique story to tell. I specialize in capturing the authentic moments, genuine emotions, and beautiful connections that make your love story special.',
+            title: 'Slide with content',
+            description: 'This is a slide with content. It\'s a great way to add some extra content to your page.',
           },
           {
             imageSrc: '/vlp-02.jpg',
             imageAlt: 'Natural Photography',
-            title: 'Natural & Authentic',
-            description: 'Say goodbye to stiff, posed photos. My approach focuses on natural moments, real emotions, and authentic connections that reflect who you truly are.',
+            title: 'Slide with content',
+            description: 'This is a slide with content. It\'s a great way to add some extra content to your page.',
           },
           {
             imageSrc: '/vlp-03.jpg',
             imageAlt: 'Artistic Photography',
-            title: 'Artistic Excellence',
-            description: 'Every image is crafted with artistic vision and technical expertise. From composition to lighting, I ensure each photograph is a work of art.',
+            title: 'Slide with content',
+            description: 'This is a slide with content. It\'s a great way to add some extra content to your page.',
           }
         ]}
         autoplay={false}
         autoplayDelay={6000}
         showNavigation={true}
-        heading="My Photography Approach"
-        description="Discover the different ways I capture your special moments with creativity, passion, and artistic vision."
+        heading="Slider with content"
+        description="This is a slider with content component. It's a great way to add some extra content to your page."
         showHeading={true}
       />
       <AccordionScroll 
-        heading="Your Wedding Journey"
-        description="From the first meeting to your special day, I'm here to guide you through every step of your wedding photography experience."
+        heading="Accordion sticky scroll section"
+        description="This is a accordion scroll component. It's a great way to add some extra content to your page."
         features={[
           {
             anchor: {
