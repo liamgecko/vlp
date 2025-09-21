@@ -48,7 +48,7 @@ const CardGrid = ({
         {showHeading && (
           <div className="text-center mb-16">
             <motion.h2 
-              className="font-heading text-4xl font-bold text-slate-950 mb-6"
+              className="font-heading text-4xl font-bold text-primary mb-6"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, ease: "easeOut" }}
@@ -101,7 +101,7 @@ const CardGrid = ({
                   <span>{post.date}</span>
                 </div>
                 
-                <h3 className="font-heading text-xl font-bold text-slate-950 group-hover:text-slate-600 transition-colors duration-200">
+                <h3 className="font-heading text-xl font-bold text-primary group-hover:text-slate-600 transition-colors duration-200">
                   {post.title.replace(/'/g, "&apos;")}
                 </h3>
                 
@@ -109,7 +109,7 @@ const CardGrid = ({
                   {post.excerpt}
                 </p>
                 
-                <a className="text-slate-950 font-semibold hover:text-slate-600 transition-colors duration-200" href="#" role="button" tabIndex={0} aria-label="Read More" onKeyDown={e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); /* handle click here if needed */ } }}>
+                <a className="text-primary font-semibold hover:text-slate-600 transition-colors duration-200" href="#" role="button" tabIndex={0} aria-label="Read More" onKeyDown={e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); /* handle click here if needed */ } }}>
                   Read More &rarr;
                 </a>
               </div>

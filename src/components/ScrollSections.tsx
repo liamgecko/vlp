@@ -64,10 +64,10 @@ const ScrollSections: React.FC<ScrollSectionsProps> = ({
 
   return (
     <div className={className}>
-      <section ref={introRef} className="w-full py-24 bg-slate-950 text-white pb-16">
+      <section ref={introRef} className="w-full pb-24 pb-0 text-primary pb-16">
         <div className="container mx-auto px-4 text-center">
           <motion.h2 
-            className="font-heading text-4xl"
+            className="font-heading text-3xl md:text-4xl"
             initial={{ opacity: 0, y: 30 }}
             animate={introInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
             transition={{ duration: 0.6, ease: "easeOut" }}
@@ -75,7 +75,7 @@ const ScrollSections: React.FC<ScrollSectionsProps> = ({
             {introHeading}
           </motion.h2>
           <motion.p 
-            className="font-sans text-lg mt-4"
+            className="font-sans text-md mt-4 text-[#554d77] w-full max-w-2xl mx-auto"
             initial={{ opacity: 0, y: 30 }}
             animate={introInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
             transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
@@ -86,19 +86,25 @@ const ScrollSections: React.FC<ScrollSectionsProps> = ({
       </section>
       <div className="relative">
         {sections.map((section, index) => (
-          <section key={index} className="sticky top-0 h-screen bg-slate-950 flex flex-col items-center justify-center" style={{ zIndex: 10 + index * 10 }}>
+          <section key={index} className={`sticky top-0 h-screen flex flex-col items-center justify-center ${
+              index === 0 ? 'bg-gradient-to-b from-[#FFF4EB] to-[#FEEBD4]' :
+              index === 1 ? 'bg-gradient-to-b from-[#FEEBD4] to-[#FECBBE]' :
+              'bg-gradient-to-b from-[#FECBBE] to-[#FBB6AF]'
+            }`} style={{ zIndex: 10 + index * 10 }}>
             <div className="w-full p-6 mx-auto">
-              <Image 
-                src={section.image.src} 
-                alt={section.image.alt} 
-                width={1920} 
-                height={1080} 
-                className="w-full h-[calc(100vh-48px)] object-cover rounded-2xl"
-              />
-              <div className="text-center absolute inset-0 bg-slate-950/50">
-                <div className="w-full h-full max-w-4xl mx-auto flex items-center justify-center flex-col px-8">
+              <div className="relative w-full h-[calc(100vh-48px)] rounded-2xl overflow-hidden">
+                <Image 
+                  src={section.image.src} 
+                  alt={section.image.alt} 
+                  width={1920} 
+                  height={1080} 
+                  className="w-full h-full object-cover"
+                />
+                <div className="absolute inset-0 pointer-events-none bg-gradient-to-b from-[rgba(255,164,155,0.4)] via-[rgba(106,77,127,0.64)] via-40% to-[rgba(0,0,0,0.64)] z-10" />
+                <div className="text-center absolute inset-0 m-6 rounded-2xl z-20">
+                  <div className="w-full h-full max-w-4xl mx-auto flex items-center justify-center flex-col px-8">
                   <motion.h2 
-                    className="font-heading text-5xl md:text-6xl font-bold text-white mb-6"
+                    className="font-heading text-5xl md:text-6xl font-bold text-sunflower-50 mb-6"
                     initial={{ opacity: 0, y: 30 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6, ease: "easeOut" }}
@@ -107,7 +113,7 @@ const ScrollSections: React.FC<ScrollSectionsProps> = ({
                     {section.heading}
                   </motion.h2>
                   <motion.p 
-                    className="font-sans text-lg text-white"
+                    className="font-sans text-md text-white"
                     initial={{ opacity: 0, y: 30 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
@@ -118,7 +124,7 @@ const ScrollSections: React.FC<ScrollSectionsProps> = ({
                   {section.buttonText && section.buttonLink && (
                     <motion.a 
                       href={section.buttonLink} 
-                      className="bg-white text-slate-950 px-6 py-4 mt-8 uppercase font-semibold tracking-widest rounded-full hover:bg-gray-100 transition-colors duration-200"
+                      className="bg-blush-300 text-primary px-6 py-3.5 text-sm font-semibold rounded-full hover:bg-blush-300/80 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-blush-300 focus:ring-offset-2 focus:ring-offset-blush-900 inline-block mt-8"
                       initial={{ opacity: 0, y: 30 }}
                       whileInView={{ opacity: 1, y: 0 }}
                       transition={{ duration: 0.6, delay: 0.4, ease: "easeOut" }}
@@ -127,12 +133,14 @@ const ScrollSections: React.FC<ScrollSectionsProps> = ({
                       {section.buttonText}
                     </motion.a>
                   )}
+                  </div>
                 </div>
               </div>
             </div>
           </section>
         ))}
       </div>
+      <div className="h-24 bg-[#FBB6AF]"></div>
     </div>
   );
 };

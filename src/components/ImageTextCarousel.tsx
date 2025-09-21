@@ -62,11 +62,11 @@ const ImageTextCarousel = ({
   };
 
   return (
-    <section className="w-full bg-white py-24">
+    <section className="w-full bg-sunflower-100 py-24">
         {showHeading && (
-          <div className="container mx-auto px-4 text-center pb-16">
+          <div className="container mx-auto px-4 text-center pb-16 w-full max-w-3xl mx-auto">
               <motion.h2 
-                className="font-heading text-4xl"
+                className="font-heading text-3xl md:text-4xl text-primary"
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, ease: "easeOut" }}
@@ -75,7 +75,7 @@ const ImageTextCarousel = ({
                 {heading}
               </motion.h2>
               <motion.p 
-                className="font-sans text-lg mt-4"
+                className="font-sans text-md mt-4 text-[#554d77] text-balance"
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
@@ -109,11 +109,11 @@ const ImageTextCarousel = ({
                   </div>
                   
                   {/* Content Box - 50% with dark background */}
-                  <div className="w-full lg:w-1/2 bg-slate-950 text-white p-8 lg:p-12 flex flex-col justify-center">
+                  <div className="w-full lg:w-1/2 bg-blush-300 text-[#5D130D] p-8 lg:p-12 flex flex-col justify-center text-left">
                     <h3 className="font-heading text-3xl font-bold mb-2">
                       {slide.title}
                     </h3>
-                    <p className="font-sans mb-8 text-white/90">
+                    <p className="font-sans mb-8 text-[#5D130D]">
                       {slide.description}
                     </p>
                     {slide.buttonText && (
@@ -137,12 +137,12 @@ const ImageTextCarousel = ({
 
         </div>
 
-        {/* Controls below carousel, center aligned on small screens, right aligned on larger screens */}
+        {/* Controls below carousel, center aligned */}
         {showNavigation && slides.length > 1 && (
-          <div className="flex flex-row gap-2 mt-6 justify-center md:justify-end">
+          <div className="flex flex-row gap-2 mt-6 justify-center">
             <button
               onClick={goToPrevious}
-              className="w-11 h-11 flex items-center justify-center border border-slate-950 rounded-full cursor-pointer text-2xl select-none transition hover:bg-slate-950/10 text-slate-950"
+              className="w-11 h-11 flex items-center justify-center border border-[#554D77] rounded-full cursor-pointer text-2xl select-none transition hover:bg-[#554D77]/10 text-[#554D77]"
               aria-label="Previous slide"
               type="button"
             >
@@ -152,7 +152,7 @@ const ImageTextCarousel = ({
             </button>
             <button
               onClick={goToNext}
-              className="w-11 h-11 flex items-center justify-center border border-slate-950 rounded-full cursor-pointer text-2xl select-none transition hover:bg-slate-950/10 text-slate-950"
+              className="w-11 h-11 flex items-center justify-center border border-[#554D77] rounded-full cursor-pointer text-2xl select-none transition hover:bg-[#554D77]/10 text-[#554D77]"
               aria-label="Next slide"
               type="button"
             >

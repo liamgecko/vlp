@@ -16,12 +16,12 @@ const Footer = () => {
   ];
 
   return (
-    <footer className="bg-slate-950 text-white">
+    <footer className="bg-gradient-to-b from-midnight-950 to-slate-950 text-sunflower-100">
       {/* Instagram Feed Section */}
       <section className="py-16">
         <div className="container mx-auto px-4">
           <h3 className="text-3xl font-heading text-center mb-2">Latest from the &apos;Gram</h3>
-          <p className="text-center text-slate-300 mb-8">follow me @victoriaphotography</p>
+          <p className="text-center text-sunflower-50 mb-8">follow me <a href="https://instagram.com/victoriaphotography" className="text-sunflower-50 underline hover:text-sunflower-100 transition-colors">@victoriaphotography</a></p>
           <div className="grid grid-cols-6 gap-2 max-w-4xl mx-auto">
             {instagramPosts.map((post) => (
               <div key={post.id} className="aspect-square relative overflow-hidden">
@@ -29,7 +29,7 @@ const Footer = () => {
                   src={post.image}
                   alt={post.alt}
                   fill
-                  className="object-cover hover:scale-110 transition-transform duration-300"
+                  className="object-cover hover:scale-110 transition-transform duration-300 rounded-xl"
                 />
               </div>
             ))}
@@ -43,22 +43,22 @@ const Footer = () => {
           {/* Centered Logo */}
           <div className="text-center mb-12">
             <Image
-              src="/vlp-logo.svg"
+              src="/vlp-logo-light.svg"
               alt="Victoria Photography"
               width={200}
               height={60}
-              className="mx-auto brightness-0 invert h-auto"
+              className="mx-auto h-auto"
             />
           </div>
 
           {/* Menu */}
           <nav className="text-center mb-12">
             <ul className="flex flex-wrap justify-center gap-8 text-base">
-              <li><Link href="/" className="hover:text-slate-300 transition-colors">Home</Link></li>
-              <li><Link href="/about" className="hover:text-slate-300 transition-colors">About</Link></li>
-              <li><Link href="/portfolio" className="hover:text-slate-300 transition-colors">Portfolio</Link></li>
-              <li><Link href="/services" className="hover:text-slate-300 transition-colors">Services</Link></li>
-              <li><Link href="/contact" className="hover:text-slate-300 transition-colors">Contact</Link></li>
+              <li><Link href="/" className="text-sunflower-50 hover:text-sunflower-100 transition-colors">Home</Link></li>
+              <li><Link href="/about" className="text-sunflower-50 hover:text-sunflower-100 transition-colors">About</Link></li>
+              <li><Link href="/portfolio" className="text-sunflower-50 hover:text-sunflower-100 transition-colors">Portfolio</Link></li>
+              <li><Link href="/services" className="text-sunflower-50 hover:text-sunflower-100 transition-colors">Services</Link></li>
+              <li><Link href="/contact" className="text-sunflower-50 hover:text-sunflower-100 transition-colors">Contact</Link></li>
             </ul>
           </nav>
 
@@ -69,7 +69,7 @@ const Footer = () => {
                 href="https://instagram.com" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="w-8 h-8 hover:text-slate-300 transition-colors"
+                className="w-8 h-8 text-sunflower-50 hover:text-sunflower-100 transition-colors"
                 aria-label="Instagram"
               >
                 <svg fill="currentColor" viewBox="0 0 24 24">
@@ -80,7 +80,7 @@ const Footer = () => {
                 href="https://facebook.com" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="w-8 h-8 hover:text-slate-300 transition-colors"
+                className="w-8 h-8 text-sunflower-50 hover:text-sunflower-100 transition-colors"
                 aria-label="Facebook"
               >
                 <svg fill="currentColor" viewBox="0 0 24 24">
@@ -91,7 +91,7 @@ const Footer = () => {
                 href="https://pinterest.com" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="w-8 h-8 hover:text-slate-300 transition-colors"
+                className="w-8 h-8 text-sunflower-50 hover:text-sunflower-100 transition-colors"
                 aria-label="Pinterest"
               >
                 <svg fill="currentColor" viewBox="0 0 24 24">
@@ -102,7 +102,7 @@ const Footer = () => {
           </div>
 
           {/* Copyright */}
-          <div className="text-center text-slate-400 text-sm">
+          <div className="text-center text-sunflower-50 text-sm">
             <p>&copy; {new Date().getFullYear()} Victoria Photography. All rights reserved.</p>
           </div>
         </div>

@@ -46,7 +46,7 @@ const Navigation = () => {
             <li key={href}>
               <Link
                 href={href}
-                className="font-sans font-medium text-slate-900 text-sm px-4 py-2 rounded-full focus:outline-none focus:ring-2 focus:ring-slate-900 focus:ring-offset-2 hover:bg-slate-100 hover:text-slate-900 transition-all duration-200"
+                className="font-sans font-semibold text-primary text-sm px-4 py-2 rounded-full focus:outline-none focus:ring-2 focus:ring-slate-900 focus:ring-offset-2 hover:bg-black/5 transition-all duration-200"
                 aria-label={label}
                 tabIndex={0}
               >
@@ -61,7 +61,7 @@ const Navigation = () => {
           {/* CTA Button */}
           <a
             href="#"
-            className="hidden sm:block rounded-full border-2 border-slate-900 bg-white text-slate-900 px-6 py-2 font-sans font-semibold text-xs focus:outline-none focus:ring-2 focus:ring-slate-900 focus:ring-offset-2 hover:bg-slate-900 hover:text-white transition cursor-pointer uppercase tracking-widest"
+            className="hidden sm:block rounded-full bg-blush-300 text-primary px-4 py-2.5 font-sans font-semibold text-sm focus:outline-none focus:ring-2 focus:ring-blush-300/50 focus:ring-offset-2 hover:bg-blush-300/80 transition cursor-pointer"
             aria-label="Save the date"
             tabIndex={0}
             role="button"
@@ -92,7 +92,7 @@ const Navigation = () => {
       <AnimatePresence>
         {isMenuOpen && (
           <motion.div
-            className="fixed inset-0 bg-slate-950 z-50 lg:hidden"
+            className="fixed inset-0 bg-gradient-to-b from-midnight-950 to-slate-950 z-50 lg:hidden"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -110,8 +110,8 @@ const Navigation = () => {
                 role="button"
                 onKeyDown={e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); handleCloseMenu(); } }}
               >
-                <span className="absolute block w-6 h-0.5 bg-white rotate-45"></span>
-                <span className="absolute block w-6 h-0.5 bg-white -rotate-45"></span>
+                <span className="absolute block w-6 h-0.5 bg-sunflower-100 rotate-45"></span>
+                <span className="absolute block w-6 h-0.5 bg-sunflower-100 -rotate-45"></span>
               </a>
             </div>
 
@@ -120,11 +120,10 @@ const Navigation = () => {
               {/* Logo */}
               <div className="mb-16">
                 <Image
-                  src="/vlp-logo.svg"
+                  src="/vlp-logo-light.svg"
                   alt="Victoria Photography Logo"
                   width={208}
                   height={52}
-                  className="filter brightness-0 invert"
                 />
               </div>
 
@@ -134,7 +133,7 @@ const Navigation = () => {
                   <li key={href}>
                     <Link
                       href={href}
-                      className="font-heading font-medium text-white text-4xl focus:outline-none focus:underline hover:underline transition"
+                      className="font-heading font-medium text-sunflower-50 text-4xl focus:outline-none focus:underline hover:underline transition"
                       aria-label={label}
                       tabIndex={0}
                       onClick={handleCloseMenu}
@@ -148,14 +147,14 @@ const Navigation = () => {
               {/* Mobile CTA Button */}
               <a
                 href="#"
-                className="rounded-full border-2 border-white bg-transparent text-white px-8 py-3 font-sans font-semibold text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 hover:bg-white hover:text-slate-950 transition cursor-pointer uppercase"
-                aria-label="Save the date"
+                className="bg-blush-300 text-primary px-6 py-3.5 text-sm font-semibold rounded-full hover:bg-blush-300/80 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-blush-300 focus:ring-offset-2 focus:ring-offset-blush-900"
+                aria-label="Book a free consultation"
                 tabIndex={0}
                 role="button"
                 onClick={handleCloseMenu}
                 onKeyDown={e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); handleCloseMenu(); } }}
               >
-                Save the date
+                Book a free consultation
               </a>
             </div>
           </motion.div>
