@@ -55,7 +55,7 @@ const Gallery: React.FC<GalleryProps> = ({
   }));
 
   return (
-    <section id={id} className={`w-full py-20 lg:py-32 bg-[#FFF4EB]`}>
+    <section id={id} className={`w-full py-20 lg:py-32 ${className || 'bg-[#FFF4EB]'}`}>
       <div className="container mx-auto px-4">
         {/* Header */}
         <motion.div

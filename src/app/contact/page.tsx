@@ -32,15 +32,15 @@ export default function Contact() {
                   
                   <div className="space-y-6 text-[#554d77]">
                     <p>
-                      I know I'm not for everyone. I'm way too blunt and honest for my own good. I make more penis references than a urologist. And I am very easily distracted by dogs.
+                      I know I&apos;m not for everyone. I&apos;m way too blunt and honest for my own good. I make more penis references than a urologist. And I am very easily distracted by dogs.
                     </p>
                     
                     <p>
-                      But I have a kind heart. I give my <em>absolute all</em> to every one of my couples. And if I do say so myself, I'm pretty fucking talented (there, I've said it).
+                      But I have a kind heart. I give my <em>absolute all</em> to every one of my couples. And if I do say so myself, I&apos;m pretty fucking talented (there, I&apos;ve said it).
                     </p>
                     
                     <p>
-                      If you love my work and think we might be best friends in the making, I'd be buzzing to hear from you. Get in touch today and let's see if we'll make a good team.
+                      If you love my work and think we might be best friends in the making, I&apos;d be buzzing to hear from you. Get in touch today and let&apos;s see if we&apos;ll make a good team.
                     </p>
                   </div>
                 </div>

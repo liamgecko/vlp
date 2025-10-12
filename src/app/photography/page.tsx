@@ -105,7 +105,6 @@ export default function Photography() {
             title: "Bouquet toss"
           }
         ]}
-        className="bg-sunflower-100"
       />
     </>
   );
