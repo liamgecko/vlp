@@ -41,7 +41,13 @@ export default function About() {
       <CarouselSection
         title="Behind the lens"
         description="When I'm not photographing weddings, you'll find me exploring Scotland's beautiful landscapes, spending time with my family, or planning my next adventure. I believe that life's best moments happen when you're not trying too hard – and that's exactly how I approach wedding photography."
-        slides={Array.from(Array(5).keys())}
+        slides={[
+          { src: "/vlp-01.jpg", alt: "Behind the scenes - Wedding preparation" },
+          { src: "/vlp-02.jpg", alt: "Behind the scenes - Ceremony moment" },
+          { src: "/vlp-03.jpg", alt: "Behind the scenes - Reception celebration" },
+          { src: "/vlp-04.jpg", alt: "Behind the scenes - Romantic moment" },
+          { src: "/vlp-05.jpg", alt: "Behind the scenes - Wedding details" }
+        ]}
         options={{ dragFree: true, loop: true }}
         className="bg-transparent"
       />

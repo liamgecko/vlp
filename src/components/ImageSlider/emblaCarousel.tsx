@@ -21,7 +21,7 @@ const numberWithinRange = (number: number, min: number, max: number): number =>
   Math.min(Math.max(number, min), max)
 
 type PropType = {
-  slides: number[]
+  slides: { src: string; alt: string }[]
   options?: EmblaOptionsType
 }
 
@@ -117,14 +117,14 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
     <div className="embla">
       <div className="embla__viewport" ref={emblaRef}>
         <div className="embla__container">
-          {slides.map((index) => (
+          {slides.map((slide, index) => (
             <div className="embla__slide" key={index}>
               <div className="embla__parallax">
                 <div className="embla__parallax__layer">
                   <Image
                     className="embla__slide__img embla__parallax__img"
-                    src={`/vlp-${String(index + 1).padStart(2, '0')}.jpg`}
-                    alt={`Victoria Photography - Wedding Image ${index + 1}`}
+                    src={slide.src}
+                    alt={slide.alt}
                     width={600}
                     height={350}
                   />

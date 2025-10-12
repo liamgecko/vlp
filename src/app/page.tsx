@@ -7,8 +7,13 @@ import CarouselSection from "@/components/CarouselSection";
 
 
 export default function Home() {
-const SLIDE_COUNT = 5
-const SLIDES = Array.from(Array(SLIDE_COUNT).keys())
+const SLIDES = [
+  { src: "/vlp-01.jpg", alt: "Wedding carousel - Beautiful couple moment" },
+  { src: "/vlp-02.jpg", alt: "Wedding carousel - Ceremony celebration" },
+  { src: "/vlp-03.jpg", alt: "Wedding carousel - Reception joy" },
+  { src: "/vlp-04.jpg", alt: "Wedding carousel - Romantic moment" },
+  { src: "/vlp-05.jpg", alt: "Wedding carousel - Wedding details" }
+]
 
   return (
     <>
