@@ -55,9 +55,10 @@ const Footer = () => {
           <nav className="text-center mb-12">
             <ul className="flex flex-wrap justify-center gap-8 text-base">
               <li><Link href="/" className="text-sunflower-50 hover:text-sunflower-100 transition-colors">Home</Link></li>
-              <li><Link href="/about" className="text-sunflower-50 hover:text-sunflower-100 transition-colors">About</Link></li>
-              <li><Link href="/portfolio" className="text-sunflower-50 hover:text-sunflower-100 transition-colors">Portfolio</Link></li>
-              <li><Link href="/services" className="text-sunflower-50 hover:text-sunflower-100 transition-colors">Services</Link></li>
+              <li><Link href="/pricing" className="text-sunflower-50 hover:text-sunflower-100 transition-colors">Pricing</Link></li>
+              <li><Link href="/photography" className="text-sunflower-50 hover:text-sunflower-100 transition-colors">Photography</Link></li>
+              <li><Link href="/blog" className="text-sunflower-50 hover:text-sunflower-100 transition-colors">Blog</Link></li>
+              <li><Link href="/about" className="text-sunflower-50 hover:text-sunflower-100 transition-colors">About me</Link></li>
               <li><Link href="/contact" className="text-sunflower-50 hover:text-sunflower-100 transition-colors">Contact</Link></li>
             </ul>
           </nav>
