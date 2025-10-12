@@ -5,6 +5,7 @@ import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 
 interface ImageTextProps {
+  id?: string;
   title: string;
   description: string;
   imageSrc?: string;
@@ -13,18 +14,14 @@ interface ImageTextProps {
   variant: "left" | "right";
   buttonText?: string;
   buttonLink?: string;
+  className?: string;
 }
 
-const ImageText = ({ title, description, imageSrc, imageAlt, images, variant, buttonText, buttonLink }: ImageTextProps) => {
+const ImageText = ({ id, title, description, imageSrc, imageAlt, images, variant, buttonText, buttonLink, className }: ImageTextProps) => {
   const isLeftVariant = variant === "left";
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, amount: 0.3 });
   
-  const handleClick = () => {
-    if (buttonLink) {
-      window.open(buttonLink, '_blank');
-    }
-  };
   
   const textContent = (
     <motion.div 
@@ -41,13 +38,9 @@ const ImageText = ({ title, description, imageSrc, imageAlt, images, variant, bu
       </p>
       {buttonText && (
         <a
-          href="#"
-          onClick={handleClick}
+          href={buttonLink || "#"}
           className="bg-blush-300 text-primary px-6 py-3.5 text-sm font-semibold rounded-full hover:bg-blush-300/80 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-blush-300 focus:ring-offset-2 focus:ring-offset-blush-900 w-fit mt-8"
-          role="button"
-          tabIndex={0}
           aria-label={buttonText}
-          onKeyDown={e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); handleClick(); } }}
         >
           {buttonText}
         </a>
@@ -90,7 +83,7 @@ const ImageText = ({ title, description, imageSrc, imageAlt, images, variant, bu
   );
 
   return (
-    <section ref={ref} className="w-full bg-sunflower-100 py-20 lg:py-32">
+    <section id={id} ref={ref} className={`w-full py-20 lg:py-32 ${className || 'bg-sunflower-100'}`}>
       <div ref={ref} className="flex flex-col sm:flex-row justify-between gap-24 px-16 max-w-7xl mx-auto ">
       {isLeftVariant ? (
         <>

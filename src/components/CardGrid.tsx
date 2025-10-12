@@ -22,6 +22,7 @@ interface CardGridProps {
   buttonText?: string;
   buttonLink?: string;
   showHeading?: boolean;
+  showButton?: boolean;
   className?: string;
 }
 
@@ -32,6 +33,7 @@ const CardGrid = ({
   buttonText = "View All Weddings",
   buttonLink = "/weddings",
   showHeading = true,
+  showButton = true,
   className = ""
 }: CardGridProps) => {
   // Show 4 cards on smaller screens, 3 on larger screens
@@ -42,7 +44,7 @@ const CardGrid = ({
   };
 
   return (
-    <section className={`w-full bg-white py-24 ${className}`}>
+    <section className={`w-full py-24 ${className || 'bg-white'}`}>
       <div className="container mx-auto px-4">
         {/* Header */}
         {showHeading && (
@@ -81,8 +83,8 @@ const CardGrid = ({
               viewport={{ once: true, amount: 0.3 }}
             >
               {/* Image Container */}
-              <div className="relative overflow-hidden rounded-2xl mb-6">
-                <div className="relative after:content-[''] after:absolute after:w-full after:h-full after:bg-slate-950 after:left-4 after:top-4 after:rounded-2xl">
+              <div className="relative mb-6">
+                <div className="relative after:content-[''] after:absolute after:w-full after:h-full after:bg-gradient-to-br after:from-[#FECBBE] after:to-[#FFA49B] after:left-2 after:top-2 after:rounded-2xl">
                   <Image
                     src={post.imageSrc}
                     alt={post.imageAlt}
@@ -118,22 +120,24 @@ const CardGrid = ({
         </div>
 
         {/* View All Button */}
-        <div className="text-center mt-12">
-          <motion.a 
-            href={buttonLink}
-            className="bg-slate-950 text-white px-8 py-4 uppercase font-semibold tracking-widest rounded-full hover:bg-slate-800 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-slate-950 focus:ring-offset-2 inline-block"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
-            viewport={{ once: true, amount: 0.1 }}
-            role="button"
-            tabIndex={0}
-            aria-label={buttonText}
-            onKeyDown={e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); /* handle click here if needed */ } }}
-          >
-            {buttonText}
-          </motion.a>
-        </div>
+        {showButton && (
+          <div className="text-center mt-12">
+            <motion.a 
+              href={buttonLink}
+              className="bg-slate-950 text-white px-8 py-4 uppercase font-semibold tracking-widest rounded-full hover:bg-slate-800 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-slate-950 focus:ring-offset-2 inline-block"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
+              viewport={{ once: true, amount: 0.1 }}
+              role="button"
+              tabIndex={0}
+              aria-label={buttonText}
+              onKeyDown={e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); /* handle click here if needed */ } }}
+            >
+              {buttonText}
+            </motion.a>
+          </div>
+        )}
       </div>
     </section>
   );

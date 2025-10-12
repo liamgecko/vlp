@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -14,6 +15,7 @@ const navLinks = [
 
 const Navigation = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const pathname = usePathname();
 
   const handleToggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -42,38 +44,41 @@ const Navigation = () => {
 
         {/* Desktop Navigation */}
         <ul className="hidden lg:flex gap-6">
-          {navLinks.map(({ href, label }) => (
-            <li key={href}>
-              <Link
-                href={href}
-                className="font-sans font-semibold text-primary text-sm px-4 py-2 rounded-full focus:outline-none focus:ring-2 focus:ring-slate-900 focus:ring-offset-2 hover:bg-black/5 transition-all duration-200"
-                aria-label={label}
-                tabIndex={0}
-              >
-                {label}
-              </Link>
-            </li>
-          ))}
+          {navLinks.map(({ href, label }) => {
+            const isActive = pathname === href;
+            return (
+              <li key={href}>
+                <Link
+                  href={href}
+                  className={`font-sans font-semibold text-primary text-sm px-4 py-2 rounded-full focus:outline-none focus-visible:ring-2 focus-visible:ring-slate-900 focus-visible:ring-offset-2 hover:bg-sunflower-200/30 active:bg-sunflower-200/30 transition-all duration-200 ${
+                    isActive ? 'bg-sunflower-200/30' : ''
+                  }`}
+                  aria-label={label}
+                  tabIndex={0}
+                >
+                  {label}
+                </Link>
+              </li>
+            );
+          })}
         </ul>
 
         {/* Mobile CTA Button and Menu */}
         <div className="flex items-center gap-4">
           {/* CTA Button */}
-          <a
-            href="#"
-            className="hidden sm:block rounded-full bg-blush-300 text-primary px-4 py-2.5 font-sans font-semibold text-sm focus:outline-none focus:ring-2 focus:ring-blush-300/50 focus:ring-offset-2 hover:bg-blush-300/80 transition cursor-pointer"
-            aria-label="Save the date"
+          <Link
+            href="/contact#book-consultation"
+            className="hidden sm:block rounded-full bg-blush-300 text-primary px-4 py-2.5 font-sans font-semibold text-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-blush-300/50 focus-visible:ring-offset-2 hover:bg-blush-300/80 transition cursor-pointer"
+            aria-label="Book a free consultation"
             tabIndex={0}
-            role="button"
-            onKeyDown={e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); /* handle click here if needed */ } }}
           >
-            Save the date
-          </a>
+            Book a free consultation
+          </Link>
 
           {/* Mobile Menu Button */}
           <a
             href="#"
-            className="lg:hidden flex flex-col justify-center items-center w-8 h-8 space-y-1.5 focus:outline-none focus:ring-2 focus:ring-slate-900 focus:ring-offset-2 rounded"
+            className="lg:hidden flex flex-col justify-center items-center w-8 h-8 space-y-1.5 focus:outline-none focus-visible:ring-2 focus-visible:ring-slate-900 focus-visible:ring-offset-2 rounded"
             onClick={handleToggleMenu}
             aria-label="Toggle mobile menu"
             aria-expanded={isMenuOpen}
@@ -103,7 +108,7 @@ const Navigation = () => {
               <div></div> {/* Empty div to maintain spacing */}
               <a
                 href="#"
-                className="flex justify-center items-center w-8 h-8 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 rounded relative"
+                className="flex justify-center items-center w-8 h-8 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 rounded relative"
                 onClick={handleCloseMenu}
                 aria-label="Close mobile menu"
                 tabIndex={0}
@@ -129,33 +134,36 @@ const Navigation = () => {
 
               {/* Mobile Navigation Links */}
               <ul className="flex flex-col items-center space-y-8 mb-16">
-                {navLinks.map(({ href, label }) => (
-                  <li key={href}>
-                    <Link
-                      href={href}
-                      className="font-heading font-medium text-sunflower-50 text-4xl focus:outline-none focus:underline hover:underline transition"
-                      aria-label={label}
-                      tabIndex={0}
-                      onClick={handleCloseMenu}
-                    >
-                      {label}
-                    </Link>
-                  </li>
-                ))}
+                {navLinks.map(({ href, label }) => {
+                  const isActive = pathname === href;
+                  return (
+                    <li key={href}>
+                      <Link
+                        href={href}
+                        className={`font-heading font-medium text-4xl focus:outline-none focus-visible:underline hover:underline transition ${
+                          isActive ? 'text-sunflower-100 underline' : 'text-sunflower-50'
+                        }`}
+                        aria-label={label}
+                        tabIndex={0}
+                        onClick={handleCloseMenu}
+                      >
+                        {label}
+                      </Link>
+                    </li>
+                  );
+                })}
               </ul>
 
               {/* Mobile CTA Button */}
-              <a
-                href="#"
-                className="bg-blush-300 text-primary px-6 py-3.5 text-sm font-semibold rounded-full hover:bg-blush-300/80 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-blush-300 focus:ring-offset-2 focus:ring-offset-blush-900"
+              <Link
+                href="/contact#book-consultation"
+                className="bg-blush-300 text-primary px-6 py-3.5 text-sm font-semibold rounded-full hover:bg-blush-300/80 transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blush-300 focus-visible:ring-offset-2 focus-visible:ring-offset-blush-900"
                 aria-label="Book a free consultation"
                 tabIndex={0}
-                role="button"
                 onClick={handleCloseMenu}
-                onKeyDown={e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); handleCloseMenu(); } }}
               >
                 Book a free consultation
-              </a>
+              </Link>
             </div>
           </motion.div>
         )}

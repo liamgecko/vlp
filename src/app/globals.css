@@ -96,6 +96,10 @@ a {
 :root {
   --font-poppins: 'Poppins', sans-serif;
   --font-caprasimo: 'Caprasimo', serif;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 .font-heading {

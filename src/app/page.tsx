@@ -3,15 +3,10 @@ import ImageText from "@/components/ImageText";
 import ImageTextCarousel from "@/components/ImageTextCarousel";
 import ScrollSections from "@/components/ScrollSections";
 import { TestimonialSection } from "@/components/ScrollRevealText";
-import CallToAction from "@/components/CallToAction";
-import FullWidthImage from "@/components/FullWidthImage";
-import EmblaCarousel from '@/components/ImageSlider/emblaCarousel'
-import { EmblaOptionsType } from 'embla-carousel'
+import CarouselSection from "@/components/CarouselSection";
 
 
 export default function Home() {
-
-const OPTIONS: EmblaOptionsType = { dragFree: true, loop: true }
 const SLIDE_COUNT = 5
 const SLIDES = Array.from(Array(SLIDE_COUNT).keys())
 
@@ -24,39 +19,23 @@ const SLIDES = Array.from(Array(SLIDE_COUNT).keys())
         }}
         subtitle="Wedding photography in scotland"
         heading="When you're not just mouth happy, you're eyeball happy!"
-        buttonLink="/contact"
+        primaryButton={{
+          text: "Book a free consultation",
+          link: "/contact#book-consultation",
+          ariaLabel: "Book a free consultation"
+        }}
+        secondaryButton={{
+          text: "View my photography",
+          link: "/photography",
+          ariaLabel: "View my photography"
+        }}
       />
-      {/* <ImageText
-        title="Image left with text right heading."
-        description="Hello, I'm Vicki—a seasoned wedding photographer in Fife but capturing hearts and moments across the world, including, British Columbia, Cyprus, Ibiza, Thailand and beyond. Passionate about nature, dogs, and epic landscapes, I bring a blend of enthusiasm, energy, and a hint of playful innuendo to every wedding. Your wedding day should be a joyous celebration, filled with hugs, dance moves, and romantic moments that feel like a scene out of a fairytale. It’s about enjoying every second with your loved ones, immersed in laughter and love. As your wedding photographer, my goal is to make your special day unforgettable by capturing every genuine emotion and spontaneous moment."
-        imageSrc="/vicki.jpg"
-        imageAlt="Victoria Photography"
-        variant="left"
-        buttonText="Learn More"
-        buttonLink="/about"
-      /> */}
-      {/* <ImageText
-        title="Image right with text left heading."
-        description="Hello, I'm Vicki—a seasoned wedding photographer in Fife but capturing hearts and moments across the world, including, British Columbia, Cyprus, Ibiza, Thailand and beyond. Passionate about nature, dogs, and epic landscapes, I bring a blend of enthusiasm, energy, and a hint of playful innuendo to every wedding."
-        imageSrc="/vicki.jpg"
-        imageAlt="Victoria Photography"
-        variant="right"
-        buttonText="Get Started"
-        buttonLink="/contact"
-      /> */}
-      <section className="w-full pt-20 pb-24">
-        <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-heading text-primary mb-4">
-              So, you’re getting married, huh?
-            </h2>
-            <p className="text-md text-[#554D77] max-w-2xl mx-auto mb-6">
-            Your wedding day should be a joyous celebration, filled with hugs, dance moves, and romantic moments that feel like a scene out of a fairytale. It’s about enjoying every second with your loved ones, immersed in laughter and love. As your wedding photographer, my goal is to make your special day unforgettable by capturing every genuine emotion and spontaneous moment.
-            </p>
-          </div>
-        </div>
-        <EmblaCarousel slides={SLIDES} options={OPTIONS} />
-      </section>
+      <CarouselSection
+        title="So, you're getting married, huh?"
+        description="Your wedding day should be a joyous celebration, filled with hugs, dance moves, and romantic moments that feel like a scene out of a fairytale. It's about enjoying every second with your loved ones, immersed in laughter and love. As your wedding photographer, my goal is to make your special day unforgettable by capturing every genuine emotion and spontaneous moment."
+        slides={SLIDES}
+        options={{ dragFree: true, loop: true }}
+      />
       <ScrollSections 
         introHeading="Awesome wedding photography..."
         introDescription="Weddings are....stressful! So let me take some of that stress away by running through just what you can expect from me on the day! It will hopefully put you at ease. I often get told that I feel like I’m part of the wedding itself...which is deliberate."
@@ -205,17 +184,7 @@ const SLIDES = Array.from(Array(SLIDE_COUNT).keys())
         ]}
         variant="right"
         buttonText="View my photography"
-        buttonLink="/about"
-      />
-      <CallToAction 
-        title="Did we just become best friends?"
-        description="I’m here to capture your special day with creativity, passion, and a touch of artistic flair. I’ll be there for the morning preparations, right through to the evening celebrations, capturing every genuine emotion and spontaneous moment. Your wedding day should be enjoyable, not stressful, and I’m here to make that happen."
-        buttonText="Book a free consultation"
-        buttonLink="/contact"
-      />
-      <FullWidthImage 
-        imageSrc="/vlp-05.jpg" 
-        imageAlt="Beautiful wedding photography moment"
+        buttonLink="/photography"
       />
       {/* <CardGrid 
         heading="Latest Weddings"
