@@ -13,7 +13,7 @@ export default function About() {
           alt: "About Victoria Photography - Vicki the photographer"
         }}
         subtitle="About Victoria Photography"
-        heading="Meet Vicki, your wedding photography expert"
+        heading="Hey, I'm Vicki...your next wedding photographer"
         primaryButton={{
           text: "You're awesome Vic, can we book?",
           link: "/contact#book-consultation",

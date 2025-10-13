@@ -25,8 +25,8 @@ export default function Photography() {
       />
       
       <ImageText
-        title="Every moment tells a story"
-        description="I believe that the best wedding photos aren't just pictures – they're memories that transport you back to the exact moment they were taken. The nervous excitement before walking down the aisle, the tears of joy during your vows, the laughter shared with friends and family – these are the moments that make your wedding day truly magical."
+        title="I'm the worst influence you could ever have"
+        description="So as your wedding photographer, I intend to be near enough the worst influence imaginable. The swift paw sneaking you a ‘way too early’ Jagerbomb; the mysterious hand that nudges you onto the dancefloor; the little voice saying the dick joke everyone’s thinking*. I love working with couples who throw out the rule book out and do your day your way. Weddings that are jam packed with fun, personality and colour. I can’t wait to tell the story of your awesome day."
         imageSrc="/vlp-02.jpg"
         imageAlt="Wedding Photography - Beautiful couple moment"
         variant="right"
@@ -37,8 +37,8 @@ export default function Photography() {
       
       <Gallery
         id="portfolio-gallery"
-        title="Wedding Photography Gallery"
-        description="Capturing the magic, emotion, and beauty of your special day. Each moment tells a story, and I'm here to preserve those memories forever."
+        title="Some snaps from the archive"
+        description="Browse my photography for some epic portraits, candid moments, beautiful details and more. If you’d like to see more, just shoot me a message and I’d be happy to send some over for you."
         className="bg-[#FFF4EB]"
         images={[
           {
