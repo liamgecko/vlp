@@ -1,4 +1,5 @@
 import Hero from "@/components/Hero";
+import { TestimonialSection } from "@/components/ScrollRevealText";
 
 export default function Contact() {
   return (
@@ -9,7 +10,7 @@ export default function Contact() {
           alt: "Contact Victoria Photography - Wedding couple moment"
         }}
         subtitle="Get in touch"
-        heading="Let's chat about your perfect wedding day"
+        heading="Let's get this party started!"
         primaryButton={{
           text: "Ready to go? Save your date!",
           link: "/contact#book-consultation",
@@ -77,7 +78,6 @@ export default function Contact() {
                       width="100%"
                       height="638"
                       frameBorder="0"
-                      scrolling="no"
                       className="rounded-lg"
                       title="Contact Form"
                     />
@@ -88,6 +88,11 @@ export default function Contact() {
           </div>
         </div>
       </section>
+      <TestimonialSection
+        heading="We cannot recommend Vicki highly enough. She was an absolute superstar on our wedding day and we are completely delighted with our photos. With Vicki, you get so much more than a photographer - from the moment she arrived in the morning, she brought an amazing energy to the day and was willing to help in pretty much every way to ensure our day ran as smoothly as possible"
+        author="— Rachel McConnell"
+        backgroundImage="/vlp-01.jpg"
+      />
     </>
   );
 }

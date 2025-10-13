@@ -64,8 +64,8 @@ export default function About() {
       />
       
       <TestimonialSection
-        heading="I can't wait to capture your story"
-        author="— Vicki"
+        heading="What a fantastic photos hoot we had with Victoria. Very nice set up she has and Victoria was so lovely, friendly and professional! Very prompt and we had our lovely pet photos of my Roxy within an hour! They are amazing thank you so much x"
+        author="— Emma Bower"
         backgroundImage="/vlp-03.jpg"
         className="bg-gradient-to-b from-orange-50 to-sunflower-100"
       />

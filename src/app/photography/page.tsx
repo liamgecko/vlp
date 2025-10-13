@@ -1,6 +1,7 @@
 import Hero from "@/components/Hero";
 import ImageText from "@/components/ImageText";
 import Gallery from "@/components/Gallery";
+import { TestimonialSection } from "@/components/ScrollRevealText";
 
 export default function Photography() {
   return (
@@ -105,6 +106,11 @@ export default function Photography() {
             title: "Bouquet toss"
           }
         ]}
+      />
+      <TestimonialSection
+        heading="Vic you have a wonderful talent of capturing these once in a life time moments through your photography. People tell you that your wedding day goes by in the blink of an eye and that could not be more true. Through your amazing photography we have been able to live that day over and over again. I honestly didn’t believe it was possible to capture such precious moments as they happen, but you exceeded capturing these moments."
+        author="— Madi Holyk"
+        backgroundImage="/vlp-01.jpg"
       />
     </>
   );

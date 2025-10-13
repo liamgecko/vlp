@@ -83,8 +83,8 @@ export default function Pricing() {
       />
       
       <TestimonialSection
-        heading="We couldn't recommend or thank her enough for her amazing work that she does! From making us feel super comfortable in front of the camera and putting up with our awkwardness, everyone who has seen the photos have thought they were amazing."
-        author="— Sarah & James"
+        heading="You were absolutely fantastic. Your service certainly doesn’t stop at photography. You made Rory and I feel so relaxed and hyped us up big time throughout the whole day - for that we cannot thank you enough! You were such a big part of our wedding day, and we could"
+        author="— Rory Stewart"
         backgroundImage="/vlp-01.jpg"
       />
       
