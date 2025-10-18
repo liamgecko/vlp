@@ -21,6 +21,12 @@ const nextConfig: NextConfig = {
         port: '',
         pathname: '/**',
       },
+      {
+        protocol: 'https',
+        hostname: 'cms.victoria-photography.co.uk',
+        port: '',
+        pathname: '/wp-content/uploads/**',
+      },
     ],
   },
 };
