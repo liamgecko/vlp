@@ -1,7 +1,15 @@
 import { GraphQLClient } from 'graphql-request';
+import { env } from './env';
+import { WPError, NotFoundError, NetworkError, safeAsync } from './errors';
 
-export const wp = new GraphQLClient(process.env.WP_GRAPHQL_ENDPOINT || 'http://victoria-photography.local/graphql', {
-  // headers go here later if you add auth
+// Create GraphQL client with proper configuration
+export const wp = new GraphQLClient(env.WP_GRAPHQL_ENDPOINT, {
+  headers: {
+    'Content-Type': 'application/json',
+    ...(env.WP_ACCESS_TOKEN && {
+      'Authorization': `Bearer ${env.WP_ACCESS_TOKEN}`,
+    }),
+  },
 });
 
 // WordPress Menu Types
@@ -820,14 +828,35 @@ export async function getMainMenu(): Promise<WPMenuItem[]> {
 
 // Service function to fetch page by slug
 export async function getPageBySlug(slug: string): Promise<WPPage | null> {
-  try {
-    const uri = `/${slug}/`;
-    const data = await wp.request<{ pageBy: WPPage }>(GET_PAGE_BY_SLUG, { uri });
-    return data.pageBy;
-  } catch (error) {
-    console.error(`Error fetching page with slug "${slug}":`, error);
-    return null;
-  }
+  const result = await safeAsync(async () => {
+    if (!slug || typeof slug !== 'string') {
+      throw new WPError('Invalid slug provided', 'INVALID_SLUG', 400);
+    }
+
+    try {
+      const uri = `/${slug}/`;
+      const data = await wp.request<{ pageBy: WPPage }>(GET_PAGE_BY_SLUG, { uri });
+      
+      if (!data.pageBy) {
+        throw new NotFoundError('Page', slug);
+      }
+      
+      return data.pageBy;
+    } catch (error) {
+      if (error instanceof WPError) {
+        throw error;
+      }
+      
+      // Handle GraphQL errors
+      if (error instanceof Error && error.message.includes('404')) {
+        throw new NotFoundError('Page', slug);
+      }
+      
+      throw new NetworkError(`Failed to fetch page: ${error instanceof Error ? error.message : 'Unknown error'}`, error as Error);
+    }
+  }, null, { slug, function: 'getPageBySlug' });
+  
+  return result ?? null;
 }
 
 // Service function to get all pages (for generating static paths)

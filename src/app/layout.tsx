@@ -5,6 +5,7 @@ import NavigationBlock from "@/components/blocks/Navigation";
 import FooterBlock from "@/components/blocks/Footer";
 import CallToActionBlock from "@/components/blocks/CallToAction";
 import FullWidthImageClient from "@/components/blocks/FullWidthImageClient";
+import ErrorBoundary from "@/components/ErrorBoundary";
 
 const poppins = Poppins({
   variable: "--font-poppins",
@@ -39,11 +40,13 @@ export default function RootLayout({
             background: 'linear-gradient(to bottom, #FFE2C7, #FFD39C, #FD8B60, #FD6060, #5A4E8F, #FFF4EB)'
           }}
         ></div>
-        <NavigationBlock />
-        {children}
-        <CallToActionBlock />
-        <FullWidthImageClient />
-        <FooterBlock />
+        <ErrorBoundary>
+          <NavigationBlock />
+          {children}
+          <CallToActionBlock />
+          <FullWidthImageClient />
+          <FooterBlock />
+        </ErrorBoundary>
       </body>
     </html>
   );

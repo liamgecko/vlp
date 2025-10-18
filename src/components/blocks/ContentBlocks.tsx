@@ -1,4 +1,5 @@
-import { getContentBlocks, HeroBlock, ImageTextBlock, ScrollSectionsBlock, TestimonialBlock, CarouselBlock, ImageTextCarouselBlock } from "@/lib/wp";
+import { getCachedContentBlocks } from "@/lib/cache";
+import { HeroBlock, ImageTextBlock, ScrollSectionsBlock, TestimonialBlock, CarouselBlock, ImageTextCarouselBlock } from "@/lib/wp";
 import Hero from "@/components/Hero";
 import ImageText from "@/components/ImageText";
 import ScrollSections from "@/components/ScrollSections";
@@ -39,7 +40,7 @@ const getBlockColourClass = (blockColour?: string | string[]) => {
 
 const ContentBlocks = async ({ pageSlug }: ContentBlocksProps) => {
   try {
-    const contentBlocks = await getContentBlocks(pageSlug);
+    const contentBlocks = await getCachedContentBlocks(pageSlug);
     
     if (!contentBlocks || contentBlocks.length === 0) {
       return null;
