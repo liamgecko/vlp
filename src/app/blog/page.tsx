@@ -1,10 +1,13 @@
 import { notFound } from 'next/navigation';
-import { getCachedPageBySlug, getCachedPosts, getCachedPageSEO } from '@/lib/cache';
+import { getPageBySlug, getPosts, getPageSEO } from '@/lib/wp';
 import { getReadingSettings, getBlogPageFields } from '@/lib/wp';
 import HeroBlock from '@/components/blocks/Hero';
 import CardGrid from '@/components/CardGrid';
 import Pagination from '@/components/Pagination';
 import { Metadata } from 'next';
+
+// Force dynamic rendering
+export const dynamic = 'force-dynamic';
 
 interface BlogPageProps {
   searchParams: Promise<{
@@ -14,7 +17,7 @@ interface BlogPageProps {
 
 // Generate metadata for the blog page
 export async function generateMetadata(): Promise<Metadata> {
-  const page = await getCachedPageBySlug('blog');
+  const page = await getPageBySlug('blog');
   
   if (!page) {
     return {
@@ -24,7 +27,7 @@ export async function generateMetadata(): Promise<Metadata> {
   }
 
   try {
-    const seo = await getCachedPageSEO('blog');
+    const seo = await getPageSEO('blog');
     
     return {
       title: seo?.title || 'Blog - Victoria Photography',
@@ -60,7 +63,7 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function Blog({ searchParams }: BlogPageProps) {
-  const page = await getCachedPageBySlug('blog');
+  const page = await getPageBySlug('blog');
   const blogFields = await getBlogPageFields();
   const readingSettings = await getReadingSettings();
   const resolvedSearchParams = await searchParams;
@@ -68,7 +71,7 @@ export default async function Blog({ searchParams }: BlogPageProps) {
   const postsPerPage = readingSettings.postsPerPage;
   
   // Get all posts first
-  const { posts } = await getCachedPosts(100); // Get more posts than needed
+  const { posts } = await getPosts(100); // Get more posts than needed
   
   // Calculate pagination
   const totalPosts = posts.length;

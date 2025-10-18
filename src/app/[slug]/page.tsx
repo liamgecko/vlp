@@ -1,9 +1,12 @@
 import { notFound } from 'next/navigation';
-import { getCachedPageBySlug, getCachedAllPages, getCachedPageSEO } from '@/lib/cache';
+import { getPageBySlug, getAllPages, getPageSEO } from '@/lib/wp';
 import { getContactPageFields } from '@/lib/wp';
 import ContentBlocks from '@/components/blocks/ContentBlocks';
 import ContactPage from '@/components/ContactPage';
 import { Metadata } from 'next';
+
+// Force dynamic rendering
+export const dynamic = 'force-dynamic';
 
 interface PageProps {
   params: Promise<{
@@ -13,7 +16,7 @@ interface PageProps {
 
 // Generate static params for all pages
 export async function generateStaticParams() {
-  const pages = await getCachedAllPages();
+  const pages = await getAllPages();
   
   return pages.map((page) => ({
     slug: page.slug,
@@ -23,7 +26,7 @@ export async function generateStaticParams() {
 // Generate metadata for each page
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { slug } = await params;
-  const page = await getCachedPageBySlug(slug);
+  const page = await getPageBySlug(slug);
   
   if (!page) {
     return {
@@ -32,7 +35,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   }
 
   try {
-    const seo = await getCachedPageSEO(slug);
+    const seo = await getPageSEO(slug);
     
     return {
       title: seo?.title || `${page.title} - Victoria Photography`,
@@ -69,7 +72,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
 export default async function DynamicPage({ params }: PageProps) {
   const { slug } = await params;
-  const page = await getCachedPageBySlug(slug);
+  const page = await getPageBySlug(slug);
 
   if (!page) {
     notFound();

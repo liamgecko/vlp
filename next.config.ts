@@ -29,6 +29,10 @@ const nextConfig: NextConfig = {
       },
     ],
   },
+  // Disable static generation and caching
+  output: 'standalone',
+  // Force dynamic rendering for all pages
+  trailingSlash: false,
 };
 
 export default nextConfig;

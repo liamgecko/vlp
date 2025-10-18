@@ -1,10 +1,13 @@
-import { getCachedPageBySlug, getCachedPageSEO } from '@/lib/cache';
+import { getPageBySlug, getPageSEO } from '@/lib/wp';
 import ContentBlocks from '@/components/blocks/ContentBlocks';
 import { Metadata } from 'next';
 
+// Force dynamic rendering
+export const dynamic = 'force-dynamic';
+
 export async function generateMetadata(): Promise<Metadata> {
   try {
-    const seo = await getCachedPageSEO('home');
+    const seo = await getPageSEO('home');
     
     return {
       title: seo?.title || 'Victoria Photography - Wedding Photography in Fife & Scotland',
@@ -41,7 +44,7 @@ export async function generateMetadata(): Promise<Metadata> {
 
 export default async function Home() {
   // Fetch the home page content from WordPress
-  const page = await getCachedPageBySlug('home');
+  const page = await getPageBySlug('home');
 
   if (!page) {
     return (
