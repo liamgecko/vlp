@@ -27,7 +27,7 @@ const GalleryBlockComponent = async ({ pageSlug, blockColourClass }: GalleryBloc
     // Safely handle the galleryImages
     let images: Array<{ src: string; alt: string; width: number; height: number; title: string }> = [];
     if (Array.isArray(galleryBlock.galleryImages)) {
-      images = galleryBlock.galleryImages.map((imageItem: any) => ({
+      images = galleryBlock.galleryImages.map((imageItem: { node: { sourceUrl: string; altText?: string; mediaDetails?: { width?: number; height?: number } } }) => ({
         src: imageItem.node.sourceUrl,
         alt: imageItem.node.altText || 'Gallery image',
         width: imageItem.node.mediaDetails?.width || 800,
@@ -37,7 +37,7 @@ const GalleryBlockComponent = async ({ pageSlug, blockColourClass }: GalleryBloc
     } else if (galleryBlock.galleryImages && typeof galleryBlock.galleryImages === 'object' && 'nodes' in galleryBlock.galleryImages) {
       // If it's an object with nodes property
       const imageNodes = galleryBlock.galleryImages.nodes || [];
-      images = imageNodes.map((imageItem: any) => ({
+      images = imageNodes.map((imageItem: { sourceUrl: string; altText?: string; mediaDetails?: { width?: number; height?: number } }) => ({
         src: imageItem.sourceUrl,
         alt: imageItem.altText || 'Gallery image',
         width: imageItem.mediaDetails?.width || 800,

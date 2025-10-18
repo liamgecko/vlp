@@ -5,9 +5,9 @@ import ContactPage from '@/components/ContactPage';
 import { Metadata } from 'next';
 
 interface PageProps {
-  params: {
+  params: Promise<{
     slug: string;
-  };
+  }>;
 }
 
 // Generate static params for all pages

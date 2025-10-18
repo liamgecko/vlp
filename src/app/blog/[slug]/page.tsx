@@ -1,14 +1,12 @@
 import { notFound } from 'next/navigation';
-import { getPostBySlug, getAllPosts, WPPost, HeroBlock } from '@/lib/wp';
-import Image from 'next/image';
-import Link from 'next/link';
+import { getPostBySlug, getAllPosts, HeroBlock } from '@/lib/wp';
 import Hero from '@/components/Hero';
 import PostContent from '@/components/blocks/PostContent';
 
 interface PostPageProps {
-  params: {
+  params: Promise<{
     slug: string;
-  };
+  }>;
 }
 
 // Generate static params for all posts

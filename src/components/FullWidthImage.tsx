@@ -10,16 +10,13 @@ interface FeaturedImage {
 interface FullWidthImageProps {
   featuredImage?: FeaturedImage;
   fallbackImage?: string;
-  fallbackAlt?: string;
 }
 
 const FullWidthImage = ({ 
   featuredImage,
-  fallbackImage = "/vlp-05.jpg",
-  fallbackAlt = "Beautiful wedding photography moment"
+  fallbackImage = "/vlp-05.jpg"
 }: FullWidthImageProps) => {
   const imageSrc = featuredImage?.node?.sourceUrl || fallbackImage;
-  const imageAlt = featuredImage?.node?.altText || fallbackAlt;
 
   return (
     <section

@@ -23,14 +23,25 @@ const CarouselBlockComponent = async ({ pageSlug }: CarouselBlockProps) => {
       carouselImages: carouselBlockData.carouselImages,
     };
 
+    // Safely handle the carouselImages
+    let slides: Array<{ src: string; alt: string }> = [];
+    if (Array.isArray(carouselBlock.carouselImages)) {
+      slides = carouselBlock.carouselImages.map(image => ({
+        src: image.sourceUrl,
+        alt: image.altText || 'Carousel image'
+      }));
+    } else if (carouselBlock.carouselImages && typeof carouselBlock.carouselImages === 'object' && 'nodes' in carouselBlock.carouselImages) {
+      slides = carouselBlock.carouselImages.nodes.map(image => ({
+        src: image.sourceUrl,
+        alt: image.altText || 'Carousel image'
+      }));
+    }
+
     return (
       <CarouselSection
         title={carouselBlock.heading || ''}
         description={carouselBlock.introContent || ''}
-        slides={carouselBlock.carouselImages?.map(image => ({
-          src: image.sourceUrl,
-          alt: image.altText || 'Carousel image'
-        })) || []}
+        slides={slides}
         className="bg-gradient-to-b from-[#FFF4EB] to-sunflower-100"
       />
     );

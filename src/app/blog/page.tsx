@@ -6,9 +6,9 @@ import Pagination from '@/components/Pagination';
 import { Metadata } from 'next';
 
 interface BlogPageProps {
-  searchParams: {
+  searchParams: Promise<{
     page?: string;
-  };
+  }>;
 }
 
 // Generate metadata for the blog page
@@ -62,7 +62,8 @@ export default async function Blog({ searchParams }: BlogPageProps) {
   const page = await getPageBySlug('blog');
   const blogFields = await getBlogPageFields();
   const readingSettings = await getReadingSettings();
-  const currentPage = parseInt(searchParams.page || '1', 10);
+  const resolvedSearchParams = await searchParams;
+  const currentPage = parseInt(resolvedSearchParams.page || '1', 10);
   const postsPerPage = readingSettings.postsPerPage;
   
   // Get all posts first

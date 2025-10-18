@@ -74,7 +74,7 @@ const CardGrid = ({
           transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
           viewport={{ once: true, amount: 0.3 }}
         >
-          {displayPosts.map((post, index) => (
+          {displayPosts.map((post) => (
             <article 
               key={post.id} 
               className="group cursor-pointer"

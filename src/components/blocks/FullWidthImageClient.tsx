@@ -62,7 +62,7 @@ const FullWidthImageClient = () => {
     return <FullWidthImage />;
   }
 
-  return <FullWidthImage featuredImage={featuredImage} />;
+  return <FullWidthImage featuredImage={featuredImage || undefined} />;
 };
 
 export default FullWidthImageClient;
