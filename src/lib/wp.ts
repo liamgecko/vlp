@@ -300,6 +300,11 @@ export interface ContactPageFields {
     };
   };
   content?: string;
+  contactDetails?: {
+    phoneNumber?: string;
+    emailAddress?: string;
+    address?: string;
+  };
 }
 
 export interface BlogPageFields {
@@ -733,12 +738,25 @@ export const GET_CONTACT_PAGE_FIELDS = /* GraphQL */ `
 // Service function to fetch contact page fields
 export async function getContactPageFields(): Promise<ContactPageFields | null> {
   try {
-    const data = await wp.request<{ page: { contactPageForm: ContactPageFields } }>(GET_CONTACT_PAGE_FIELDS, {
+    const data = await wp.request<{ 
+      page: { contactPageForm: ContactPageFields }
+    }>(GET_CONTACT_PAGE_FIELDS, {
       id: 37 // Contact page ID - pass directly, not nested in variables
     });
     
+    const contactPageForm = data.page.contactPageForm;
     
-    return data.page.contactPageForm;
+    // Fetch contact details separately
+    const contactDetails = await getContactDetails();
+    
+    return {
+      ...contactPageForm,
+      contactDetails: contactDetails ? {
+        phoneNumber: contactDetails.phoneNumber,
+        emailAddress: contactDetails.emailAddress,
+        address: contactDetails.address,
+      } : undefined
+    };
   } catch (error) {
     console.error('Error fetching contact page fields:', error);
     return null;

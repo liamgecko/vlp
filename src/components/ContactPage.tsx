@@ -1,8 +1,5 @@
-"use client";
-
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Hero from "@/components/Hero";
-import { getContactDetails, ContactDetailsFields } from "@/lib/wp";
 
 interface ContactPageProps {
   formLink?: string;
@@ -21,27 +18,19 @@ interface ContactPageProps {
     };
   };
   content?: string;
+  contactDetails?: {
+    phoneNumber?: string;
+    emailAddress?: string;
+    address?: string;
+  };
 }
 
 const ContactPage: React.FC<ContactPageProps> = ({
   formLink,
   hero,
-  content
+  content,
+  contactDetails
 }) => {
-  const [contactDetails, setContactDetails] = useState<ContactDetailsFields | null>(null);
-  
-  useEffect(() => {
-    const fetchContactDetails = async () => {
-      try {
-        const details = await getContactDetails();
-        setContactDetails(details);
-      } catch (error) {
-        console.error('Error fetching contact details:', error);
-      }
-    };
-    
-    fetchContactDetails();
-  }, []);
   
   
   return (

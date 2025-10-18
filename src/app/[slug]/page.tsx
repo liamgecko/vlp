@@ -85,6 +85,7 @@ export default async function DynamicPage({ params }: PageProps) {
           formLink={contactFields?.formLink}
           hero={contactFields?.hero}
           content={contactFields?.content}
+          contactDetails={contactFields?.contactDetails}
         />
       </main>
     );
