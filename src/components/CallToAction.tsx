@@ -22,13 +22,11 @@ const CallToAction = ({
     // Handle button click - could navigate to contact page or open contact form
     if (buttonLink && buttonLink !== "#") {
       window.location.href = buttonLink;
-    } else {
-      console.log("Contact button clicked");
     }
   };
 
   return (
-    <section className="w-full py-24 bg-midnight-950 text-sunflower-50">
+    <section className="call-to-action-block w-full py-24 bg-midnight-950 text-sunflower-50">
       <div className="container mx-auto px-4 text-center">
         <motion.h2 
           className="font-heading text-4xl md:text-5xl font-bold mb-6 text-sunflower-100"
@@ -39,15 +37,14 @@ const CallToAction = ({
         >
           {title}
         </motion.h2>
-        <motion.p 
+        <motion.div 
           className="font-sans max-w-2xl mx-auto text-sunflower-50"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
           viewport={{ once: true, amount: 0.3 }}
-        >
-          {description}
-        </motion.p>
+          dangerouslySetInnerHTML={{ __html: description }}
+        />
         <motion.a
           href={buttonLink}
           onClick={handleClick}

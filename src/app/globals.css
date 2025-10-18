@@ -202,3 +202,396 @@ a {
   16.67% { opacity: 0; }
   100% { opacity: 0; }
 }
+
+/* Main prose configuration */
+.prose {
+  /* Headings */
+  h1, h2, h3, h4, h5, h6 {
+    @apply mb-4;
+  }
+  
+  h1 { @apply text-4xl lg:text-5xl; }
+  h2 { @apply text-3xl lg:text-4xl; }
+  h3 { @apply text-2xl lg:text-3xl; }
+  h4 { @apply text-xl lg:text-2xl; }
+  h5 { @apply text-lg lg:text-xl; }
+  h6 { @apply text-base lg:text-lg; }
+  
+  /* Paragraphs and text */
+  p { @apply mb-4 leading-relaxed text-[#554d77]; }
+  
+  /* Lists */
+  ul, ol { 
+    @apply mb-4 pl-6;
+    list-style-type: disc; /* Force disc for ul */
+  }
+  ul { 
+    @apply list-disc;
+    list-style-type: disc; /* Ensure disc shows */
+  }
+  ol { 
+    @apply list-decimal;
+    list-style-type: decimal; /* Ensure decimal shows */
+  }
+  li { 
+    @apply mb-2;
+    display: list-item; /* Ensure li displays as list item */
+  }
+  
+  /* Links */
+  a { 
+    @apply text-blush-800 hover:text-blush-700 underline transition-colors;
+  }
+  
+  /* Emphasis */
+  strong, b { @apply font-bold; }
+  em, i { @apply italic; }
+  
+  /* Code */
+  code { 
+    @apply bg-gray-100 text-gray-800 px-2 py-1 rounded text-sm font-mono;
+  }
+  
+  /* Blockquotes */
+  blockquote {
+    @apply border-l-4 border-blush-300 pl-4 italic text-gray-600 my-6;
+  }
+  
+  /* Images */
+  img { 
+    @apply rounded-lg shadow-md my-6;
+  }
+  
+  /* Tables */
+  table { @apply w-full border-collapse my-6; }
+  th, td { 
+    @apply border border-gray-300 px-4 py-2 text-left;
+  }
+  th { @apply bg-gray-100 font-bold; }
+  
+  /* Horizontal rules */
+  hr { 
+    @apply border-0 border-t border-gray-300 my-8;
+  }
+  
+  /* Small text */
+  small { @apply text-sm text-gray-600; }
+  
+  /* Mark/highlight */
+  mark { 
+    @apply bg-yellow-200 px-1 rounded;
+  }
+  
+  /* Address */
+  address { @apply italic not-italic; }
+  
+  /* Time */
+  time { @apply text-gray-600; }
+  
+  /* Captions */
+  figcaption { 
+    @apply text-sm text-gray-600 text-center mt-2 italic;
+  }
+}
+
+.text-carousel-block {
+  .text-carousel-block-container {
+    .prose {
+      p, li, h1, h2, h3, h4, h5, h6 {
+        @apply text-blush-950;
+      }
+      a { 
+        @apply text-blush-950 hover:text-blush-900 underline transition-colors;
+      }
+    }
+    .block-sunflower-solid,
+    .block-sunflower-gradient,
+    .block-peach-solid,
+    .block-peach-gradient,
+    .block-blush-solid,
+    .block-blush-gradient {
+      h3 {
+        @apply text-midnight-950;
+      }
+      .prose {
+        p, li {
+          @apply text-midnight-950;
+        }
+        a { 
+          @apply text-midnight-950 hover:text-midnight-900 underline transition-colors;
+        }
+      }
+    }
+    .block-violet-solid,
+    .block-violet-gradient,
+    .block-midnight-gradient,
+    .block-midnight-solid {
+      h3 {
+        @apply text-sunflower-50;
+      }
+      .prose {
+        p, li {
+          @apply text-sunflower-100;
+        }
+        a { 
+          @apply text-sunflower-100 hover:text-sunflower-200 underline transition-colors;
+        }
+      }
+    }
+  }
+}
+
+.image-text-block {
+  &.block-blush-solid,
+  &.block-blush-gradient {
+    .btn-link {
+      @apply bg-sunflower-100 text-sunflower-950 hover:bg-sunflower-200 hover:text-sunflower-950 transition-colors;
+    }
+    .image-text-block-image {
+      @apply after:from-sunflower-100 after:to-sunflower-200;
+    }
+  }
+}
+.video-block {
+  .video-container  {
+    @apply after:from-sunflower-100 after:to-sunflower-200;
+  }
+}
+
+.pricing-block {
+    &.block-sunflower-solid,
+    &.block-sunflower-gradient {
+      .pricing-block-header {
+        .prose {
+          p, li, h1, h2, h3, h4, h5, h6 {
+            @apply text-midnight-950;
+          }
+          a { 
+            @apply text-midnight-950 hover:text-midnight-900 underline transition-colors;
+          }
+        }
+      }
+      .pricing-block-name {
+        @apply text-sunflower-800;
+      }
+    }
+    &.block-peach-solid,
+    &.block-peach-gradient {
+      .pricing-block-header {
+        .prose {
+          p, li, h1, h2, h3, h4, h5, h6 {
+            @apply text-midnight-950;
+          }
+          a { 
+            @apply text-midnight-950 hover:text-midnight-900 underline transition-colors;
+          }
+        }
+      }
+      .pricing-block-name {
+        @apply text-peach-800;
+      }
+    }
+    &.block-blush-solid,
+    &.block-blush-gradient {
+      .pricing-block-header {
+        .prose {
+          p, li, h1, h2, h3, h4, h5, h6 {
+            @apply text-midnight-950;
+          }
+          a { 
+            @apply text-midnight-950 hover:text-midnight-900 underline transition-colors;
+          }
+        }
+      }
+      .pricing-block-name {
+        @apply text-blush-800;
+      }
+    }
+    &.block-violet-solid,
+    &.block-violet-gradient {
+      .pricing-block-header {
+        .prose {
+          p, li, h1, h2, h3, h4, h5, h6 {
+            @apply text-sunflower-50;
+          }
+          a { 
+            @apply text-sunflower-50 hover:text-sunflower-100 underline transition-colors;
+          }
+        }
+      }
+      .pricing-block-name {
+        @apply text-blush-800;
+      }
+      .pricing-block-cards {
+        .prose {
+          p, li, h1, h2, h3, h4, h5, h6 {
+            @apply text-[#554d77];
+          }
+          a { 
+            @apply text-[#554d77] hover:text-[#444066] underline transition-colors;
+          }
+        }
+      }
+      .pricing-block-custom-pricing {
+        .btn-link {
+          @apply border-sunflower-50 text-sunflower-50 hover:bg-sunflower-100/10 transition-colors;
+        }
+      }
+    }
+    &.block-midnight-solid,
+    &.block-midnight-gradient {
+      .pricing-block-header {
+        .prose {
+          p, li, h1, h2, h3, h4, h5, h6 {
+            @apply text-sunflower-50;
+          }
+          a { 
+            @apply text-sunflower-50 hover:text-sunflower-100 underline transition-colors;
+          }
+        }
+      }
+      .pricing-block-name {
+        @apply text-blush-800;
+      }
+      .pricing-block-cards {
+        .prose {
+          p, li, h1, h2, h3, h4, h5, h6 {
+            @apply text-[#554d77];
+          }
+          a { 
+            @apply text-[#554d77] hover:text-[#444066] underline transition-colors;
+          }
+        }
+      }
+      .pricing-block-custom-pricing {
+        .btn-link {
+          @apply border-sunflower-50 text-sunflower-50 hover:bg-sunflower-100/10 transition-colors;
+        }
+      }
+    }
+}
+
+.block-sunflower-solid {
+  @apply bg-sunflower-100;
+}
+
+.block-sunflower-gradient {
+  @apply bg-gradient-to-br from-[#FFF4EB] to-sunflower-100;
+}
+
+.block-sunflower-solid,
+.block-sunflower-gradient {
+  h2, h3, h4, h5, h6 {
+    @apply text-midnight-950;
+  }
+  .prose {
+    p, li {
+      @apply text-[#554d77] ;
+    }
+    a { 
+      @apply text-blush-600 hover:text-blush-700 underline transition-colors;
+    }
+  }
+}
+
+.block-peach-solid {
+  @apply bg-peach-100;
+}
+
+.block-peach-gradient {
+  @apply bg-gradient-to-br from-peach-100 to-peach-200;
+}
+
+.block-peach-solid,
+.block-peach-gradient {
+  h2, h3, h4, h5, h6 {
+    @apply text-midnight-950;
+  }
+  .prose {
+    p, li {
+      @apply text-[#554d77] ;
+    }
+    a { 
+      @apply text-blush-600 hover:text-blush-700 underline transition-colors;
+    }
+  }
+}
+
+.block-blush-solid {
+  @apply bg-blush-300;
+}
+
+.block-blush-gradient {
+  @apply bg-gradient-to-br from-blush-200 to-blush-300;
+}
+
+.block-blush-solid,
+.block-blush-gradient {
+  h2, h3, h4, h5, h6 {
+    @apply text-midnight-950;
+  }
+  .prose {
+    p, li {
+      @apply text-midnight-950;
+    }
+    a { 
+      @apply text-midnight-950 hover:text-midnight-900 underline transition-colors;
+    }
+  }
+}
+
+.block-violet-solid {
+  @apply bg-violet-700;
+}
+
+.block-violet-gradient {
+  @apply bg-gradient-to-br from-violet-700 to-violet-700;
+}
+
+.block-violet-solid,
+.block-violet-gradient {
+  h2, h3, h4, h5, h6 {
+    @apply text-sunflower-100;
+  }
+  .prose {
+    p, li {
+      @apply text-sunflower-50;
+    }
+    a { 
+      @apply text-blush-100 hover:text-blush-200 underline transition-colors;
+    }
+  }
+  .embla-controls {
+    button {
+      @apply border-sunflower-50 text-sunflower-50 hover:bg-sunflower-50/10 disabled:opacity-50 disabled:cursor-not-allowed;
+    }
+  }
+}
+
+.block-midnight-solid {
+  @apply bg-midnight-950;
+}
+
+.block-midnight-gradient {
+  @apply bg-gradient-to-b from-midnight-950 to-slate-950;
+}
+
+.block-midnight-solid,
+.block-midnight-gradient {
+  h2, h3, h4, h5, h6 {
+    @apply text-sunflower-100;
+  }
+  .prose {
+    p, li {
+      @apply text-sunflower-50;
+    }
+    a { 
+      @apply text-blush-100 hover:text-blush-200 underline transition-colors;
+    }
+  }
+  .embla-controls {
+    button {
+      @apply border-sunflower-50 text-sunflower-50 hover:bg-sunflower-50/10 disabled:opacity-50 disabled:cursor-not-allowed;
+    }
+  }
+}

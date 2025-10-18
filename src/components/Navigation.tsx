@@ -5,15 +5,13 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { WPMenuItem } from "@/lib/wp";
 
-const navLinks = [
-  { href: "/pricing", label: "Pricing" },
-  { href: "/photography", label: "Photography" },
-  { href: "/blog", label: "Blog" },
-  { href: "/about", label: "About me" },
-];
+interface NavigationProps {
+  navLinks: WPMenuItem[];
+}
 
-const Navigation = () => {
+const Navigation = ({ navLinks }: NavigationProps) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const pathname = usePathname();
 
@@ -25,9 +23,16 @@ const Navigation = () => {
     setIsMenuOpen(false);
   };
 
+  // Helper function to check if a link is active
+  const isLinkActive = (url: string, path: string) => {
+    // Use path if available, otherwise use url
+    const linkPath = path || url;
+    return pathname === linkPath;
+  };
+
   return (
     <>
-      <nav className="w-full max-w-7xl mx-auto flex items-center justify-between py-6 px-4">
+      <nav className="navigation-block w-full max-w-7xl mx-auto flex items-center justify-between py-6 px-4">
         {/* Logo */}
         <div className="flex items-center gap-2">
           <Link href="/" aria-label="Victoria Photography Home" tabIndex={0} className="flex items-center gap-2">
@@ -44,12 +49,14 @@ const Navigation = () => {
 
         {/* Desktop Navigation */}
         <ul className="hidden lg:flex gap-6">
-          {navLinks.map(({ href, label }) => {
-            const isActive = pathname === href;
+          {navLinks.map(({ id, label, url, path }) => {
+            const isActive = isLinkActive(url, path);
+            const linkPath = path || url;
+            
             return (
-              <li key={href}>
+              <li key={id}>
                 <Link
-                  href={href}
+                  href={linkPath}
                   className={`font-sans font-semibold text-primary text-sm px-4 py-2 rounded-full focus:outline-none focus-visible:ring-2 focus-visible:ring-slate-900 focus-visible:ring-offset-2 hover:bg-sunflower-200/30 active:bg-sunflower-200/30 transition-all duration-200 ${
                     isActive ? 'bg-sunflower-200/30' : ''
                   }`}
@@ -134,12 +141,14 @@ const Navigation = () => {
 
               {/* Mobile Navigation Links */}
               <ul className="flex flex-col items-center space-y-8 mb-16">
-                {navLinks.map(({ href, label }) => {
-                  const isActive = pathname === href;
+                {navLinks.map(({ id, label, url, path }) => {
+                  const isActive = isLinkActive(url, path);
+                  const linkPath = path || url;
+                  
                   return (
-                    <li key={href}>
+                    <li key={id}>
                       <Link
-                        href={href}
+                        href={linkPath}
                         className={`font-heading font-medium text-4xl focus:outline-none focus-visible:underline hover:underline transition ${
                           isActive ? 'text-sunflower-100 underline' : 'text-sunflower-50'
                         }`}
@@ -172,4 +181,4 @@ const Navigation = () => {
   );
 };
 
-export default Navigation; 
+export default Navigation;

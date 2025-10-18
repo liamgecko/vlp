@@ -15,12 +15,23 @@ interface PricingTier {
   featured?: boolean;
 }
 
+interface CustomPricing {
+  customPricingHeading?: string;
+  customPricingContent?: string;
+  customPricingButton?: {
+    url: string;
+    title: string;
+    target?: string;
+  };
+}
+
 interface PricingBlockProps {
   id?: string;
   title?: string;
   subtitle?: string;
   description?: string;
   tiers?: PricingTier[];
+  customPricing?: CustomPricing;
   className?: string;
 }
 
@@ -67,15 +78,16 @@ const PricingBlock: React.FC<PricingBlockProps> = ({
       featured: true
     }
   ],
+  customPricing,
   className = ""
 }) => {
   return (
-    <div id={id} className={`relative isolate px-6 py-24 sm:py-32 lg:px-8 ${className || 'bg-white'}`}>
+    <section id={id} className={`pricing-block relative isolate px-6 py-24 sm:py-32 lg:px-8 ${className || 'bg-white'}`}>
       
       {/* Header */}
-      <div className="mx-auto max-w-4xl text-center">
+      <div className="pricing-block-header max-w-4xl mx-auto px-8 lg:px-0 text-center">
         <motion.h2 
-          className="font-heading text-3xl md:text-4xl font-bold text-primary text-center"
+          className="font-heading text-3xl md:text-4xl font-bold text-primary"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease: "easeOut" }}
@@ -83,39 +95,42 @@ const PricingBlock: React.FC<PricingBlockProps> = ({
         >
           {title}
         </motion.h2>
+      
+        <motion.div 
+          className="font-sans text-md mt-4 text-primary w-full max-w-2xl mx-auto prose max-w-none text-pretty"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
+          viewport={{ once: true, amount: 0.3 }}
+          dangerouslySetInnerHTML={{ __html: description }}
+        />
+
       </div>
       
-      <motion.p 
-        className="font-sans text-md mt-4 text-primary w-full max-w-2xl mx-auto text-center"
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
-        viewport={{ once: true, amount: 0.3 }}
-      >
-        {description}
-      </motion.p>
-      
       {/* Pricing Cards */}
-      <div className="mx-auto mt-16 grid max-w-lg grid-cols-1 items-center gap-y-6 sm:mt-20 sm:gap-y-0 lg:max-w-4xl lg:grid-cols-2">
+      <div className="pricing-block-cards mx-auto mt-16 grid max-w-lg grid-cols-1 items-center gap-y-6 sm:mt-20 sm:gap-y-0 lg:max-w-5xl lg:grid-cols-2">
         {tiers.map((tier, index) => (
           <motion.div
             key={tier.id}
             className={`relative p-8 shadow-2xl ring-1 ring-gray-900/10 sm:p-10 ${
               tier.featured 
-                ? 'bg-white rounded-3xl' 
-                : 'bg-white/80 sm:mx-8 sm:rounded-t-none lg:mx-0 lg:rounded-tl-3xl lg:rounded-bl-3xl'
+                ? 'bg-white/90 sm:mx-8 sm:rounded-t-none lg:mx-0 lg:rounded-tl-3xl lg:rounded-bl-3xl' 
+                : 'bg-white rounded-3xl'
             }`}
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.3 + (index * 0.1) }}
             viewport={{ once: true }}
           >
-            <h3 className="text-base/7 font-semibold text-blush-700">{tier.name}</h3>
+            <h3 className="pricing-block-name text-base/7 font-semibold text-blush-800">{tier.name}</h3>
             <p className="mt-4 flex items-baseline gap-x-2">
               <span className="text-5xl font-semibold tracking-tight text-primary">{tier.price}</span>
               <span className="text-base text-[#554d77]">{tier.period}</span>
             </p>
-            <p className="mt-6 text-base/7 text-[#554d77]">{tier.description}</p>
+            <div 
+              className="mt-6 text-base/7 text-[#554d77] prose max-w-none"
+              dangerouslySetInnerHTML={{ __html: tier.description }}
+            />
             
             <ul role="list" className="mt-8 space-y-3 text-sm/6 text-[#554d77] sm:mt-10">
               {tier.features.map((feature, featureIndex) => (
@@ -142,8 +157,8 @@ const PricingBlock: React.FC<PricingBlockProps> = ({
               aria-describedby={tier.id}
               className={`mt-8 block px-6 py-3.5 text-sm font-semibold rounded-full transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 sm:mt-10 text-center ${
                 tier.featured
-                  ? 'bg-blush-300 text-primary hover:bg-blush-300/80 focus:ring-blush-300 focus:ring-offset-blush-900'
-                  : 'border border-[#554D77] text-[#554D77] hover:bg-[#554D77]/10 focus:ring-[#554D77] focus:ring-offset-white'
+                  ? 'border border-[#554D77] text-[#554D77] hover:bg-[#554D77]/10 focus:ring-[#554D77] focus:ring-offset-white'
+                  : 'bg-blush-300 text-primary hover:bg-blush-300/80 focus:ring-blush-300 focus:ring-offset-blush-900'
               }`}
             >
               {tier.buttonText}
@@ -151,7 +166,43 @@ const PricingBlock: React.FC<PricingBlockProps> = ({
           </motion.div>
         ))}
       </div>
-    </div>
+
+      {/* Custom Pricing Section */}
+      {customPricing && (
+        <motion.div 
+          className="pricing-block-custom-pricing mt-16 max-w-4xl mx-auto text-center"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.5 }}
+          viewport={{ once: true }}
+        >
+          {customPricing.customPricingHeading && (
+            <h3 className="font-heading text-2xl md:text-3xl font-bold text-primary mb-4">
+              {customPricing.customPricingHeading}
+            </h3>
+          )}
+          
+          {customPricing.customPricingContent && (
+            <div 
+              className="font-sans text-md prose max-w-none text-pretty"
+              dangerouslySetInnerHTML={{ __html: customPricing.customPricingContent }}
+            />
+          )}
+          
+          {customPricing.customPricingButton && (
+            <div className="mt-8">
+              <a
+                href={customPricing.customPricingButton.url}
+                target={customPricing.customPricingButton.target || '_self'}
+                className="btn-link bg-transparent border-2 border-midnight-950 text-midnight-950 px-6 py-3.5 text-sm font-semibold rounded-full hover:bg-midnight-950/5 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-midnight-950 focus:ring-offset-2 focus:ring-offset-violet-900 inline-block"
+              >
+                {customPricing.customPricingButton.title}
+              </a>
+            </div>
+          )}
+        </motion.div>
+      )}
+    </section>
   );
 };
 

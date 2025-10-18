@@ -1,16 +1,29 @@
 import React from "react";
 
+interface FeaturedImage {
+  node: {
+    sourceUrl: string;
+    altText: string;
+  };
+}
+
 interface FullWidthImageProps {
-  imageSrc: string;
-  imageAlt?: string;
+  featuredImage?: FeaturedImage;
+  fallbackImage?: string;
+  fallbackAlt?: string;
 }
 
 const FullWidthImage = ({ 
-  imageSrc
+  featuredImage,
+  fallbackImage = "/vlp-05.jpg",
+  fallbackAlt = "Beautiful wedding photography moment"
 }: FullWidthImageProps) => {
+  const imageSrc = featuredImage?.node?.sourceUrl || fallbackImage;
+  const imageAlt = featuredImage?.node?.altText || fallbackAlt;
+
   return (
-    <div 
-      className="w-full"
+    <section
+      className="parallax-block w-full"
       style={{
         minHeight: '800px',
         backgroundAttachment: 'fixed',

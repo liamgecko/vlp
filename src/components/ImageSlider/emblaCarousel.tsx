@@ -136,7 +136,7 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
       </div>
 
       {/* Controls below carousel, center aligned */}
-      <div className="flex flex-row gap-2 mt-6 justify-center">
+      <div className="embla-controls flex flex-row gap-2 mt-6 justify-center">
         <PrevButton onClick={onPrevButtonClick} disabled={prevBtnDisabled} />
         <NextButton onClick={onNextButtonClick} disabled={nextBtnDisabled} />
       </div>

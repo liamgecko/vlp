@@ -17,6 +17,7 @@ interface CarouselSectionProps {
   slides: CarouselSlide[];
   options?: EmblaOptionsType;
   className?: string;
+  blockColourClass?: string;
 }
 
 const CarouselSection: React.FC<CarouselSectionProps> = ({
@@ -24,14 +25,15 @@ const CarouselSection: React.FC<CarouselSectionProps> = ({
   description,
   slides,
   options = { dragFree: true, loop: true },
-  className = ""
+  className = "",
+  blockColourClass
 }) => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, amount: 0.3 });
 
   return (
-    <section className={`w-full pt-20 pb-24 ${className}`}>
-      <div className="max-w-6xl mx-auto">
+    <section className={`carousel-block w-full pt-20 pb-24 ${blockColourClass || className || 'bg-[#FFF4EB]'}`}>
+      <div className="max-w-4xl mx-auto px-8 lg:px-0">
         <motion.div 
           ref={ref}
           className="text-center mb-12"
@@ -42,9 +44,10 @@ const CarouselSection: React.FC<CarouselSectionProps> = ({
           <h2 className="text-3xl md:text-4xl font-heading text-primary mb-4">
             {title}
           </h2>
-          <p className="text-md text-[#554D77] max-w-2xl mx-auto mb-6">
-            {description}
-          </p>
+          <div 
+            className="text-md text-[#554D77] max-w-2xl mx-auto mb-6 prose max-w-none"
+            dangerouslySetInnerHTML={{ __html: description }}
+          />
         </motion.div>
       </div>
       <motion.div

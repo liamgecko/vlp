@@ -55,12 +55,12 @@ const Gallery: React.FC<GalleryProps> = ({
   }));
 
   return (
-    <section id={id} className={`w-full py-20 lg:py-32 ${className || 'bg-[#FFF4EB]'}`}>
+    <section id={id} className={`gallery-block w-full py-20 lg:py-32 ${className || 'bg-[#FFF4EB]'}`}>
       <div className="container mx-auto px-4">
         {/* Header */}
         <motion.div
           ref={ref}
-          className="text-center mb-16"
+          className="max-w-4xl mx-auto px-8 lg:px-0 text-center mb-12"
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
           transition={{ duration: 0.6, ease: "easeOut" }}
@@ -68,9 +68,10 @@ const Gallery: React.FC<GalleryProps> = ({
           <h2 className="font-heading text-3xl md:text-4xl font-bold text-primary mb-4">
             {title}
           </h2>
-          <p className="font-sans text-md text-[#554d77] max-w-2xl mx-auto">
-            {description}
-          </p>
+          <div 
+            className="font-sans text-md text-[#554d77] max-w-2xl mx-auto prose max-w-none"
+            dangerouslySetInnerHTML={{ __html: description }}
+          />
         </motion.div>
 
         {/* Masonry Gallery */}

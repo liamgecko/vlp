@@ -45,7 +45,7 @@ export const TestimonialSection: React.FC<TestimonialSectionProps> = ({
 
   return (
     <section 
-      className={`overflow-hidden px-16 md:px-[5%] py-16 md:py-24 lg:py-42 bg-cover bg-center bg-no-repeat relative ${className}`}
+      className={`scroll-reveal-text-block overflow-hidden px-16 md:px-[5%] py-16 md:py-24 lg:py-42 bg-cover bg-center bg-no-repeat relative ${className}`}
       style={{
         backgroundImage: `url('${backgroundImage}')`
       }}

@@ -1,6 +1,6 @@
 import Hero from "@/components/Hero";
 import ImageText from "@/components/ImageText";
-import CarouselSection from "@/components/CarouselSection";
+import CarouselSection from "@/components/Carousel";
 import { TestimonialSection } from "@/components/ScrollRevealText";
 import ImageTextCarousel from "@/components/ImageTextCarousel";
 

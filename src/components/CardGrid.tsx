@@ -2,6 +2,7 @@
 
 import React from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { motion } from "framer-motion";
 
 interface BlogPost {
@@ -36,19 +37,15 @@ const CardGrid = ({
   showButton = true,
   className = ""
 }: CardGridProps) => {
-  // Show 4 cards on smaller screens, 3 on larger screens
-  const displayPosts = posts.slice(0, 4);
-  const handleClick = (slug: string) => {
-    // Handle blog post click - could navigate to blog post page
-    console.log(`Navigating to blog post: ${slug}`);
-  };
+  // Display all posts
+  const displayPosts = posts;
 
   return (
-    <section className={`w-full py-24 ${className || 'bg-white'}`}>
+    <section className={`card-grid-block w-full py-24 ${className || 'bg-white'}`}>
       <div className="container mx-auto px-4">
         {/* Header */}
         {showHeading && (
-          <div className="text-center mb-16">
+          <div className="max-w-4xl mx-auto px-8 lg:px-0 text-center mb-12">
             <motion.h2 
               className="font-heading text-4xl font-bold text-primary mb-6"
               initial={{ opacity: 0, y: 30 }}
@@ -58,66 +55,68 @@ const CardGrid = ({
             >
               {heading}
             </motion.h2>
-            <motion.p 
-              className="font-sans text-lg text-slate-600 max-w-2xl mx-auto"
+            <motion.div
+              className="font-sans text-lg text-slate-600 max-w-2xl mx-auto prose prose-lg max-w-none"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
               viewport={{ once: true, amount: 0.3 }}
-            >
-              {description}
-            </motion.p>
+              dangerouslySetInnerHTML={{ __html: description }}
+            />
           </div>
         )}
 
-        {/* 4 Column Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {/* Posts Grid */}
+        <motion.div 
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
+          viewport={{ once: true, amount: 0.3 }}
+        >
           {displayPosts.map((post, index) => (
-            <motion.article 
+            <article 
               key={post.id} 
-              className={`group cursor-pointer ${index === 3 ? 'lg:hidden' : ''}`}
-              onClick={() => handleClick(post.slug)}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.4 + (index * 0.2), ease: "easeOut" }}
-              viewport={{ once: true, amount: 0.3 }}
+              className="group cursor-pointer"
             >
-              {/* Image Container */}
-              <div className="relative mb-6">
-                <div className="relative after:content-[''] after:absolute after:w-full after:h-full after:bg-gradient-to-br after:from-[#FECBBE] after:to-[#FFA49B] after:left-2 after:top-2 after:rounded-2xl">
-                  <Image
-                    src={post.imageSrc}
-                    alt={post.imageAlt}
-                    width={400}
-                    height={300}
-                    className="w-full h-64 object-cover rounded-2xl relative z-10 group-hover:scale-105 transition-transform duration-300"
-                  />
+              <Link href={`/blog/${post.slug}`}>
+                {/* Image Container */}
+                <div className="relative mb-6">
+                  <div className="relative after:content-[''] after:absolute after:w-full after:h-full after:bg-gradient-to-br after:from-[#FECBBE] after:to-[#FFA49B] after:left-2 after:top-2 after:rounded-2xl">
+                    <Image
+                      src={post.imageSrc}
+                      alt={post.imageAlt}
+                      width={400}
+                      height={300}
+                      className="w-full h-64 object-cover rounded-2xl relative z-10 group-hover:scale-105 transition-transform duration-300"
+                    />
+                  </div>
                 </div>
-              </div>
 
-              {/* Content */}
-              <div className="space-y-3">
-                <div className="flex items-center gap-4 text-sm text-slate-500">
-                  <span className="font-medium">{post.category}</span>
-                  <span>•</span>
-                  <span>{post.date}</span>
+                {/* Content */}
+                <div className="space-y-3">
+                  <div className="flex items-center gap-4 text-sm text-slate-500">
+                    <span className="font-medium">{post.category}</span>
+                    <span>•</span>
+                    <span>{post.date}</span>
+                  </div>
+                  
+                  <h3 className="font-heading text-xl font-bold text-primary group-hover:text-slate-600 transition-colors duration-200">
+                    {post.title.replace(/'/g, "&apos;")}
+                  </h3>
+                  
+                  <p className="font-sans text-slate-600 leading-relaxed">
+                    {post.excerpt}
+                  </p>
+                  
+                  <span className="text-primary font-semibold hover:text-slate-600 transition-colors duration-200">
+                    Read More &rarr;
+                  </span>
                 </div>
-                
-                <h3 className="font-heading text-xl font-bold text-primary group-hover:text-slate-600 transition-colors duration-200">
-                  {post.title.replace(/'/g, "&apos;")}
-                </h3>
-                
-                <p className="font-sans text-slate-600 leading-relaxed">
-                  {post.excerpt}
-                </p>
-                
-                <a className="text-primary font-semibold hover:text-slate-600 transition-colors duration-200" href="#" role="button" tabIndex={0} aria-label="Read More" onKeyDown={e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); /* handle click here if needed */ } }}>
-                  Read More &rarr;
-                </a>
-              </div>
-            </motion.article>
+              </Link>
+            </article>
           ))}
-        </div>
+        </motion.div>
 
         {/* View All Button */}
         {showButton && (

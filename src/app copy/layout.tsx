@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
 import { Poppins, Caprasimo } from "next/font/google";
 import "./globals.css";
-import NavigationBlock from "@/components/blocks/Navigation";
-import FooterBlock from "@/components/blocks/Footer";
-import CallToActionBlock from "@/components/blocks/CallToAction";
-import FullWidthImageClient from "@/components/blocks/FullWidthImageClient";
+import Navigation from "@/components/blocks/Navigation";
+import Footer from "@/components/Footer";
+import CallToAction from "@/components/CallToAction";
+import FullWidthImage from "@/components/FullWidthImage";
 
 const poppins = Poppins({
   variable: "--font-poppins",
@@ -39,11 +39,19 @@ export default function RootLayout({
             background: 'linear-gradient(to bottom, #FFE2C7, #FFD39C, #FD8B60, #FD6060, #5A4E8F, #FFF4EB)'
           }}
         ></div>
-        <NavigationBlock />
+        <Navigation />
         {children}
-        <CallToActionBlock />
-        <FullWidthImageClient />
-        <FooterBlock />
+        <CallToAction
+          title="Did we just become best friends?"
+          description="I'm here to capture your special day with creativity, passion, and a touch of artistic flair. I'll be there for the morning preparations, right through to the evening celebrations, capturing every genuine emotion and spontaneous moment. Your wedding day should be enjoyable, not stressful, and I'm here to make that happen."
+          buttonText="Book a free consultation"
+          buttonLink="/contact#book-consultation"
+        />
+        <FullWidthImage 
+          imageSrc="/vlp-05.jpg" 
+          imageAlt="Beautiful wedding photography moment"
+        />
+        <Footer />
       </body>
     </html>
   );

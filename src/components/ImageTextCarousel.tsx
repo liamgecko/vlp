@@ -11,6 +11,7 @@ interface Slide {
   description: string;
   buttonText?: string;
   buttonLink?: string;
+  itemColour?: string | string[];
 }
 
 interface ImageTextCarouselProps {
@@ -21,6 +22,7 @@ interface ImageTextCarouselProps {
   heading?: string;
   description?: string;
   showHeading?: boolean;
+  blockColourClass?: string;
 }
 
 const ImageTextCarousel = ({ 
@@ -30,9 +32,33 @@ const ImageTextCarousel = ({
   showNavigation = true,
   heading = "Carousel heading.",
   description = "Carousel description.",
-  showHeading = true
+  showHeading = true,
+  blockColourClass
 }: ImageTextCarouselProps) => {
   const [currentSlide, setCurrentSlide] = useState(0);
+
+  // Map item colour to CSS class
+  const getItemColourClass = (itemColour?: string | string[]) => {
+    if (!itemColour) return 'bg-blush-300';
+    
+    // Handle array case (ACF sometimes returns arrays)
+    const colourValue = Array.isArray(itemColour) ? itemColour[0] : itemColour;
+    
+    const colourMap: Record<string, string> = {
+      'sunflower_solid': 'block-sunflower-solid',
+      'sunflower_gradient': 'block-sunflower-gradient',
+      'peach_solid': 'block-peach-solid',
+      'peach_gradient': 'block-peach-gradient',
+      'blush_solid': 'block-blush-solid',
+      'blush_gradient': 'block-blush-gradient',
+      'violet_solid': 'block-violet-solid',
+      'violet_gradient': 'block-violet-gradient',
+      'midnight_solid': 'block-midnight-solid',
+      'midnight_gradient': 'block-midnight-gradient',
+    };
+    
+    return colourMap[colourValue] || 'bg-blush-300';
+  };
 
   // Autoplay functionality
   useEffect(() => {
@@ -62,9 +88,9 @@ const ImageTextCarousel = ({
   };
 
   return (
-    <section className="w-full bg-sunflower-100 py-24">
+    <section className={`text-carousel-block w-full py-24 ${blockColourClass || 'bg-sunflower-100'}`}>
         {showHeading && (
-          <div className="container mx-auto px-4 text-center pb-16 w-full max-w-3xl mx-auto">
+          <div className="max-w-4xl mx-auto px-8 lg:px-0 text-center mb-12">
               <motion.h2 
                 className="font-heading text-3xl md:text-4xl text-primary"
                 initial={{ opacity: 0, y: 30 }}
@@ -74,20 +100,19 @@ const ImageTextCarousel = ({
               >
                 {heading}
               </motion.h2>
-              <motion.p 
-                className="font-sans text-md mt-4 text-[#554d77] text-balance"
+              <motion.div 
+                className="font-sans text-md mt-4 text-[#554d77] text-balance prose max-w-none"
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
                 viewport={{ once: true, amount: 0.3 }}
-              >
-                {description}
-              </motion.p>
+                dangerouslySetInnerHTML={{ __html: description }}
+              />
           </div>
         )}
-      <div className="w-full max-w-7xl mx-auto px-4 text-center pb-16 px-16">
+      <div className="w-full max-w-7xl mx-auto px-4 text-center px-16">
         {/* Carousel Container */}
-        <div className="relative w-full max-w-7xl mx-auto">
+        <div className="text-carousel-block-container relative w-full max-w-7xl mx-auto">
           {/* Slides */}
           <div className="relative overflow-hidden rounded-2xl h-[600px]">
             {slides.map((slide, index) => (
@@ -109,18 +134,19 @@ const ImageTextCarousel = ({
                   </div>
                   
                   {/* Content Box - 50% with dark background */}
-                  <div className="w-full lg:w-1/2 bg-blush-300 text-[#5D130D] p-8 lg:p-12 flex flex-col justify-center text-left">
+                  <div className={`w-full lg:w-1/2 ${getItemColourClass(slide.itemColour)} p-8 lg:p-12 flex flex-col justify-center text-left prose`}>
                     <h3 className="font-heading text-3xl font-bold mb-2">
                       {slide.title}
                     </h3>
-                    <p className="font-sans mb-8 text-[#5D130D]">
-                      {slide.description}
-                    </p>
+                    <div 
+                      className="font-sans text-blush-900 prose max-w-none"
+                      dangerouslySetInnerHTML={{ __html: slide.description }}
+                    />
                     {slide.buttonText && (
                       <a
                         href="#"
                         onClick={() => handleClick(slide.buttonLink)}
-                        className="bg-white text-slate-950 px-6 py-4 uppercase font-semibold tracking-widest rounded-full hover:bg-gray-100 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-slate-950 w-fit"
+                        className="bg-white text-slate-950 px-6 py-4 uppercase font-semibold tracking-widest rounded-full hover:bg-gray-100 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-slate-950 w-fit mt-8"
                         role="button"
                         tabIndex={0}
                         aria-label={slide.buttonText}
@@ -139,7 +165,7 @@ const ImageTextCarousel = ({
 
         {/* Controls below carousel, center aligned */}
         {showNavigation && slides.length > 1 && (
-          <div className="flex flex-row gap-2 mt-6 justify-center">
+          <div className="embla-controls flex flex-row gap-2 mt-6 justify-center">
             <button
               onClick={goToPrevious}
               className="w-11 h-11 flex items-center justify-center border border-[#554D77] rounded-full cursor-pointer text-2xl select-none transition hover:bg-[#554D77]/10 text-[#554D77]"
