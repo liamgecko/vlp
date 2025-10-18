@@ -6,8 +6,21 @@ interface EnvConfig {
   NEXT_PUBLIC_SITE_URL: string;
 }
 
-// Validate required environment variables
+// Lazy environment validation - only runs when accessed
+let _env: EnvConfig | null = null;
+
 function validateEnv(): EnvConfig {
+  // Only validate on server side
+  if (typeof window !== 'undefined') {
+    // On client side, return a safe fallback
+    return {
+      WP_GRAPHQL_ENDPOINT: process.env.NEXT_PUBLIC_WP_GRAPHQL_ENDPOINT || '',
+      WP_ACCESS_TOKEN: undefined,
+      NODE_ENV: (process.env.NODE_ENV as EnvConfig['NODE_ENV']) || 'development',
+      NEXT_PUBLIC_SITE_URL: process.env.NEXT_PUBLIC_SITE_URL || '',
+    };
+  }
+
   const required = ['WP_GRAPHQL_ENDPOINT', 'NEXT_PUBLIC_SITE_URL'];
   const missing = required.filter(key => !process.env[key]);
   
@@ -37,8 +50,20 @@ function validateEnv(): EnvConfig {
   };
 }
 
-// Export validated environment configuration
-export const env = validateEnv();
+// Lazy getter for environment configuration
+export const getEnv = (): EnvConfig => {
+  if (!_env) {
+    _env = validateEnv();
+  }
+  return _env;
+};
+
+// For backward compatibility, export env as a getter
+export const env = new Proxy({} as EnvConfig, {
+  get(target, prop) {
+    return getEnv()[prop as keyof EnvConfig];
+  }
+});
 
 // Helper function to get full URL
 export const getFullUrl = (path: string = '') => {

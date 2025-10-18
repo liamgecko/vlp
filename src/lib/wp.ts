@@ -1,15 +1,29 @@
 import { GraphQLClient } from 'graphql-request';
-import { env } from './env';
+import { getEnv } from './env';
 import { WPError, NotFoundError, NetworkError, safeAsync } from './errors';
 
 // Create GraphQL client with proper configuration
-export const wp = new GraphQLClient(env.WP_GRAPHQL_ENDPOINT, {
-  headers: {
-    'Content-Type': 'application/json',
-    ...(env.WP_ACCESS_TOKEN && {
-      'Authorization': `Bearer ${env.WP_ACCESS_TOKEN}`,
-    }),
-  },
+function createWPClient() {
+  const env = getEnv();
+  return new GraphQLClient(env.WP_GRAPHQL_ENDPOINT, {
+    headers: {
+      'Content-Type': 'application/json',
+      ...(env.WP_ACCESS_TOKEN && {
+        'Authorization': `Bearer ${env.WP_ACCESS_TOKEN}`,
+      }),
+    },
+  });
+}
+
+// Lazy initialization of GraphQL client
+let _wp: GraphQLClient | null = null;
+export const wp = new Proxy({} as GraphQLClient, {
+  get(target, prop) {
+    if (!_wp) {
+      _wp = createWPClient();
+    }
+    return (_wp as unknown as Record<string, unknown>)[prop as string];
+  }
 });
 
 // WordPress Menu Types
