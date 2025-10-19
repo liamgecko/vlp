@@ -10,6 +10,7 @@ import PricingTableBlockComponent from "@/components/blocks/PricingTable";
 import GalleryBlockComponent from "@/components/blocks/Gallery";
 import TextBlockComponent from "@/components/blocks/TextBlock";
 import VideoBlockComponent from "@/components/blocks/Video";
+import SuppliersBlock from "@/components/blocks/SuppliersBlock";
 
 interface ContentBlocksProps {
   pageSlug: string;
@@ -236,6 +237,15 @@ const ContentBlocks = async ({ pageSlug }: ContentBlocksProps) => {
             case 'ContentBlocksContainerContentBlocksVideoLayout':
               return (
                 <VideoBlockComponent
+                  key={index}
+                  pageSlug={pageSlug}
+                  blockColourClass={getBlockColourClass(block.blockColour)}
+                />
+              );
+
+            case 'ContentBlocksContainerContentBlocksSuppliersGridLayout':
+              return (
+                <SuppliersBlock
                   key={index}
                   pageSlug={pageSlug}
                   blockColourClass={getBlockColourClass(block.blockColour)}

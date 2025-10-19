@@ -30,6 +30,7 @@ const Hero = ({ heroData }: HeroProps) => {
           sizes="(max-width: 1280px) 100vw, 1280px"
         />
         <div className="absolute inset-0 rounded-xl pointer-events-none opacity-80 bg-gradient-to-b from-[#0C091A]/0 to-[#0C091A]/100 z-10" />
+        <div className="absolute inset-0 bg-black/20 rounded-xl z-15" />
         
         <div className="absolute inset-0 flex flex-col items-center justify-end text-center px-4 pb-12 z-20">
           <div className="w-full max-w-2xl mx-auto">

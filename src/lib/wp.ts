@@ -283,6 +283,22 @@ export interface VideoBlock {
   blockColour?: string | string[];
 }
 
+export interface SuppliersGridBlock {
+  introHeading?: string;
+  supplier?: Array<{
+    supplierName?: string;
+    supplierCategory?: string;
+    supplierWebsite?: string;
+    supplierDescription?: string;
+    supplierImage?: {
+      node: {
+        sourceUrl: string;
+        altText: string;
+      };
+    };
+  }>;
+}
+
 export interface ContactPageFields {
   formLink?: string;
   hero?: {
@@ -699,6 +715,21 @@ export const GET_CONTENT_BLOCKS = /* GraphQL */ `
             introContent
             videoUrl
             blockColour
+          }
+          ... on ContentBlocksContainerContentBlocksSuppliersGridLayout {
+            introHeading
+            supplier {
+              supplierName
+              supplierCategory
+              supplierWebsite
+              supplierDescription
+              supplierImage {
+                node {
+                  sourceUrl
+                  altText
+                }
+              }
+            }
           }
         }
       }
