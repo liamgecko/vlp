@@ -79,7 +79,7 @@ const SuppliersBlock: React.FC<SuppliersBlockProps> = async ({
           <div className="container mx-auto px-4 mb-16">
             <div className="max-w-4xl mx-auto text-center">
               {suppliersBlock.introHeading && (
-                <h2 className="font-heading text-4xl md:text-5xl font-bold text-midnight-950 mb-6">
+                <h2 className="font-heading text-3xl md:text-4xl font-bold text-midnight-950 mb-6">
                   {suppliersBlock.introHeading}
                 </h2>
               )}
