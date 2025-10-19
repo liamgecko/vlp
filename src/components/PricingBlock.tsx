@@ -82,7 +82,7 @@ const PricingBlock: React.FC<PricingBlockProps> = ({
   className = ""
 }) => {
   return (
-    <section id={id} className={`pricing-block relative isolate px-6 py-24 sm:py-32 lg:px-8 ${className || 'bg-white'}`}>
+    <section id="pricing-table" className={`pricing-block relative isolate px-6 py-24 sm:py-32 lg:px-8 ${className || 'bg-white'}`}>
       
       {/* Header */}
       <div className="pricing-block-header max-w-4xl mx-auto px-8 lg:px-0 text-center">
@@ -155,10 +155,10 @@ const PricingBlock: React.FC<PricingBlockProps> = ({
             <a
               href={tier.buttonLink}
               aria-describedby={tier.id}
-              className={`mt-8 block px-6 py-3.5 text-sm font-semibold rounded-full transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 sm:mt-10 text-center ${
+              className={`mt-8 block px-6 py-3.5 text-sm font-semibold rounded-full transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 sm:mt-10 text-center ${
                 tier.featured
-                  ? 'border border-[#554D77] text-[#554D77] hover:bg-[#554D77]/10 focus:ring-[#554D77] focus:ring-offset-white'
-                  : 'bg-blush-300 text-primary hover:bg-blush-300/80 focus:ring-blush-300 focus:ring-offset-blush-900'
+                  ? 'border border-[#554D77] text-[#554D77] hover:bg-[#554D77]/10 focus-visible:ring-[#554D77] focus-visible:ring-offset-white'
+                  : 'bg-blush-300 text-primary hover:bg-blush-300/80 focus-visible:ring-blush-300 focus-visible:ring-offset-blush-900'
               }`}
             >
               {tier.buttonText}
@@ -194,7 +194,7 @@ const PricingBlock: React.FC<PricingBlockProps> = ({
               <a
                 href={customPricing.customPricingButton.url}
                 target={customPricing.customPricingButton.target || '_self'}
-                className="btn-link bg-transparent border-2 border-midnight-950 text-midnight-950 px-6 py-3.5 text-sm font-semibold rounded-full hover:bg-midnight-950/5 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-midnight-950 focus:ring-offset-2 focus:ring-offset-violet-900 inline-block"
+                className="btn-link bg-transparent border-2 border-midnight-950 text-midnight-950 px-6 py-3.5 text-sm font-semibold rounded-full hover:bg-midnight-950/5 transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-midnight-950 focus-visible:ring-offset-2 focus-visible:ring-offset-violet-900 inline-block"
               >
                 {customPricing.customPricingButton.title}
               </a>

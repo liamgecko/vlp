@@ -26,7 +26,27 @@ const Navigation = ({ navLinks }: NavigationProps) => {
   const isLinkActive = (url: string, path: string) => {
     // Use path if available, otherwise use url
     const linkPath = path || url;
-    return pathname === linkPath;
+    
+    // Normalize paths by removing leading/trailing slashes for comparison
+    const normalizedPathname = pathname.replace(/^\/+|\/+$/g, '');
+    const normalizedLinkPath = linkPath.replace(/^\/+|\/+$/g, '');
+    
+    // Special case for home page
+    if (normalizedPathname === '' && (normalizedLinkPath === '' || normalizedLinkPath === 'home')) {
+      return true;
+    }
+    
+    // Check for exact match
+    if (normalizedPathname === normalizedLinkPath) {
+      return true;
+    }
+    
+    // Check if current pathname starts with the link path (for nested routes)
+    if (normalizedLinkPath && normalizedPathname.startsWith(normalizedLinkPath + '/')) {
+      return true;
+    }
+    
+    return false;
   };
 
   return (
@@ -56,7 +76,7 @@ const Navigation = ({ navLinks }: NavigationProps) => {
               <li key={id}>
                 <a
                   href={linkPath}
-                  className={`font-sans font-semibold text-primary text-sm px-4 py-2 rounded-full focus:outline-none focus-visible:ring-2 focus-visible:ring-slate-900 focus-visible:ring-offset-2 hover:bg-sunflower-200/30 active:bg-sunflower-200/30 transition-all duration-200 ${
+                  className={`font-sans font-semibold text-primary text-sm px-4 py-2 rounded-full focus:outline-none focus-visible:ring-2 focus-visible:ring-slate-900 focus-visible:ring-offset-2 hover:bg-sunflower-200/30 transition-all duration-200 ${
                     isActive ? 'bg-sunflower-200/30' : ''
                   }`}
                   aria-label={label}

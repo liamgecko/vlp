@@ -476,7 +476,7 @@ a {
 }
 
 .block-sunflower-gradient {
-  @apply bg-gradient-to-br from-[#FFF4EB] to-sunflower-100;
+  @apply bg-gradient-to-b from-[#FFF4EB] to-sunflower-100;
 }
 
 .block-sunflower-solid,
@@ -499,7 +499,7 @@ a {
 }
 
 .block-peach-gradient {
-  @apply bg-gradient-to-br from-peach-100 to-peach-200;
+  @apply bg-gradient-to-b from-peach-100 to-peach-200;
 }
 
 .block-peach-solid,
@@ -522,7 +522,7 @@ a {
 }
 
 .block-blush-gradient {
-  @apply bg-gradient-to-br from-blush-200 to-blush-300;
+  @apply bg-gradient-to-b from-blush-200 to-blush-300;
 }
 
 .block-blush-solid,
@@ -545,7 +545,7 @@ a {
 }
 
 .block-violet-gradient {
-  @apply bg-gradient-to-br from-violet-700 to-violet-700;
+  @apply bg-gradient-to-b from-violet-700 to-violet-700;
 }
 
 .block-violet-solid,

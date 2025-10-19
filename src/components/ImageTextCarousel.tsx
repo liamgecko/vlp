@@ -146,7 +146,7 @@ const ImageTextCarousel = ({
                       <a
                         href="#"
                         onClick={() => handleClick(slide.buttonLink)}
-                        className="bg-white text-slate-950 px-6 py-4 uppercase font-semibold tracking-widest rounded-full hover:bg-gray-100 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-slate-950 w-fit mt-8"
+                        className="bg-white text-slate-950 px-6 py-4 uppercase font-semibold tracking-widest rounded-full hover:bg-gray-100 transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950 w-fit mt-8"
                         role="button"
                         tabIndex={0}
                         aria-label={slide.buttonText}

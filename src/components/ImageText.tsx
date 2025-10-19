@@ -43,7 +43,7 @@ const ImageText = ({ id, title, description, imageSrc, imageAlt, videoUrl, image
       {buttonText && (
         <a
           href={buttonLink || "#"}
-          className="btn-link bg-blush-300 text-primary px-6 py-3.5 text-sm font-semibold rounded-full hover:bg-blush-300/80 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-blush-300 focus:ring-offset-2 focus:ring-offset-blush-900 w-fit mt-8"
+          className="btn-link bg-blush-300 text-primary px-6 py-3.5 text-sm font-semibold rounded-full hover:bg-blush-300/80 transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blush-300 focus-visible:ring-offset-2 focus-visible:ring-offset-blush-900 w-fit mt-8"
           aria-label={buttonText}
         >
           {buttonText}
