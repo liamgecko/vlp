@@ -1,5 +1,5 @@
 import SuppliersList from '@/components/SuppliersList';
-import { getContentBlocks } from '@/lib/wp';
+import { getContentBlocks, SuppliersGridBlock } from '@/lib/wp';
 
 interface SuppliersBlockProps {
   pageSlug: string;
@@ -24,7 +24,7 @@ const SuppliersBlock: React.FC<SuppliersBlockProps> = async ({
     const contentBlocks = await getContentBlocks(pageSlug);
     const suppliersBlock = contentBlocks.find(
       block => block.__typename === 'ContentBlocksContainerContentBlocksSuppliersGridLayout'
-    );
+    ) as SuppliersGridBlock | undefined;
 
     if (!suppliersBlock) {
       console.log('No suppliers block found');

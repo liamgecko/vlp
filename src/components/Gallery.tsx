@@ -25,7 +25,6 @@ interface GalleryProps {
 }
 
 const Gallery: React.FC<GalleryProps> = ({
-  id,
   images = [],
   title = "Gallery",
   description = "Beautiful moments captured",

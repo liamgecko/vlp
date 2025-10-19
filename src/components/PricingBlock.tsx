@@ -36,7 +36,6 @@ interface PricingBlockProps {
 }
 
 const PricingBlock: React.FC<PricingBlockProps> = ({
-  id,
   title = "Choose the right plan for you",
   description = "Choose an affordable plan that's packed with everything you need for your perfect wedding day.",
   tiers = [
