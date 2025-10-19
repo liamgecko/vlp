@@ -43,7 +43,7 @@ const SuppliersList: React.FC<SuppliersListProps> = ({
 
   return (
     <>
-      <section className={`suppliers-list-block w-full ${className}`}>
+      <div id="supplier-list" className={`suppliers-list-block w-full ${className}`}>
         <div className="container mx-auto px-4">
 
           {/* Suppliers Grid */}
@@ -103,7 +103,7 @@ const SuppliersList: React.FC<SuppliersListProps> = ({
             ))}
           </motion.div>
         </div>
-      </section>
+      </div>
 
       {/* Modal */}
       {isModalOpen && selectedSupplier && (
