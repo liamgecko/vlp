@@ -1,4 +1,3 @@
-import Link from 'next/link';
 
 export default function NotFound() {
   return (
@@ -13,12 +12,12 @@ export default function NotFound() {
         <p className="text-lg text-[#554d77] mb-8 max-w-md mx-auto">
           Sorry, we couldn&apos;t find the page you&apos;re looking for. It might have been moved or doesn&apos;t exist.
         </p>
-        <Link
+        <a
           href="/"
           className="inline-block bg-blush-300 text-primary px-6 py-3 text-sm font-semibold rounded-full hover:bg-blush-300/80 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-blush-300 focus:ring-offset-2"
         >
           Go Home
-        </Link>
+        </a>
       </div>
     </main>
   );

@@ -2,7 +2,6 @@
 
 import React from "react";
 import Image from "next/image";
-import Link from "next/link";
 import { WPMenuItem, ContactDetailsFields } from "@/lib/wp";
 
 interface FooterProps {
@@ -99,12 +98,12 @@ const Footer = ({ menuItems = [], contactDetails }: FooterProps) => {
                           {item.label}
                         </a>
                       ) : (
-                        <Link 
+                        <a 
                           href={href || '/'} 
                           className="text-sunflower-50 hover:text-sunflower-100 transition-colors"
                         >
                           {item.label}
-                        </Link>
+                        </a>
                       )}
                     </li>
                   );

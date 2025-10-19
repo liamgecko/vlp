@@ -1,6 +1,5 @@
 "use client";
 
-import Link from 'next/link';
 
 interface PaginationProps {
   currentPage: number;
@@ -59,7 +58,7 @@ const Pagination = ({ currentPage, totalPages, basePath }: PaginationProps) => {
       {/* Previous Button */}
       <div className="-mt-px flex w-0 flex-1">
         {hasPrevious ? (
-          <Link
+          <a
             href={`${basePath}?page=${currentPage - 1}#articles`}
             className="inline-flex items-center border-transparent pt-4 pr-1 text-sm font-medium text-primary"
           >
@@ -67,7 +66,7 @@ const Pagination = ({ currentPage, totalPages, basePath }: PaginationProps) => {
               <path d="M18 10a.75.75 0 0 1-.75.75H4.66l2.1 1.95a.75.75 0 1 1-1.02 1.1l-3.5-3.25a.75.75 0 0 1 0-1.1l3.5-3.25a.75.75 0 1 1 1.02 1.1l-2.1 1.95h12.59A.75.75 0 0 1 18 10Z" clipRule="evenodd" fillRule="evenodd" />
             </svg>
             Previous
-          </Link>
+          </a>
         ) : (
           <span className="inline-flex items-center border-transparent pt-4 pr-1 text-sm font-medium text-primary">
             <svg viewBox="0 0 20 20" fill="currentColor" data-slot="icon" aria-hidden="true" className="mr-3 size-5 text-gray-300 dark:text-gray-600">
@@ -93,7 +92,7 @@ const Pagination = ({ currentPage, totalPages, basePath }: PaginationProps) => {
           const pageNumber = page as number;
 
           return (
-            <Link
+            <a
               key={pageNumber}
               href={`${basePath}?page=${pageNumber}#articles`}
               aria-current={isCurrentPage ? 'page' : undefined}
@@ -104,7 +103,7 @@ const Pagination = ({ currentPage, totalPages, basePath }: PaginationProps) => {
               }`}
             >
               {pageNumber}
-            </Link>
+            </a>
           );
         })}
       </div>
@@ -112,7 +111,7 @@ const Pagination = ({ currentPage, totalPages, basePath }: PaginationProps) => {
       {/* Next Button */}
       <div className="-mt-px flex w-0 flex-1 justify-end">
         {hasNext ? (
-          <Link
+          <a
             href={`${basePath}?page=${currentPage + 1}#articles`}
             className="inline-flex items-center border-t-2 border-transparent pt-4 pl-1 text-sm font-medium text-primary hover:border-primary hover:text-primary"
           >
@@ -120,7 +119,7 @@ const Pagination = ({ currentPage, totalPages, basePath }: PaginationProps) => {
             <svg viewBox="0 0 20 20" fill="currentColor" data-slot="icon" aria-hidden="true" className="ml-3 size-5 text-primary">
               <path d="M2 10a.75.75 0 0 1 .75-.75h12.59l-2.1-1.95a.75.75 0 1 1 1.02-1.1l3.5 3.25a.75.75 0 0 1 0 1.1l-3.5 3.25a.75.75 0 1 1-1.02-1.1l2.1-1.95H2.75A.75.75 0 0 1 2 10Z" clipRule="evenodd" fillRule="evenodd" />
             </svg>
-          </Link>
+          </a>
         ) : (
           <span className="inline-flex items-center border-transparent pt-4 pl-1 text-sm font-medium text-muted-foreground">
             Next

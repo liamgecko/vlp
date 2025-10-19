@@ -1,7 +1,6 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -35,7 +34,7 @@ const Navigation = ({ navLinks }: NavigationProps) => {
       <nav className="navigation-block w-full max-w-7xl mx-auto flex items-center justify-between py-6 px-4">
         {/* Logo */}
         <div className="flex items-center gap-2">
-          <Link href="/" aria-label="Victoria Photography Home" tabIndex={0} className="flex items-center gap-2">
+          <a href="/" aria-label="Victoria Photography Home" tabIndex={0} className="flex items-center gap-2">
             <Image
               src="/vlp-logo.svg"
               alt="Victoria Photography Logo"
@@ -44,7 +43,7 @@ const Navigation = ({ navLinks }: NavigationProps) => {
               priority
               className="w-full h-auto"
             />
-          </Link>
+          </a>
         </div>
 
         {/* Desktop Navigation */}
@@ -55,7 +54,7 @@ const Navigation = ({ navLinks }: NavigationProps) => {
             
             return (
               <li key={id}>
-                <Link
+                <a
                   href={linkPath}
                   className={`font-sans font-semibold text-primary text-sm px-4 py-2 rounded-full focus:outline-none focus-visible:ring-2 focus-visible:ring-slate-900 focus-visible:ring-offset-2 hover:bg-sunflower-200/30 active:bg-sunflower-200/30 transition-all duration-200 ${
                     isActive ? 'bg-sunflower-200/30' : ''
@@ -64,7 +63,7 @@ const Navigation = ({ navLinks }: NavigationProps) => {
                   tabIndex={0}
                 >
                   {label}
-                </Link>
+                </a>
               </li>
             );
           })}
@@ -73,14 +72,14 @@ const Navigation = ({ navLinks }: NavigationProps) => {
         {/* Mobile CTA Button and Menu */}
         <div className="flex items-center gap-4">
           {/* CTA Button */}
-          <Link
+          <a
             href="/contact"
             className="hidden sm:block rounded-full bg-blush-300 text-primary px-4 py-2.5 font-sans font-semibold text-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-blush-300/50 focus-visible:ring-offset-2 hover:bg-blush-300/80 transition cursor-pointer"
             aria-label="Book a free consultation"
             tabIndex={0}
           >
             Book a free consultation
-          </Link>
+          </a>
 
           {/* Mobile Menu Button */}
           <a
@@ -147,7 +146,7 @@ const Navigation = ({ navLinks }: NavigationProps) => {
                   
                   return (
                     <li key={id}>
-                      <Link
+                      <a
                         href={linkPath}
                         className={`font-heading font-medium text-4xl focus:outline-none focus-visible:underline hover:underline transition ${
                           isActive ? 'text-sunflower-100 underline' : 'text-sunflower-50'
@@ -157,14 +156,14 @@ const Navigation = ({ navLinks }: NavigationProps) => {
                         onClick={handleCloseMenu}
                       >
                         {label}
-                      </Link>
+                      </a>
                     </li>
                   );
                 })}
               </ul>
 
               {/* Mobile CTA Button */}
-              <Link
+              <a
                 href="/contact"
                 className="bg-blush-300 text-primary px-6 py-3.5 text-sm font-semibold rounded-full hover:bg-blush-300/80 transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blush-300 focus-visible:ring-offset-2 focus-visible:ring-offset-blush-900"
                 aria-label="Book a free consultation"
@@ -172,7 +171,7 @@ const Navigation = ({ navLinks }: NavigationProps) => {
                 onClick={handleCloseMenu}
               >
                 Book a free consultation
-              </Link>
+              </a>
             </div>
           </motion.div>
         )}

@@ -2,7 +2,6 @@
 
 import React from "react";
 import Image from "next/image";
-import Link from "next/link";
 import { motion } from "framer-motion";
 
 interface BlogPost {
@@ -79,7 +78,7 @@ const CardGrid = ({
               key={post.id} 
               className="group cursor-pointer"
             >
-              <Link href={`/blog/${post.slug}`}>
+              <a href={`/blog/${post.slug}`}>
                 {/* Image Container */}
                 <div className="relative mb-6">
                   <div className="relative after:content-[''] after:absolute after:w-full after:h-full after:bg-gradient-to-br after:from-[#FECBBE] after:to-[#FFA49B] after:left-2 after:top-2 after:rounded-2xl">
@@ -113,7 +112,7 @@ const CardGrid = ({
                     Read More &rarr;
                   </span>
                 </div>
-              </Link>
+              </a>
             </article>
           ))}
         </motion.div>
