@@ -20,15 +20,11 @@ interface Supplier {
 
 interface SuppliersListProps {
   suppliers?: Supplier[];
-  title?: string;
-  description?: string;
   className?: string;
 }
 
 const SuppliersList: React.FC<SuppliersListProps> = ({
   suppliers = [],
-  title = "Recommended Suppliers",
-  description = "Discover trusted wedding suppliers who have worked with us to create beautiful celebrations.",
   className = ""
 }) => {
   const [selectedSupplier, setSelectedSupplier] = useState<Supplier | null>(null);
@@ -75,28 +71,8 @@ const SuppliersList: React.FC<SuppliersListProps> = ({
 
   return (
     <>
-      <section className={`suppliers-list-block w-full py-24 ${className || 'bg-white'}`}>
+      <section className={`suppliers-list-block w-full ${className}`}>
         <div className="container mx-auto px-4">
-          {/* Header */}
-          <div className="max-w-4xl mx-auto px-8 lg:px-0 text-center mb-12">
-            <motion.h2 
-              className="font-heading text-4xl font-bold text-primary mb-6"
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, ease: "easeOut" }}
-              viewport={{ once: true, amount: 0.3 }}
-            >
-              {title}
-            </motion.h2>
-            <motion.div
-              className="font-sans text-lg text-slate-600 max-w-2xl mx-auto prose prose-lg max-w-none"
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
-              viewport={{ once: true, amount: 0.3 }}
-              dangerouslySetInnerHTML={{ __html: description }}
-            />
-          </div>
 
           {/* Suppliers Grid */}
           <motion.div 

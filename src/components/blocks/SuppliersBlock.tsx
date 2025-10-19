@@ -27,12 +27,10 @@ const SuppliersBlock: React.FC<SuppliersBlockProps> = async ({
     ) as SuppliersGridBlock | undefined;
 
     if (!suppliersBlock) {
-      console.log('No suppliers block found');
       return null;
     }
 
     if (!suppliersBlock?.supplier) {
-      console.log('No suppliers data found');
       return null;
     }
 
@@ -47,15 +45,33 @@ const SuppliersBlock: React.FC<SuppliersBlockProps> = async ({
       website: supplier.supplierWebsite || undefined,
     }));
 
-    console.log('Transformed suppliers:', suppliers);
 
     return (
-      <SuppliersList
-        suppliers={suppliers}
-        title={suppliersBlock.introHeading || ""}
-        description="Discover trusted wedding suppliers who have worked with us to create beautiful celebrations. Each supplier has been carefully selected for their quality, reliability, and commitment to making your day perfect."
-        className={blockColourClass}
-      />
+      <div className={`suppliers-block w-full py-20 lg:py-32 ${blockColourClass || 'bg-white'}`}>
+        {/* Intro Content */}
+        {(suppliersBlock.introHeading || suppliersBlock.introContent) && (
+          <div className="container mx-auto px-4 mb-16">
+            <div className="max-w-4xl mx-auto text-center">
+              {suppliersBlock.introHeading && (
+                <h2 className="font-heading text-4xl md:text-5xl font-bold text-midnight-950 mb-6">
+                  {suppliersBlock.introHeading}
+                </h2>
+              )}
+              {suppliersBlock.introContent && (
+                <div 
+                  className="prose prose-lg max-w-none text-midnight-700"
+                  dangerouslySetInnerHTML={{ __html: suppliersBlock.introContent }}
+                />
+              )}
+            </div>
+          </div>
+        )}
+        
+        <SuppliersList
+          suppliers={suppliers}
+          className=""
+        />
+      </div>
     );
   } catch (error) {
     console.error('Error fetching suppliers data:', error);

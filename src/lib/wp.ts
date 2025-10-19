@@ -285,6 +285,7 @@ export interface VideoBlock {
 
 export interface SuppliersGridBlock {
   introHeading?: string;
+  introContent?: string;
   supplier?: Array<{
     supplierName?: string;
     supplierCategory?: string;
@@ -718,6 +719,7 @@ export const GET_CONTENT_BLOCKS = /* GraphQL */ `
           }
           ... on ContentBlocksContainerContentBlocksSuppliersGridLayout {
             introHeading
+            introContent
             supplier {
               supplierName
               supplierCategory
