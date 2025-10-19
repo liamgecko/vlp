@@ -43,7 +43,7 @@ const SuppliersList: React.FC<SuppliersListProps> = ({
 
   return (
     <>
-      <div id="supplier-list" className={`suppliers-list-block w-full ${className}`}>
+      <div className={`suppliers-list-block w-full ${className}`}>
         <div className="container mx-auto px-4">
 
           {/* Suppliers Grid */}
