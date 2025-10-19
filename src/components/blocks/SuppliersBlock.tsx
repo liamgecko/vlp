@@ -1,6 +1,29 @@
 import SuppliersList from '@/components/SuppliersList';
 import { getContentBlocks, SuppliersGridBlock } from '@/lib/wp';
 
+// Shared utility function for block colour mapping
+const getBlockColourClass = (blockColour?: string | string[]) => {
+  if (!blockColour) return '';
+  
+  // Handle array case (ACF sometimes returns arrays)
+  const colourValue = Array.isArray(blockColour) ? blockColour[0] : blockColour;
+  
+  const colourMap: Record<string, string> = {
+    'sunflower_solid': 'block-sunflower-solid',
+    'sunflower_gradient': 'block-sunflower-gradient',
+    'peach_solid': 'block-peach-solid',
+    'peach_gradient': 'block-peach-gradient',
+    'blush_solid': 'block-blush-solid',
+    'blush_gradient': 'block-blush-gradient',
+    'violet_solid': 'block-violet-solid',
+    'violet_gradient': 'block-violet-gradient',
+    'midnight_solid': 'block-midnight-solid',
+    'midnight_gradient': 'block-midnight-gradient',
+  };
+  
+  return colourMap[colourValue] || '';
+};
+
 interface SuppliersBlockProps {
   pageSlug: string;
   blockColourClass?: string;
@@ -46,8 +69,11 @@ const SuppliersBlock: React.FC<SuppliersBlockProps> = async ({
     }));
 
 
+    // Get the block colour class from WordPress data or fallback to prop
+    const finalBlockColourClass = getBlockColourClass(suppliersBlock.blockColour) || blockColourClass || 'bg-white';
+
     return (
-      <div className={`suppliers-block w-full py-20 lg:py-32 ${blockColourClass || 'bg-white'}`}>
+      <div className={`suppliers-block w-full py-20 lg:py-32 ${finalBlockColourClass}`}>
         {/* Intro Content */}
         {(suppliersBlock.introHeading || suppliersBlock.introContent) && (
           <div className="container mx-auto px-4 mb-16">
