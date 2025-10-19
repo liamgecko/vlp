@@ -70,7 +70,7 @@ const SuppliersBlock: React.FC<SuppliersBlockProps> = async ({
 
 
     // Get the block colour class from WordPress data or fallback to prop
-    const finalBlockColourClass = getBlockColourClass(suppliersBlock.blockColour) || blockColourClass || 'bg-white';
+    const finalBlockColourClass = getBlockColourClass(suppliersBlock.blockColour) || blockColourClass || '';
 
     return (
       <div className={`suppliers-block w-full py-20 lg:py-32 ${finalBlockColourClass}`}>
