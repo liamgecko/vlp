@@ -1,8 +1,15 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useMemo } from "react";
 import Image from "next/image";
 import SupplierModal from "./SupplierModal";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 
 interface Supplier {
   id: string;
@@ -29,6 +36,32 @@ const SuppliersList: React.FC<SuppliersListProps> = ({
 }) => {
   const [selectedSupplier, setSelectedSupplier] = useState<Supplier | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedCategory, setSelectedCategory] = useState<string>("all");
+  const [isAnimating, setIsAnimating] = useState(false);
+
+  // Extract unique categories from suppliers
+  const categories = useMemo(() => {
+    const uniqueCategories = Array.from(new Set(suppliers.map(supplier => supplier.category)));
+    return ["all", ...uniqueCategories];
+  }, [suppliers]);
+
+  // Filter suppliers based on selected category
+  const filteredSuppliers = useMemo(() => {
+    if (selectedCategory === "all") {
+      return suppliers;
+    }
+    return suppliers.filter(supplier => supplier.category === selectedCategory);
+  }, [suppliers, selectedCategory]);
+
+  const handleCategoryChange = (category: string) => {
+    setIsAnimating(true);
+    setSelectedCategory(category);
+    
+    // Reset animation state after a short delay
+    setTimeout(() => {
+      setIsAnimating(false);
+    }, 300);
+  };
 
   const handleSupplierClick = (supplier: Supplier) => {
     setSelectedSupplier(supplier);
@@ -44,13 +77,35 @@ const SuppliersList: React.FC<SuppliersListProps> = ({
     <>
       <div className={`suppliers-list-block w-full ${className}`}>
         <div className="container mx-auto px-4">
+          {/* Category Filter */}
+          <div className="mb-8">
+            <Select value={selectedCategory} onValueChange={handleCategoryChange}>
+              <SelectTrigger className="w-full max-w-sm bg-white border-slate-200 focus:border-slate-300 focus:ring-slate-300">
+                <SelectValue placeholder="Filter by category" />
+              </SelectTrigger>
+              <SelectContent>
+                {categories.map((category) => (
+                  <SelectItem key={category} value={category}>
+                    {category === "all" ? "All categories" : category}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          </div>
 
           {/* Suppliers Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-            {suppliers.map((supplier) => (
+          <div className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 transition-all duration-300 ${isAnimating ? 'opacity-50' : 'opacity-100'}`}>
+            {filteredSuppliers.map((supplier, index) => (
               <div
                 key={supplier.id}
-                className="group cursor-pointer"
+                className={`group cursor-pointer transform transition-all duration-500 ease-out ${
+                  isAnimating 
+                    ? 'opacity-0 translate-y-4 scale-95' 
+                    : 'opacity-100 translate-y-0 scale-100'
+                }`}
+                style={{
+                  transitionDelay: isAnimating ? '0ms' : `${index * 50}ms`
+                }}
                 onClick={() => handleSupplierClick(supplier)}
               >
                 {/* Image Container */}
