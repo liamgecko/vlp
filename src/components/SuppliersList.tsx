@@ -2,7 +2,6 @@
 
 import React, { useState } from "react";
 import Image from "next/image";
-import { motion } from "framer-motion";
 import SupplierModal from "./SupplierModal";
 
 interface Supplier {
@@ -47,21 +46,11 @@ const SuppliersList: React.FC<SuppliersListProps> = ({
         <div className="container mx-auto px-4">
 
           {/* Suppliers Grid */}
-          <motion.div 
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
-            viewport={{ once: true, amount: 0.3 }}
-          >
-            {suppliers.map((supplier, index) => (
-              <motion.div
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            {suppliers.map((supplier) => (
+              <div
                 key={supplier.id}
                 className="group cursor-pointer"
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.3 + (index * 0.1), ease: "easeOut" }}
-                viewport={{ once: true }}
                 onClick={() => handleSupplierClick(supplier)}
               >
                 {/* Image Container */}
@@ -99,9 +88,9 @@ const SuppliersList: React.FC<SuppliersListProps> = ({
                     </span>
                   </div>
                 </div>
-              </motion.div>
+              </div>
             ))}
-          </motion.div>
+          </div>
         </div>
       </div>
 
