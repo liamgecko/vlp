@@ -46,7 +46,12 @@ export default async function PostPage({ params }: PostPageProps) {
   // Create hero data from post
   const heroData: HeroBlock = {
     heroHeading: post.title,
-    heroImage: post.featuredImage,
+    heroImage: post.featuredImage?.node ? {
+      node: {
+        sourceUrl: post.featuredImage.node.sourceUrl,
+        altText: post.featuredImage.node.altText || post.title
+      }
+    } : undefined,
     heroSubHeading: `By ${post.author.node.name} • ${new Date(post.date).toLocaleDateString('en-US', {
       year: 'numeric',
       month: 'long',
@@ -64,11 +69,12 @@ export default async function PostPage({ params }: PostPageProps) {
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
 
-            {/* Post Content */}
-            <PostContent 
-              content={post.content}
+            <div 
               className="prose max-w-none prose-headings:text-primary prose-headings:font-heading prose-p:text-[#554d77] prose-a:text-blush-300 prose-a:no-underline hover:prose-a:underline prose-img:rounded-lg prose-img:shadow-lg"
+              dangerouslySetInnerHTML={{ __html: post.content }}
+              suppressHydrationWarning={true}
             />
+
           </div>
         </div>
       </section>
