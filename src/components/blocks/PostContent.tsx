@@ -17,8 +17,9 @@ const PostContent = ({ content, className = "" }: PostContentProps) => {
 
   useEffect(() => {
     if (isClient && containerRef.current) {
-      // Debug: Log content to console
-      console.log('PostContent: Content received:', content);
+      try {
+        // Debug: Log content to console
+        console.log('PostContent: Content received:', content);
       
       // Check if content contains PicTime script but no iframe
       const hasPicTimeScript = content.includes('data-pt-scriptslideshowid');
@@ -32,20 +33,35 @@ const PostContent = ({ content, className = "" }: PostContentProps) => {
           const slideshowId = scriptMatch[1];
           console.log('PostContent: Extracted slideshow ID:', slideshowId);
           
-          // Create direct iframe
-          const directIframe = document.createElement('iframe');
-          directIframe.src = `https://victoriaphotography.pic-time.com/-engagementphotoshootsinscotland/slideshow/${slideshowId}`;
-          directIframe.width = '100%';
-          directIframe.height = '600';
-          directIframe.frameBorder = '0';
-          directIframe.allowFullscreen = true;
-          directIframe.style.border = 'none';
-          directIframe.style.borderRadius = '8px';
-          directIframe.style.margin = '20px 0';
-          
-          // Insert at the beginning of the content
-          containerRef.current?.prepend(directIframe);
-          console.log('PostContent: Direct iframe created and inserted');
+          // Create direct iframe with proper error handling
+          try {
+            const directIframe = document.createElement('iframe');
+            directIframe.src = `https://victoriaphotography.pic-time.com/-engagementphotoshootsinscotland/slideshow/${slideshowId}`;
+            directIframe.width = '100%';
+            directIframe.height = '600';
+            directIframe.frameBorder = '0';
+            directIframe.allowFullscreen = true;
+            directIframe.style.border = 'none';
+            directIframe.style.borderRadius = '8px';
+            directIframe.style.margin = '20px 0';
+            
+            // Add error handling for iframe
+            directIframe.onerror = (error) => {
+              console.error('PostContent: Iframe failed to load:', error);
+            };
+            
+            directIframe.onload = () => {
+              console.log('PostContent: Direct iframe loaded successfully');
+            };
+            
+            // Insert at the beginning of the content
+            if (containerRef.current) {
+              containerRef.current.prepend(directIframe);
+              console.log('PostContent: Direct iframe created and inserted');
+            }
+          } catch (error) {
+            console.error('PostContent: Error creating iframe:', error);
+          }
         }
       }
       
@@ -133,10 +149,13 @@ const PostContent = ({ content, className = "" }: PostContentProps) => {
         }
       };
 
-      // Execute scripts after a short delay to ensure DOM is ready
-      const timeoutId = setTimeout(executeExternalScripts, 100);
-      
-      return () => clearTimeout(timeoutId);
+        // Execute scripts after a short delay to ensure DOM is ready
+        const timeoutId = setTimeout(executeExternalScripts, 100);
+        
+        return () => clearTimeout(timeoutId);
+      } catch (error) {
+        console.error('PostContent: Error in useEffect:', error);
+      }
     }
   }, [isClient, content]);
 
