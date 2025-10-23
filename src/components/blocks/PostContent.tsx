@@ -17,9 +17,14 @@ const PostContent = ({ content, className = "" }: PostContentProps) => {
 
   useEffect(() => {
     if (isClient && containerRef.current) {
+      // Debug: Log content to console
+      console.log('PostContent: Content received:', content);
+      
       // Handle external scripts that need to be executed
       const executeExternalScripts = () => {
         const scripts = containerRef.current?.querySelectorAll('script[data-pt-scriptslideshowid]');
+        console.log('PostContent: Found PicTime scripts:', scripts.length);
+        
         if (scripts) {
           scripts.forEach(script => {
             // Create a new script element
@@ -41,6 +46,13 @@ const PostContent = ({ content, className = "" }: PostContentProps) => {
             script.remove();
           });
         }
+        
+        // Also check for iframes
+        const iframes = containerRef.current?.querySelectorAll('iframe');
+        console.log('PostContent: Found iframes:', iframes.length);
+        iframes.forEach((iframe, index) => {
+          console.log(`PostContent: Iframe ${index}:`, iframe.src);
+        });
       };
 
       // Execute scripts after a short delay to ensure DOM is ready
@@ -69,6 +81,7 @@ const PostContent = ({ content, className = "" }: PostContentProps) => {
       ref={containerRef}
       className={className}
       dangerouslySetInnerHTML={{ __html: content }}
+      style={{ minHeight: '400px' }}
     />
   );
 };
