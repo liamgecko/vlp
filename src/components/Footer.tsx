@@ -78,7 +78,7 @@ const Footer = ({ menuItems = [], contactDetails }: FooterProps) => {
             />
           </div>
 
-          {/* Menu */}
+          {/* Menu */} 
           {menuItems.length > 0 && (
             <nav className="text-center mb-12">
               <ul className="flex flex-wrap justify-center gap-8 text-base">
