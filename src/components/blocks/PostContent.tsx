@@ -20,17 +20,50 @@ const PostContent = ({ content, className = "" }: PostContentProps) => {
       // Debug: Log content to console
       console.log('PostContent: Content received:', content);
       
+      // Check if content contains PicTime script but no iframe
+      const hasPicTimeScript = content.includes('data-pt-scriptslideshowid');
+      const hasIframe = content.includes('<iframe');
+      
+      if (hasPicTimeScript && !hasIframe) {
+        console.log('PostContent: PicTime script detected but no iframe found. Creating direct iframe fallback.');
+        // Extract slideshow ID from content
+        const scriptMatch = content.match(/data-pt-scriptslideshowid='([^']+)'/);
+        if (scriptMatch && scriptMatch[1]) {
+          const slideshowId = scriptMatch[1];
+          console.log('PostContent: Extracted slideshow ID:', slideshowId);
+          
+          // Create direct iframe
+          const directIframe = document.createElement('iframe');
+          directIframe.src = `https://victoriaphotography.pic-time.com/-engagementphotoshootsinscotland/slideshow/${slideshowId}`;
+          directIframe.width = '100%';
+          directIframe.height = '600';
+          directIframe.frameBorder = '0';
+          directIframe.allowFullscreen = true;
+          directIframe.style.border = 'none';
+          directIframe.style.borderRadius = '8px';
+          directIframe.style.margin = '20px 0';
+          
+          // Insert at the beginning of the content
+          containerRef.current?.prepend(directIframe);
+          console.log('PostContent: Direct iframe created and inserted');
+        }
+      }
+      
       // Handle external scripts that need to be executed
       const executeExternalScripts = () => {
         const scripts = containerRef.current?.querySelectorAll('script[data-pt-scriptslideshowid]');
         console.log('PostContent: Found PicTime scripts:', scripts.length);
         
-        if (scripts) {
-          scripts.forEach(script => {
+        if (scripts && scripts.length > 0) {
+          scripts.forEach((script, index) => {
+            console.log(`PostContent: Processing script ${index}:`, script.src);
+            
             // Create a new script element
             const newScript = document.createElement('script');
             newScript.src = script.getAttribute('src') || '';
             newScript.type = 'text/javascript';
+            newScript.async = true;
+            newScript.defer = true;
             
             // Copy all data attributes
             Array.from(script.attributes).forEach(attr => {
@@ -38,6 +71,17 @@ const PostContent = ({ content, className = "" }: PostContentProps) => {
                 newScript.setAttribute(attr.name, attr.value);
               }
             });
+            
+            // Add error handling
+            newScript.onerror = (error) => {
+              console.error('PostContent: Script failed to load:', error);
+              // Try to create a fallback iframe if the script fails
+              createFallbackIframe(script);
+            };
+            
+            newScript.onload = () => {
+              console.log('PostContent: Script loaded successfully');
+            };
             
             // Add to head and execute
             document.head.appendChild(newScript);
@@ -53,6 +97,40 @@ const PostContent = ({ content, className = "" }: PostContentProps) => {
         iframes.forEach((iframe, index) => {
           console.log(`PostContent: Iframe ${index}:`, iframe.src);
         });
+        
+        // If no iframes found after script execution, wait a bit and check again
+        if (iframes.length === 0) {
+          setTimeout(() => {
+            const delayedIframes = containerRef.current?.querySelectorAll('iframe');
+            console.log('PostContent: Delayed iframe check - Found iframes:', delayedIframes?.length || 0);
+            if (delayedIframes && delayedIframes.length === 0) {
+              console.warn('PostContent: No iframes created by PicTime script. This might be due to content blockers.');
+            }
+          }, 2000);
+        }
+      };
+      
+      // Fallback function to create iframe if script fails
+      const createFallbackIframe = (script: Element) => {
+        const scriptSrc = script.getAttribute('src');
+        if (scriptSrc) {
+          // Extract the slideshow ID from the script URL
+          const slideshowId = script.getAttribute('data-pt-scriptslideshowid');
+          if (slideshowId) {
+            console.log('PostContent: Creating fallback iframe for slideshow:', slideshowId);
+            const fallbackIframe = document.createElement('iframe');
+            fallbackIframe.src = `https://victoriaphotography.pic-time.com/-engagementphotoshootsinscotland/slideshow/${slideshowId}`;
+            fallbackIframe.width = '100%';
+            fallbackIframe.height = '600';
+            fallbackIframe.frameBorder = '0';
+            fallbackIframe.allowFullscreen = true;
+            fallbackIframe.style.border = 'none';
+            fallbackIframe.style.borderRadius = '8px';
+            
+            // Insert the iframe where the script was
+            script.parentNode?.insertBefore(fallbackIframe, script);
+          }
+        }
       };
 
       // Execute scripts after a short delay to ensure DOM is ready
