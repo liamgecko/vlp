@@ -31,9 +31,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="scroll-smooth overflow-x-hidden overscroll-none">
+    <html lang="en" className="scroll-smooth overflow-x-hidden sm:overscroll-none">
       <body
-        className={`${poppins.variable} ${caprasimo.variable} relative bg-[#FFF4EB] overflow-y-hidden`}
+        className={`${poppins.variable} ${caprasimo.variable} relative bg-[#FFF4EB]`}
       >     
         <div 
           className="absolute inset-0 h-[100vh] -z-10 opacity-20"

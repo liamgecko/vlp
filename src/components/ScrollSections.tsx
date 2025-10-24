@@ -101,7 +101,7 @@ const ScrollSections: React.FC<ScrollSectionsProps> = ({
                 />
                 <div className="absolute inset-0 pointer-events-none bg-gradient-to-b from-[#0C091A]/25 to-[#0C091A]/100 z-10" />
                 <div className="text-center absolute inset-0 m-6 rounded-2xl z-20">
-                  <div className="w-full h-full max-w-4xl mx-auto flex items-center justify-end flex-col px-0 md:px-8 relative bottom-20">
+                  <div className="w-full h-full max-w-4xl mx-auto flex items-center justify-end flex-col px-0 md:px-8 relative bottom-12 sm:bottom-20 md:bottom-24">
                   <motion.h2 
                     className="font-heading text-5xl md:text-6xl font-bold text-sunflower-50 mb-6"
                     initial={{ opacity: 0, y: 30 }}
