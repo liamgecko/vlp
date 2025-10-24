@@ -3,7 +3,7 @@ export default function FeedSpringInstagram() {
     <div 
       feedspring="inst_0HTtTXUF6XLdLLTqOgWhJ" 
       feed-type="dynamic"
-      className="grid grid-cols-6 gap-2"
+      className="grid grid-cols-3 md:grid-cols-6 gap-2"
     >
       <div feedspring="post" className="group">
         <a 
