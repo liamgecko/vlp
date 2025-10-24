@@ -2,7 +2,9 @@
 
 import React from "react";
 import Image from "next/image";
+import Script from "next/script";
 import { WPMenuItem, ContactDetailsFields } from "@/lib/wp";
+import FeedSpringInstagram from "@/components/FeedSpringInstagram";
 
 interface FooterProps {
   menuItems?: WPMenuItem[];
@@ -34,17 +36,15 @@ const Footer = ({ menuItems = [], contactDetails }: FooterProps) => {
                        target="_blank"
                        rel="noopener noreferrer"
                      >
-                       @victoriaphotography
+                       @itsvictoriaphotography
                      </a>
                    ) : (
-                     <span>@victoriaphotography</span>
+                     <span>@itsvictoriaphotography</span>
                    )}
                  </p>
-          <div className="grid grid-cols-6 gap-2 max-w-4xl mx-auto">
-            {Array.from({ length: 6 }).map((_, index) => (
-              <div key={index} className="aspect-square bg-slate-800 rounded-xl" />
-            ))}
-          </div>
+
+                 <FeedSpringInstagram />
+
         </div>
       </section>
 
@@ -162,6 +162,14 @@ const Footer = ({ menuItems = [], contactDetails }: FooterProps) => {
           </div>
         </div>
       </section>
+
+      {/* FeedSpring Instagram Script */}
+      <Script
+        src="https://scripts.feedspring.com/instagram-attrs.js"
+        strategy="afterInteractive"
+        async
+        defer
+      />
     </footer>
   );
 };
