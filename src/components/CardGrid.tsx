@@ -2,7 +2,6 @@
 
 import React from "react";
 import Image from "next/image";
-import { motion } from "framer-motion";
 
 interface BlogPost {
   id: string;
@@ -40,39 +39,23 @@ const CardGrid = ({
   const displayPosts = posts;
 
   return (
-    <section className={`card-grid-block w-full py-24 ${className || 'bg-white'}`}>
-      <div className="container mx-auto px-4">
+    <div className={`card-grid-block w-full py-24 ${className || 'bg-white'}`}>
+      <div className="max-w-7xl mx-auto px-6 lg:px-16">
         {/* Header */}
         {showHeading && (
-          <div className="max-w-4xl mx-auto px-8 lg:px-0 text-center mb-12">
-            <motion.h2 
-              className="font-heading text-4xl font-bold text-primary mb-6"
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, ease: "easeOut" }}
-              viewport={{ once: true, amount: 0.3 }}
-            >
+          <div className="mx-auto px-6 lg:px-0 sm:text-center text-left mb-12">
+            <h2 className="font-heading text-4xl font-bold text-primary mb-6">
               {heading}
-            </motion.h2>
-            <motion.div
+            </h2>
+            <div
               className="font-sans text-lg text-slate-600 max-w-2xl mx-auto prose prose-lg max-w-none"
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
-              viewport={{ once: true, amount: 0.3 }}
               dangerouslySetInnerHTML={{ __html: description }}
             />
           </div>
         )}
 
         {/* Posts Grid */}
-        <motion.div 
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
-          viewport={{ once: true, amount: 0.3 }}
-        >
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {displayPosts.map((post) => (
             <article 
               key={post.id} 
@@ -115,29 +98,25 @@ const CardGrid = ({
               </a>
             </article>
           ))}
-        </motion.div>
+        </div>
 
         {/* View All Button */}
         {showButton && (
           <div className="text-center mt-12">
-            <motion.a 
+            <a 
               href={buttonLink}
               className="bg-slate-950 text-white px-8 py-4 uppercase font-semibold tracking-widest rounded-full hover:bg-slate-800 transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-slate-950 focus-visible:ring-offset-2 inline-block"
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
-              viewport={{ once: true, amount: 0.1 }}
               role="button"
               tabIndex={0}
               aria-label={buttonText}
               onKeyDown={e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); /* handle click here if needed */ } }}
             >
               {buttonText}
-            </motion.a>
+            </a>
           </div>
         )}
       </div>
-    </section>
+    </div>
   );
 };
 

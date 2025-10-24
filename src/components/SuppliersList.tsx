@@ -76,11 +76,11 @@ const SuppliersList: React.FC<SuppliersListProps> = ({
   return (
     <>
       <div className={`suppliers-list-block w-full ${className}`}>
-        <div className="container mx-auto px-4">
+        <div className="max-w-7xl mx-auto px-6 lg:px-16">
           {/* Category Filter */}
           <div className="mb-8">
             <Select value={selectedCategory} onValueChange={handleCategoryChange}>
-              <SelectTrigger className="w-full max-w-sm bg-white border-slate-200 focus:border-slate-300 focus:ring-slate-300">
+              <SelectTrigger className="w-full sm:max-w-sm max-w-full bg-white border-slate-200 focus:border-slate-300 focus:ring-slate-300">
                 <SelectValue placeholder="Filter by category" />
               </SelectTrigger>
               <SelectContent>

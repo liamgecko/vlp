@@ -50,12 +50,12 @@ const ContactPage: React.FC<ContactPageProps> = ({
       />
       
       <section id="book-consultation" className="w-full py-20 lg:py-32 bg-gradient-to-b from-[#FFF4EB] to-sunflower-100">
-        <div className="container mx-auto px-4">
+        <div className="max-w-4xl mx-auto px-7 lg:px-0 ">
           <div className="max-w-7xl mx-auto">
             <div className="grid grid-cols-1 lg:grid-cols-5 gap-12 lg:gap-16">
               
               {/* Left Column - Text Content */}
-              <div className="space-y-8 pt-16 lg:col-span-2">
+              <div className="space-y-8 lg:col-span-2">
                 <div>
                   
                   {content && (

@@ -33,10 +33,10 @@ const CarouselSection: React.FC<CarouselSectionProps> = ({
 
   return (
     <section className={`carousel-block w-full pt-20 pb-24 ${blockColourClass || className || 'bg-[#FFF4EB]'}`}>
-      <div className="max-w-4xl mx-auto px-8 lg:px-0">
+      <div className="max-w-4xl mx-auto px-6 lg:px-0">
         <motion.div 
           ref={ref}
-          className="text-center mb-12"
+          className="sm:text-center text-left mb-12"
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
           transition={{ duration: 0.6, ease: "easeOut" }}

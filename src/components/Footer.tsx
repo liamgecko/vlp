@@ -18,15 +18,6 @@ const Footer = ({ menuItems = [], contactDetails }: FooterProps) => {
     instagramUrl: '',
     pinterestUrl: ''
   };
-  // Fake Instagram feed data
-  const instagramPosts = [
-    { id: 1, image: '/vlp-01.jpg', alt: 'Wedding Photography' },
-    { id: 2, image: '/vlp-02.jpg', alt: 'Natural Photography' },
-    { id: 3, image: '/vlp-03.jpg', alt: 'Artistic Photography' },
-    { id: 4, image: '/vlp-04.jpg', alt: 'Wedding Photography' },
-    { id: 5, image: '/vlp-05.jpg', alt: 'Wedding Photography' },
-    { id: 6, image: '/vlp-01.jpg', alt: 'Wedding Photography' },
-  ];
 
   return (
     <footer className="footer-block bg-gradient-to-b from-midnight-950 to-slate-950 text-sunflower-100">
@@ -50,15 +41,8 @@ const Footer = ({ menuItems = [], contactDetails }: FooterProps) => {
                    )}
                  </p>
           <div className="grid grid-cols-6 gap-2 max-w-4xl mx-auto">
-            {instagramPosts.map((post) => (
-              <div key={post.id} className="aspect-square relative overflow-hidden">
-                <Image
-                  src={post.image}
-                  alt={post.alt}
-                  fill
-                  className="object-cover hover:scale-110 transition-transform duration-300 rounded-xl"
-                />
-              </div>
+            {Array.from({ length: 6 }).map((_, index) => (
+              <div key={index} className="aspect-square bg-slate-800 rounded-xl" />
             ))}
           </div>
         </div>
@@ -81,7 +65,7 @@ const Footer = ({ menuItems = [], contactDetails }: FooterProps) => {
           {/* Menu */} 
           {menuItems.length > 0 && (
             <nav className="text-center mb-12">
-              <ul className="flex flex-wrap justify-center gap-8 text-base">
+              <ul className="flex flex-wrap sm:flex-row flex-col justify-center gap-2 sm:gap-8 text-base">
                 {menuItems.map((item) => {
                   const href = item.path || item.url;
                   const isExternal = href?.startsWith('http') || href?.startsWith('www.') || href?.includes('://');

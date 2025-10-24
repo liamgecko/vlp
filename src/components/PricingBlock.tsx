@@ -81,10 +81,10 @@ const PricingBlock: React.FC<PricingBlockProps> = ({
   className = ""
 }) => {
   return (
-    <section id="pricing-table" className={`pricing-block relative isolate px-6 py-24 sm:py-32 lg:px-8 ${className || 'bg-white'}`}>
+    <section id="pricing-table" className={`pricing-block relative isolate px-6 py-24 sm:py-32 lg:px-0 ${className || 'bg-white'}`}>
       
       {/* Header */}
-      <div className="pricing-block-header max-w-4xl mx-auto px-8 lg:px-0 text-center">
+      <div className="pricing-block-header max-w-4xl mx-auto px-6 lg:px-0 sm:text-center text-left">
         <motion.h2 
           className="font-heading text-3xl md:text-4xl font-bold text-primary"
           initial={{ opacity: 0, y: 30 }}
@@ -107,13 +107,13 @@ const PricingBlock: React.FC<PricingBlockProps> = ({
       </div>
       
       {/* Pricing Cards */}
-      <div className="pricing-block-cards mx-auto mt-16 grid max-w-lg grid-cols-1 items-center gap-y-6 sm:mt-20 sm:gap-y-0 lg:max-w-5xl lg:grid-cols-2">
+      <div className="pricing-block-cards mx-auto px-6 mt-16 grid max-w-lg grid-cols-1 items-center gap-y-6 md:max-w-5xl md:grid-cols-2">
         {tiers.map((tier, index) => (
           <motion.div
             key={tier.id}
-            className={`relative p-8 shadow-2xl ring-1 ring-gray-900/10 sm:p-10 ${
+            className={`relative p-8 shadow-2xl ring-1 ring-gray-900/10 sm:p-10 rounded-3xl  ${
               tier.featured 
-                ? 'bg-white/90 sm:mx-8 sm:rounded-t-none lg:mx-0 lg:rounded-tl-3xl lg:rounded-bl-3xl' 
+                ? 'bg-white/90 md:rounded-tl-3xl md:rounded-bl-3xl md:rounded-tr-none md:rounded-br-none' 
                 : 'bg-white rounded-3xl'
             }`}
             initial={{ opacity: 0, y: 30 }}

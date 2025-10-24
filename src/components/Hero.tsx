@@ -19,7 +19,7 @@ const Hero = ({ heroData }: HeroProps) => {
   const displaySecondaryButtonText = heroData.secondaryButton?.secondaryButtonLink?.title;
   const displaySecondaryButtonLink = heroData.secondaryButton?.secondaryButtonLink?.url;
   return (
-    <section className="hero-block w-full max-w-[1660px] mx-auto flex justify-center p-8 pt-0 h-[calc(100vh-92px)] min-h-[400px]">
+    <section className="hero-block w-full max-w-[1660px] mx-auto flex justify-center p-6 lg:p-8 !pt-0 h-[calc(100vh-92px)] min-h-[400px]">
       <div className="relative w-full h-full">
         <Image
           src={displayBackgroundImage}
@@ -76,7 +76,7 @@ const Hero = ({ heroData }: HeroProps) => {
                 {displaySecondaryButtonText && displaySecondaryButtonLink && (
                   <a
                     href={displaySecondaryButtonLink}
-                    className="bg-transparent border-2 border-sunflower-100 text-sunflower-100 px-6 py-3.5 text-sm font-semibold rounded-full hover:bg-sunflower-100/10 transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-sunflower-100 focus-visible:ring-offset-2 focus-visible:ring-offset-violet-900 inline-block"
+                    className="bg-transparent border-2 border-sunflower-100 text-sunflower-100 px-6 py-3.5 text-sm font-semibold rounded-full hover:bg-sunflower-100/10 transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-sunflower-100 focus-visible:ring-offset-2 focus-visible:ring-offset-violet-900 hidden sm:inline-block"
                   >
                     {displaySecondaryButtonText}
                   </a>

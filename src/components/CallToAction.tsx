@@ -27,7 +27,7 @@ const CallToAction = ({
 
   return (
     <section className="call-to-action-block w-full py-24 bg-midnight-950 text-sunflower-50">
-      <div className="container mx-auto px-4 text-center">
+      <div className="max-w-4xl mx-auto px-7 lg:px-0 text-center">
         <motion.h2 
           className="font-heading text-4xl md:text-5xl font-bold mb-6 text-sunflower-100"
           initial={{ opacity: 0, y: 30 }}

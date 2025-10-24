@@ -55,11 +55,11 @@ const Gallery: React.FC<GalleryProps> = ({
 
   return (
     <section id="portfolio-gallery" className={`gallery-block w-full py-20 lg:py-32 ${className || 'bg-[#FFF4EB]'}`}>
-      <div className="container mx-auto px-4">
+      <div className="max-w-7xl mx-auto px-6 lg:px-16">
         {/* Header */}
         <motion.div
           ref={ref}
-          className="max-w-4xl mx-auto px-8 lg:px-0 text-center mb-12"
+          className="max-w-4xl mx-auto sm:text-center text-left mb-12"
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
           transition={{ duration: 0.6, ease: "easeOut" }}
@@ -92,7 +92,7 @@ const Gallery: React.FC<GalleryProps> = ({
               }}
               onClick={() => handleImageClick(index)}
             >
-              <div className="relative overflow-hidden rounded-lg shadow-lg group-hover:shadow-xl transition-all duration-300">
+              <div className="relative overflow-hidden rounded-lg ransition-all duration-300">
                 <Image
                   src={image.src}
                   alt={image.alt}

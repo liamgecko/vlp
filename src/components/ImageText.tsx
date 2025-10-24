@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { motion, useInView } from "framer-motion";
-import { useRef } from "react";
+import { useRef, useState, useEffect } from "react";
 
 interface ImageTextProps {
   id?: string;
@@ -24,13 +24,20 @@ const ImageText = ({ id, title, description, imageSrc, imageAlt, videoUrl, image
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, amount: 0.3 });
   
+  // Ensure consistent initial state for hydration
+  const [mounted, setMounted] = useState(false);
+  
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+  
   
   
   const textContent = (
     <motion.div 
-      className="flex flex-col gap-4 w-full sm:w-1/2"
+      className="flex flex-col gap-8 w-full md:w-1/2"
       initial={{ opacity: 0, x: isLeftVariant ? 50 : -50 }}
-      animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: isLeftVariant ? 50 : -50 }}
+      animate={mounted && isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: isLeftVariant ? 50 : -50 }}
       transition={{ duration: 0.6, ease: "easeOut" }}
     >
       <h2 className="font-heading text-3xl md:text-4xl font-bold text-left text-balance">
@@ -43,7 +50,7 @@ const ImageText = ({ id, title, description, imageSrc, imageAlt, videoUrl, image
       {buttonText && (
         <a
           href={buttonLink || "#"}
-          className="btn-link bg-blush-300 text-primary px-6 py-3.5 text-sm font-semibold rounded-full hover:bg-blush-300/80 transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blush-300 focus-visible:ring-offset-2 focus-visible:ring-offset-blush-900 w-fit mt-8"
+          className="btn-link bg-blush-300 text-primary px-6 py-3.5 text-sm font-semibold rounded-full hover:bg-blush-300/80 transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blush-300 focus-visible:ring-offset-2 focus-visible:ring-offset-blush-900 w-fit"
           aria-label={buttonText}
         >
           {buttonText}
@@ -54,9 +61,9 @@ const ImageText = ({ id, title, description, imageSrc, imageAlt, videoUrl, image
 
   const imageContent = (
     <motion.div 
-      className="image-text-block-image flex flex-col gap-4 w-full sm:w-1/2 relative after:content-[''] after:absolute after:w-full after:aspect-[4/3] after:bg-gradient-to-br after:from-[#FECBBE] after:to-[#FFA49B] after:left-4 after:top-4 after:rounded-2xl"
+      className="image-text-block-image flex flex-col gap-8 w-full md:w-1/2 relative after:content-[''] after:absolute after:w-full after:aspect-[4/3] after:bg-gradient-to-br after:from-[#FECBBE] after:to-[#FFA49B] after:left-4 after:top-4 after:rounded-2xl"
       initial={{ opacity: 0, x: isLeftVariant ? -50 : 50 }}
-      animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: isLeftVariant ? -50 : 50 }}
+      animate={mounted && isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: isLeftVariant ? -50 : 50 }}
       transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
     >
       {videoUrl ? (
@@ -98,7 +105,7 @@ const ImageText = ({ id, title, description, imageSrc, imageAlt, videoUrl, image
 
   return (
     <section id={id} ref={ref} className={`image-text-block w-full py-20 lg:py-32 ${blockColourClass || className || 'bg-sunflower-50'}`}>
-      <div ref={ref} className="flex flex-col sm:flex-row justify-between gap-24 px-16 max-w-7xl mx-auto ">
+      <div ref={ref} className="flex flex-col md:flex-row justify-between md:gap-24 gap-16 px-6 max-w-7xl mx-auto ">
       {isLeftVariant ? (
         <>
           {imageContent}

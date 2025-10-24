@@ -125,8 +125,8 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
                     className="embla__slide__img embla__parallax__img"
                     src={slide.src}
                     alt={slide.alt}
-                    width={600}
-                    height={350}
+                    width={1200}
+                    height={800}
                   />
                 </div>
               </div>

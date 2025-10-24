@@ -8,7 +8,7 @@ interface VideoProps {
 const Video = ({ title, description, videoUrl, blockColourClass }: VideoProps) => {
   return (
     <section className={`video-block w-full pt-20 pb-24 ${blockColourClass || 'bg-[#FFF4EB]'}`}>
-      <div className="max-w-4xl mx-auto px-8 lg:px-0">
+      <div className="max-w-4xl mx-auto px-6 lg:px-0">
         <div className="text-center mb-12">
           {title && (
             <h2 className="text-3xl md:text-4xl font-heading text-primary mb-4">

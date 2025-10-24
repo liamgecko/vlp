@@ -90,7 +90,7 @@ const ImageTextCarousel = ({
   return (
     <section className={`text-carousel-block w-full py-24 ${blockColourClass || 'bg-sunflower-100'}`}>
         {showHeading && (
-          <div className="max-w-4xl mx-auto px-8 lg:px-0 text-center mb-12">
+          <div className="max-w-4xl mx-auto px-6 lg:px-0 sm:text-center text-left mb-12">
               <motion.h2 
                 className="font-heading text-3xl md:text-4xl text-primary"
                 initial={{ opacity: 0, y: 30 }}
@@ -110,7 +110,7 @@ const ImageTextCarousel = ({
               />
           </div>
         )}
-      <div className="w-full max-w-7xl mx-auto px-4 text-center px-16">
+      <div className="w-full max-w-7xl mx-auto px-6 text-center lg:px-16">
         {/* Carousel Container */}
         <div className="text-carousel-block-container relative w-full max-w-7xl mx-auto">
           {/* Slides */}

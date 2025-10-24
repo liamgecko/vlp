@@ -20,7 +20,7 @@ const TextBlock: React.FC<TextBlockProps> = ({
 
   return (
     <section id={id} className={`text-block w-full py-16 lg:py-24 ${className || 'bg-sunflower-50'}`}>
-      <div className="container mx-auto px-4">
+      <div className="max-w-4xl mx-auto px-7 lg:px-0 ">
         <motion.div
           ref={ref}
           className="max-w-4xl mx-auto"

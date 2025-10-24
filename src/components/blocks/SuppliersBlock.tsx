@@ -76,7 +76,7 @@ const SuppliersBlock: React.FC<SuppliersBlockProps> = async ({
       <section id="supplier-list" className={`suppliers-block w-full py-20 lg:py-32 ${finalBlockColourClass}`}>
         {/* Intro Content */}
         {(suppliersBlock.introHeading || suppliersBlock.introContent) && (
-          <div className="container mx-auto px-4 mb-16">
+          <div className="max-w-7xl mx-auto px-6 lg:px-16 mb-16">
             <div className="max-w-4xl mx-auto text-center">
               {suppliersBlock.introHeading && (
                 <h2 className="font-heading text-3xl md:text-4xl font-bold text-midnight-950 mb-6">
