@@ -54,7 +54,7 @@ const Gallery: React.FC<GalleryProps> = ({
   }));
 
   return (
-    <section id="portfolio-gallery" className={`gallery-block w-full py-20 lg:py-32 ${className || 'bg-[#FFF4EB]'}`}>
+    <section id="portfolio-gallery" className={`gallery-block w-full py-16 lg:py-24 ${className || 'bg-[#FFF4EB]'}`}>
       <div className="max-w-7xl mx-auto px-6 lg:px-16">
         {/* Header */}
         <motion.div

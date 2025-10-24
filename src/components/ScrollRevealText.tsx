@@ -53,7 +53,7 @@ export const TestimonialSection: React.FC<TestimonialSectionProps> = ({
       <div className="absolute inset-0 pointer-events-none bg-gradient-to-b from-[rgba(255,164,155,0.4)] via-[rgba(106,77,127,0.64)] via-40% to-[rgba(0,0,0,0.64)] z-10"></div>
       
       <div className="w-full max-w-7xl mx-auto relative z-10">
-        <h3 ref={headingRef} className="text-5xl font-semibold font-heading text-sunflower-50">
+        <h3 ref={headingRef} className="text-4xl md:text-5xl font-semibold font-heading text-sunflower-50">
           {words.map((word, index) => (
             <React.Fragment key={index}>
               <AnimatedWord

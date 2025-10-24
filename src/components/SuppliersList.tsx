@@ -116,7 +116,7 @@ const SuppliersList: React.FC<SuppliersListProps> = ({
                       alt={supplier.imageAlt}
                       width={400}
                       height={300}
-                      className="w-full h-64 object-cover rounded-2xl relative z-10 group-hover:scale-105 transition-transform duration-300"
+                      className="w-full h-auto md:h-64 object-cover rounded-2xl relative z-10 group-hover:scale-105 transition-transform duration-300"
                     />
                     {/* Overlay tint */}
                     <div className="absolute inset-0 bg-gradient-to-b from-midnight-950/0 to-midnight-950/80 group-hover:bg-midnight-950/50 rounded-2xl z-20 transition-all duration-300"></div>

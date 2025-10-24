@@ -73,7 +73,7 @@ const SuppliersBlock: React.FC<SuppliersBlockProps> = async ({
     const finalBlockColourClass = getBlockColourClass(suppliersBlock.blockColour) || blockColourClass || '';
 
     return (
-      <section id="supplier-list" className={`suppliers-block w-full py-20 lg:py-32 ${finalBlockColourClass}`}>
+      <section id="supplier-list" className={`suppliers-block w-full py-16 sm:py-24 ${finalBlockColourClass}`}>
         {/* Intro Content */}
         {(suppliersBlock.introHeading || suppliersBlock.introContent) && (
           <div className="max-w-7xl mx-auto px-6 lg:px-16 mb-16">

@@ -19,17 +19,26 @@ const FullWidthImage = ({
   const imageSrc = featuredImage?.node?.sourceUrl || fallbackImage;
 
   return (
-    <section
-      className="parallax-block w-full"
-      style={{
-        minHeight: '800px',
-        backgroundAttachment: 'fixed',
-        backgroundPosition: 'center',
-        backgroundRepeat: 'no-repeat',
-        backgroundSize: 'cover',
-        backgroundImage: `url(${imageSrc})`
-      }}
-    />
+    <>
+      <style jsx>{`
+        .parallax-block {
+          height: 460px;
+          background-position: center;
+          background-repeat: no-repeat;
+          background-size: cover;
+          background-image: url(${imageSrc});
+          background-attachment: scroll; /* Default for mobile */
+        }
+        
+        /* Enable parallax only on large screens */
+        @media (min-width: 1024px) {
+          .parallax-block {
+            background-attachment: fixed;
+          }
+        }
+      `}</style>
+      <section className="parallax-block w-full" />
+    </>
   );
 };
 

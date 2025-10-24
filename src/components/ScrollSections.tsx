@@ -138,7 +138,7 @@ const ScrollSections: React.FC<ScrollSectionsProps> = ({
           </div>
         ))}
       </div>
-      <div className="h-24 bg-[#FBB6AF]"></div>
+      <div className="h-12 sm:h-24 bg-[#FBB6AF]"></div>
     </section>
   );
 };

@@ -33,7 +33,7 @@ interface SupplierModalProps {
 const SupplierModal: React.FC<SupplierModalProps> = ({ supplier, isOpen, onClose }) => {
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="w-full max-w-3xl max-h-[90vh] flex flex-col p-0">
+      <DialogContent className="w-full max-w-3xl h-[100vh] max-h-[100vh] sm:max-h-[90vh] flex flex-col p-0">
         <DialogHeader className="px-6 pt-6 pb-4 flex-shrink-0">
           <DialogTitle className="font-heading text-2xl font-bold text-midnight-950">
             {supplier.name}

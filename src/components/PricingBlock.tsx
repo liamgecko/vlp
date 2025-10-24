@@ -81,7 +81,7 @@ const PricingBlock: React.FC<PricingBlockProps> = ({
   className = ""
 }) => {
   return (
-    <section id="pricing-table" className={`pricing-block relative isolate px-6 py-24 sm:py-32 lg:px-0 ${className || 'bg-white'}`}>
+    <section id="pricing-table" className={`pricing-block relative isolate px-6 py-12 sm:py-24 lg:px-0 ${className || 'bg-white'}`}>
       
       {/* Header */}
       <div className="pricing-block-header max-w-4xl mx-auto px-6 lg:px-0 sm:text-center text-left">
@@ -107,7 +107,7 @@ const PricingBlock: React.FC<PricingBlockProps> = ({
       </div>
       
       {/* Pricing Cards */}
-      <div className="pricing-block-cards mx-auto px-6 mt-16 grid max-w-lg grid-cols-1 items-center gap-y-6 md:max-w-5xl md:grid-cols-2">
+      <div className="pricing-block-cards mx-auto mt-16 grid max-w-lg grid-cols-1 items-center gap-y-6 md:max-w-5xl md:grid-cols-2">
         {tiers.map((tier, index) => (
           <motion.div
             key={tier.id}

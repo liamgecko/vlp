@@ -19,7 +19,7 @@ const TextBlock: React.FC<TextBlockProps> = ({
   const isInView = useInView(ref, { once: true, amount: 0.3 });
 
   return (
-    <section id={id} className={`text-block w-full py-16 lg:py-24 ${className || 'bg-sunflower-50'}`}>
+    <section id={id} className={`text-block w-full py-16 sm:py-24 ${className || 'bg-sunflower-50'}`}>
       <div className="max-w-4xl mx-auto px-7 lg:px-0 ">
         <motion.div
           ref={ref}

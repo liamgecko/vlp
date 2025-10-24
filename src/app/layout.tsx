@@ -33,7 +33,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="scroll-smooth overflow-x-hidden overscroll-none">
       <body
-        className={`${poppins.variable} ${caprasimo.variable} relative bg-[#FFF4EB]`}
+        className={`${poppins.variable} ${caprasimo.variable} relative bg-[#FFF4EB] overflow-y-hidden`}
       >     
         <div 
           className="absolute inset-0 h-[100vh] -z-10 opacity-20"

@@ -88,7 +88,7 @@ const ImageTextCarousel = ({
   };
 
   return (
-    <section className={`text-carousel-block w-full py-24 ${blockColourClass || 'bg-sunflower-100'}`}>
+    <section className={`text-carousel-block w-full py-16 sm:py-24 ${blockColourClass || 'bg-sunflower-100'}`}>
         {showHeading && (
           <div className="max-w-4xl mx-auto px-6 lg:px-0 sm:text-center text-left mb-12">
               <motion.h2 

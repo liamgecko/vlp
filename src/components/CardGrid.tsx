@@ -39,7 +39,7 @@ const CardGrid = ({
   const displayPosts = posts;
 
   return (
-    <div className={`card-grid-block w-full py-24 ${className || 'bg-white'}`}>
+    <div className={`card-grid-block w-full py-16 sm:py-24 ${className || 'bg-white'}`}>
       <div className="max-w-7xl mx-auto px-6 lg:px-16">
         {/* Header */}
         {showHeading && (

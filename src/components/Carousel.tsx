@@ -32,7 +32,7 @@ const CarouselSection: React.FC<CarouselSectionProps> = ({
   const isInView = useInView(ref, { once: true, amount: 0.3 });
 
   return (
-    <section className={`carousel-block w-full pt-20 pb-24 ${blockColourClass || className || 'bg-[#FFF4EB]'}`}>
+    <section className={`carousel-block w-full pt-10 pb-16 sm:pt-20 sm:pb-24 ${blockColourClass || className || 'bg-[#FFF4EB]'}`}>
       <div className="max-w-4xl mx-auto px-6 lg:px-0">
         <motion.div 
           ref={ref}

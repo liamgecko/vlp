@@ -104,7 +104,7 @@ const ImageText = ({ id, title, description, imageSrc, imageAlt, videoUrl, image
   );
 
   return (
-    <section id={id} ref={ref} className={`image-text-block w-full py-20 lg:py-32 ${blockColourClass || className || 'bg-sunflower-50'}`}>
+    <section id={id} ref={ref} className={`image-text-block w-full py-16 lg:py-24 ${blockColourClass || className || 'bg-sunflower-50'}`}>
       <div ref={ref} className="flex flex-col md:flex-row justify-between md:gap-24 gap-16 px-6 max-w-7xl mx-auto ">
       {isLeftVariant ? (
         <>

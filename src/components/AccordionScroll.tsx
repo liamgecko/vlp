@@ -43,7 +43,7 @@ export const AccordionScroll: React.FC<AccordionScrollProps> = ({
     <section className={className}>
       {showHeading && (
         <div className="bg-slate-950 text-white">
-          <div className="container mx-auto px-4 text-center py-24">
+          <div className="container mx-auto px-4 text-center py-16 sm:py-24">
             <motion.h2 
               className="font-heading text-4xl"
               initial={{ opacity: 0, y: 30 }}
