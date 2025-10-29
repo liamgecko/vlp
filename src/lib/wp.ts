@@ -696,7 +696,7 @@ export const GET_CONTENT_BLOCKS = /* GraphQL */ `
           ... on ContentBlocksContainerContentBlocksGalleryLayout {
             introHeading
             introContent
-            galleryImages {
+            galleryImages(first: 500) {
               nodes {
                 sourceUrl
                 altText

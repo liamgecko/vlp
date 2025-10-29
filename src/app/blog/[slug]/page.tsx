@@ -1,7 +1,6 @@
 import { notFound } from 'next/navigation';
 import { getPostBySlug, getAllPosts, HeroBlock } from '@/lib/wp';
 import Hero from '@/components/Hero';
-import PostContent from '@/components/blocks/PostContent';
 
 interface PostPageProps {
   params: Promise<{
