@@ -110,7 +110,7 @@ const ContactPage: React.FC<ContactPageProps> = ({
                   <iframe
                     src={formLink}
                     width="100%"
-                    height="638"
+                    height="1210"
                     frameBorder="0"
                     className="rounded-lg"
                     title="Contact Form"
