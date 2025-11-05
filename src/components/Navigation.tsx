@@ -93,7 +93,7 @@ const Navigation = ({ navLinks }: NavigationProps) => {
         <div className="flex items-center gap-4">
           {/* CTA Button */}
           <a
-            href="/contact"
+            href="/wedding-photography-enquiry/"
             className="hidden sm:block rounded-full bg-blush-300 text-primary px-4 py-2.5 font-sans font-semibold text-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-blush-300/50 focus-visible:ring-offset-2 hover:bg-blush-300/80 transition cursor-pointer"
             aria-label="Book a free consultation"
             tabIndex={0}
@@ -184,7 +184,7 @@ const Navigation = ({ navLinks }: NavigationProps) => {
 
               {/* Mobile CTA Button */}
               <a
-                href="/contact"
+                href="/wedding-photography-enquiry/"
                 className="bg-blush-300 text-primary px-6 py-3.5 text-sm font-semibold rounded-full hover:bg-blush-300/80 transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blush-300 focus-visible:ring-offset-2 focus-visible:ring-offset-blush-900"
                 aria-label="Book a free consultation"
                 tabIndex={0}
