@@ -49,8 +49,8 @@ const ContactPage: React.FC<ContactPageProps> = ({
         }}
       />
       
-      <section id="book-consultation" className="w-full py-16 sm:py-24 bg-gradient-to-b from-[#FFF4EB] to-sunflower-100">
-        <div className="max-w-4xl mx-auto px-7 lg:px-0 ">
+      <section className="w-full py-16 lg:py-24 bg-gradient-to-b from-[#FFF4EB] to-sunflower-100">
+        <div className="max-w-7xl mx-auto px-6">
           <div className="max-w-7xl mx-auto">
             <div className="grid grid-cols-1 lg:grid-cols-5 gap-12 lg:gap-16">
               
@@ -104,7 +104,7 @@ const ContactPage: React.FC<ContactPageProps> = ({
               </div>
               
               {/* Right Column - Contact Form */}
-              <div className="relative after:content-[''] after:absolute after:w-full after:h-full after:bg-gradient-to-br after:from-[#FECBBE] after:to-[#FFA49B] after:left-4 after:top-4 after:rounded-2xl lg:col-span-3">
+              <div id="book-consultation" className="relative after:content-[''] after:absolute after:w-full after:h-full after:bg-gradient-to-br after:from-[#FECBBE] after:to-[#FFA49B] after:left-4 after:top-4 after:rounded-2xl lg:col-span-3">
                 <div className="bg-white rounded-2xl relative z-10">
                   {/* Studio Ninja Contact Form */}
                   <iframe
