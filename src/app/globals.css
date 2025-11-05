@@ -350,7 +350,7 @@ a {
 
   /* Images */
   img { 
-    @apply rounded-lg shadow-md my-6;
+    @apply rounded-lg shadow-md my-6 max-w-full;
   }
 
   /* Tables */
