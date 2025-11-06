@@ -7,6 +7,7 @@ import CallToActionBlock from "@/components/blocks/CallToAction";
 import FullWidthImageClient from "@/components/blocks/FullWidthImageClient";
 import ErrorBoundary from "@/components/ErrorBoundary";
 import { Analytics } from "@vercel/analytics/next"
+import { SpeedInsights } from "@vercel/speed-insights/next"
 
 const poppins = Poppins({
   variable: "--font-poppins",
