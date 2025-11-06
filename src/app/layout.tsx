@@ -6,6 +6,7 @@ import FooterBlock from "@/components/blocks/Footer";
 import CallToActionBlock from "@/components/blocks/CallToAction";
 import FullWidthImageClient from "@/components/blocks/FullWidthImageClient";
 import ErrorBoundary from "@/components/ErrorBoundary";
+import { Analytics } from "@vercel/analytics/next"
 
 const poppins = Poppins({
   variable: "--font-poppins",
