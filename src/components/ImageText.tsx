@@ -97,7 +97,7 @@ const ImageText = ({ id, title, description, imageSrc, imageAlt, videoUrl, image
           alt={imageAlt || ''} 
           width={800} 
           height={600} 
-          sizes="(max-width: 768px) 100vw, 50vw"
+          sizes="(max-width: 768px) 100vw, 768px"
           className="rounded-2xl w-full max-h-[90vh] object-cover relative z-10 aspect-[4/3]" 
         />
       ) : null}

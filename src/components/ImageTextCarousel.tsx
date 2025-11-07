@@ -129,7 +129,7 @@ const ImageTextCarousel = ({
                       src={slide.imageSrc}
                       alt={slide.imageAlt}
                       fill
-                      sizes="(max-width: 1024px) 100vw, 50vw"
+                      sizes="(max-width: 1024px) 100vw, 768px"
                       className="object-cover"
                     />
                   </div>
