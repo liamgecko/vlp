@@ -98,6 +98,7 @@ const Gallery: React.FC<GalleryProps> = ({
                   alt={image.alt}
                   width={image.width}
                   height={image.height}
+                  sizes="(max-width: 500px) 100vw, (max-width: 700px) 50vw, (max-width: 1100px) 33vw, 33vw"
                   className="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-300"
                 />
                 

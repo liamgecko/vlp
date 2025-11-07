@@ -52,6 +52,7 @@ const SupplierModal: React.FC<SupplierModalProps> = ({ supplier, isOpen, onClose
               alt={supplier.imageAlt}
               width={800}
               height={600}
+              sizes="(max-width: 768px) 100vw, 768px"
               className="w-full h-auto"
             />
           </div>

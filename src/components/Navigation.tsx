@@ -61,6 +61,7 @@ const Navigation = ({ navLinks }: NavigationProps) => {
               width={208}
               height={52}
               priority
+              unoptimized
               className="w-full h-auto"
             />
           </a>
@@ -155,6 +156,7 @@ const Navigation = ({ navLinks }: NavigationProps) => {
                   alt="Victoria Photography Logo"
                   width={208}
                   height={52}
+                  unoptimized
                 />
               </div>
 

@@ -50,6 +50,8 @@ export default function RootLayout({
           <FullWidthImageClient />
           <FooterBlock />
         </ErrorBoundary>
+        <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );

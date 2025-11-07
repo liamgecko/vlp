@@ -58,6 +58,7 @@ const Footer = ({ menuItems = [], contactDetails }: FooterProps) => {
               alt="Victoria Photography"
               width={200}
               height={60}
+              unoptimized
               className="mx-auto h-auto"
             />
           </div>

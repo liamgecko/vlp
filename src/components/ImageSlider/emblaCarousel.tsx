@@ -127,6 +127,7 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
                     alt={slide.alt}
                     width={1200}
                     height={800}
+                    sizes="100vw"
                   />
                 </div>
               </div>

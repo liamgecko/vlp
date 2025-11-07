@@ -128,7 +128,7 @@ const FeatureCard = (feature: Feature & { index: number }) => {
               <Image
                 src={feature.image.src}
                 alt={feature.image.alt || ""}
-                width={1600}
+                width={800}
                 height={600}
                 className="h-[25rem] w-full object-cover sm:h-[30rem] lg:h-[60vh] rounded-2xl relative z-10"
                 sizes="(max-width: 1024px) 100vw, 800px"

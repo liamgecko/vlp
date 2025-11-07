@@ -97,6 +97,7 @@ const ScrollSections: React.FC<ScrollSectionsProps> = ({
                   alt={section.image.alt} 
                   width={1920} 
                   height={1080} 
+                  sizes="100vw"
                   className="w-full h-full object-cover"
                 />
                 <div className="absolute inset-0 pointer-events-none bg-gradient-to-b from-[#0C091A]/25 to-[#0C091A]/100 z-10" />

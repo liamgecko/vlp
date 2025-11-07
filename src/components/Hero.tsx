@@ -27,7 +27,7 @@ const Hero = ({ heroData }: HeroProps) => {
           fill
           className="object-cover object-center rounded-xl"
           priority
-          sizes="(max-width: 1280px) 100vw, 1280px"
+          sizes="(max-width: 1660px) 100vw, 1660px"
         />
         <div className="absolute inset-0 rounded-xl pointer-events-none opacity-80 bg-gradient-to-b from-[#0C091A]/0 to-[#0C091A]/100 z-10" />
         <div className="absolute inset-0 bg-black/20 rounded-xl z-15" />
