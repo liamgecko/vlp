@@ -1,6 +1,6 @@
 import { notFound } from 'next/navigation';
-import { getPageBySlug, getPosts, getPageSEO } from '@/lib/wp';
-import { getReadingSettings, getBlogPageFields } from '@/lib/wp';
+import { getPageBySlug, getPosts, getPageSEO, getReadingSettings, getBlogPageFields, wp } from '@/lib/wp';
+import { GET_BLOG_PAGE_FIELDS_BY_SLUG } from '@/lib/wp';
 import HeroBlock from '@/components/blocks/Hero';
 import CardGrid from '@/components/CardGrid';
 import Pagination from '@/components/Pagination';
@@ -63,46 +63,64 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function Blog({ searchParams }: BlogPageProps) {
-  const page = await getPageBySlug('blog');
-  const blogFields = await getBlogPageFields();
-  const readingSettings = await getReadingSettings();
-  const resolvedSearchParams = await searchParams;
-  const currentPage = parseInt(resolvedSearchParams.page || '1', 10);
-  const postsPerPage = readingSettings.postsPerPage;
+  // Try both 'blog' and 'wedding-photography-blog' slugs
+  let page = await getPageBySlug('blog');
+  if (!page) {
+    page = await getPageBySlug('wedding-photography-blog');
+  }
   
-  // Get all posts first
-  const { posts } = await getPosts(100); // Get more posts than needed
-  
-  // Calculate pagination
-  const totalPosts = posts.length;
-  const totalPages = Math.ceil(totalPosts / postsPerPage);
-  
-  // Calculate which posts to show for current page
-  const startIndex = (currentPage - 1) * postsPerPage;
-  const endIndex = startIndex + postsPerPage;
-  const paginatedPosts = posts.slice(startIndex, endIndex);
-
-
   if (!page) {
     notFound();
   }
 
-  // Transform WordPress posts to CardGrid format
-  const cardGridPosts = paginatedPosts.map((post) => ({
-    id: post.id,
-    title: post.title,
-    excerpt: post.excerpt.replace(/(<([^>]+)>)/gi, ""), // Remove HTML tags from excerpt
-    imageSrc: post.featuredImage?.node?.sourceUrl || "https://placekitten.com/400/300",
-    imageAlt: post.featuredImage?.node?.altText || post.title,
-    date: new Date(post.date).toLocaleDateString('en-US', {
-      year: 'numeric',
-      month: 'long'
-    }),
-    category: post.categories.nodes.length > 0 ? post.categories.nodes[0].name : "Blog Post",
-    slug: post.slug
-  }));
+  try {
+    // Try both slugs for blog fields
+    let blogFields = await getBlogPageFields();
+    if (!blogFields) {
+      // Try alternative slug - use the same query structure
+      try {
+        const altData = await wp.request<{ pageBy: { blog: { blogHeading?: string; blogIntroContent?: string } | null } }>(GET_BLOG_PAGE_FIELDS_BY_SLUG, {
+          slug: "wedding-photography-blog"
+        });
+        blogFields = altData.pageBy?.blog || null;
+      } catch (error) {
+        console.error('Error fetching blog fields with alternative slug:', error);
+      }
+    }
+    
+    const readingSettings = await getReadingSettings();
+    const resolvedSearchParams = await searchParams;
+    const currentPage = parseInt(resolvedSearchParams.page || '1', 10);
+    const postsPerPage = readingSettings?.postsPerPage || 10;
+    
+    // Get all posts first
+    const { posts } = await getPosts(100); // Get more posts than needed
+    
+    // Calculate pagination
+    const totalPosts = posts.length;
+    const totalPages = Math.ceil(totalPosts / postsPerPage);
+    
+    // Calculate which posts to show for current page
+    const startIndex = (currentPage - 1) * postsPerPage;
+    const endIndex = startIndex + postsPerPage;
+    const paginatedPosts = posts.slice(startIndex, endIndex);
 
-  return (
+    // Transform WordPress posts to CardGrid format
+    const cardGridPosts = paginatedPosts.map((post) => ({
+      id: post.id,
+      title: post.title,
+      excerpt: post.excerpt.replace(/(<([^>]+)>)/gi, ""), // Remove HTML tags from excerpt
+      imageSrc: post.featuredImage?.node?.sourceUrl || "https://placekitten.com/400/300",
+      imageAlt: post.featuredImage?.node?.altText || post.title,
+      date: new Date(post.date).toLocaleDateString('en-US', {
+        year: 'numeric',
+        month: 'long'
+      }),
+      category: post.categories.nodes.length > 0 ? post.categories.nodes[0].name : "Blog Post",
+      slug: post.slug
+    }));
+
+    return (
     <main className="min-h-screen">
       {/* Hero Block from WordPress */}
       <HeroBlock pageSlug="blog" />
@@ -110,7 +128,7 @@ export default async function Blog({ searchParams }: BlogPageProps) {
       {/* Blog Posts using CardGrid */}
       <section id="articles">
         <CardGrid
-          posts={cardGridPosts}
+          posts={cardGridPosts.length > 0 ? cardGridPosts : undefined}
           heading={blogFields?.blogHeading || "Real wedding stories"}
           description={blogFields?.blogIntroContent || "Discover the latest blog posts from Vicki"}
           showHeading={true}
@@ -133,4 +151,22 @@ export default async function Blog({ searchParams }: BlogPageProps) {
       )}
     </main>
   );
+  } catch (error) {
+    console.error('Error in Blog page:', error);
+    // Return page with hero and fallback content
+    return (
+      <main className="min-h-screen">
+        <HeroBlock pageSlug="blog" />
+        <section id="articles">
+          <CardGrid
+            heading="Real wedding stories"
+            description="Discover the latest blog posts from Vicki"
+            showHeading={true}
+            showButton={false}
+            className="bg-gradient-to-b from-[#FFF4EB] to-sunflower-100"
+          />
+        </section>
+      </main>
+    );
+  }
 }
