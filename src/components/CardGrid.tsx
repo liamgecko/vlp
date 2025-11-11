@@ -61,7 +61,7 @@ const CardGrid = ({
               key={post.id} 
               className="group cursor-pointer"
             >
-              <a href={`/blog/${post.slug}`}>
+              <a href={`/weddings/${post.slug}`}>
                 {/* Image Container */}
                 <div className="relative mb-6">
                   <div className="relative after:content-[''] after:absolute after:w-full after:h-full after:bg-gradient-to-br after:from-[#FECBBE] after:to-[#FFA49B] after:left-2 after:top-2 after:rounded-2xl">
