@@ -54,10 +54,10 @@ const nextConfig: NextConfig = {
         destination: '/wedding-photography',
         permanent: true,
       },
-      // Redirect old blog post URLs to new weddings URLs
+      // Redirect old blog post URLs to new wedding URLs
       {
         source: '/blog/:slug*',
-        destination: '/weddings/:slug*',
+        destination: '/wedding/:slug*',
         permanent: true,
       },
     ];
