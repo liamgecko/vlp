@@ -36,6 +36,26 @@ const nextConfig: NextConfig = {
   output: 'standalone',
   // Force dynamic rendering for all pages
   trailingSlash: false,
+  // 301 Redirects
+  async redirects() {
+    return [
+      {
+        source: '/portfolio/canada-weddings',
+        destination: '/wedding-photography',
+        permanent: true,
+      },
+      {
+        source: '/portfolio/destination-elopements',
+        destination: '/wedding-photography',
+        permanent: true,
+      },
+      {
+        source: '/portfolio/uk-weddings',
+        destination: '/wedding-photography',
+        permanent: true,
+      },
+    ];
+  },
 };
 
 export default nextConfig;
