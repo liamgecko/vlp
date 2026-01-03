@@ -12,7 +12,6 @@ interface PricingTier {
   features: string[];
   buttonText: string;
   buttonLink: string;
-  featured?: boolean;
 }
 
 interface CustomPricing {
@@ -73,8 +72,7 @@ const PricingBlock: React.FC<PricingBlockProps> = ({
         "Print release"
       ],
       buttonText: "Book full day",
-      buttonLink: "/contact",
-      featured: true
+      buttonLink: "/contact"
     }
   ],
   customPricing,
@@ -96,7 +94,7 @@ const PricingBlock: React.FC<PricingBlockProps> = ({
         </motion.h2>
       
         <motion.div 
-          className="font-sans text-md mt-4 text-primary w-full max-w-2xl mx-auto prose max-w-none text-pretty"
+          className="font-sans text-md mt-4 text-primary w-full max-w-2xl mx-auto prose prose-p:max-w-none text-pretty"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
@@ -107,58 +105,62 @@ const PricingBlock: React.FC<PricingBlockProps> = ({
       </div>
       
       {/* Pricing Cards */}
-      <div className="pricing-block-cards mx-auto mt-16 grid max-w-lg grid-cols-1 items-center gap-y-6 md:max-w-5xl md:grid-cols-2">
+      <div className="pricing-block-cards mx-auto mt-16 grid max-w-7xl grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3 px-6 lg:px-2">
         {tiers.map((tier, index) => (
           <motion.div
             key={tier.id}
-            className={`relative p-8 shadow-2xl ring-1 ring-gray-900/10 sm:p-10 rounded-3xl  ${
-              tier.featured 
-                ? 'bg-white/90 md:rounded-tl-3xl md:rounded-bl-3xl md:rounded-tr-none md:rounded-br-none' 
-                : 'bg-white rounded-3xl'
-            }`}
+            className="relative bg-white p-8 shadow-lg rounded-2xl sm:p-10 flex flex-col h-full"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.3 + (index * 0.1) }}
             viewport={{ once: true }}
           >
-            <h3 className="pricing-block-name text-base/7 font-semibold text-blush-800">{tier.name}</h3>
-            <p className="mt-4 flex items-baseline gap-x-2">
-              <span className="text-5xl font-semibold tracking-tight text-primary">{tier.price}</span>
-              <span className="text-base text-[#554d77]">{tier.period}</span>
-            </p>
-            <div 
-              className="mt-6 text-base/7 text-[#554d77] prose max-w-none"
-              dangerouslySetInnerHTML={{ __html: tier.description }}
-            />
-            
-            <ul role="list" className="mt-8 space-y-3 text-sm/6 text-[#554d77] sm:mt-10">
-              {tier.features.map((feature, featureIndex) => (
-                <li key={featureIndex} className="flex gap-x-3">
-                  <svg 
-                    viewBox="0 0 20 20" 
-                    fill="currentColor" 
-                    aria-hidden="true" 
-                    className="h-6 w-5 flex-none text-violet-700"
-                  >
-                    <path 
-                      d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z" 
-                      clipRule="evenodd" 
-                      fillRule="evenodd" 
-                    />
-                  </svg>
-                  {feature}
-                </li>
-              ))}
-            </ul>
+            <div className="flex-1">
+              <h3 className="text-xl font-semibold text-blush-800 mb-2">{tier.name}</h3>
+              
+              {tier.price && (
+                <p className="mt-4 flex items-baseline gap-x-2">
+                  <span className="text-4xl font-semibold tracking-tight text-primary">{tier.price}</span>
+                  {tier.period && (
+                    <span className="text-base text-[#554d77]">{tier.period}</span>
+                  )}
+                </p>
+              )}
+              
+              {tier.description && (
+                <div 
+                  className="mt-4 text-base text-[#554d77] prose max-w-none prose-p:my-2 prose-ul:my-2 prose-li:my-1"
+                  dangerouslySetInnerHTML={{ __html: tier.description }}
+                />
+              )}
+              
+              {tier.features && tier.features.length > 0 && (
+                <ul role="list" className="mt-6 space-y-2 text-sm text-[#554d77]">
+                  {tier.features.map((feature, featureIndex) => (
+                    <li key={featureIndex} className="flex gap-x-3">
+                      <svg 
+                        viewBox="0 0 20 20" 
+                        fill="currentColor" 
+                        aria-hidden="true" 
+                        className="h-5 w-5 flex-none text-blush-600 mt-0.5"
+                      >
+                        <path 
+                          d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z" 
+                          clipRule="evenodd" 
+                          fillRule="evenodd" 
+                        />
+                      </svg>
+                      <span>{feature}</span>
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </div>
             
             <a
               href={tier.buttonLink}
               aria-describedby={tier.id}
-              className={`mt-8 block px-6 py-3.5 text-sm font-semibold rounded-full transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 sm:mt-10 text-center ${
-                tier.featured
-                  ? 'border border-[#554D77] text-[#554D77] hover:bg-[#554D77]/10 focus-visible:ring-[#554D77] focus-visible:ring-offset-white'
-                  : 'bg-blush-300 text-primary hover:bg-blush-300/80 focus-visible:ring-blush-300 focus-visible:ring-offset-blush-900'
-              }`}
+              className="mt-8 block w-full px-6 py-3.5 text-sm font-semibold rounded-full transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 text-center bg-blush-300 text-primary hover:bg-blush-400 focus-visible:ring-blush-300 focus-visible:ring-offset-white"
             >
               {tier.buttonText}
             </a>

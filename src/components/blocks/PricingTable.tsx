@@ -35,10 +35,9 @@ const PricingTableBlockComponent = async ({ pageSlug, blockColourClass }: Pricin
           price: cardItem.card?.packageCost || '',
           period: '', // No period field in ACF, so empty
           description: cardItem.card?.packageDescription || '',
-          features: [], // No features field in ACF, so empty array
-          buttonText: cardItem.card?.buttonLink?.title || 'Learn More',
-          buttonLink: cardItem.card?.buttonLink?.url || '#',
-          featured: cardItem.card?.featured || false
+          features: [], // Features can be included in description as HTML
+          buttonText: cardItem.card?.buttonLink?.title || 'Enquire about this package',
+          buttonLink: cardItem.card?.buttonLink?.url || '#'
         })) || []}
         customPricing={pricingTableBlock.customPricing}
         className={blockColourClass || "bg-blush-300"}

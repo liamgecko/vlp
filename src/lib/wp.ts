@@ -225,7 +225,6 @@ export interface PricingCard {
     title: string;
     target?: string;
   };
-  featured?: boolean;
 }
 
 export interface PricingTableBlock {
