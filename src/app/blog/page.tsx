@@ -17,7 +17,10 @@ interface BlogPageProps {
 
 // Generate metadata for the blog page
 export async function generateMetadata(): Promise<Metadata> {
-  const page = await getPageBySlug('blog');
+  let page = await getPageBySlug('wedding-photography-blog');
+  if (!page) {
+    page = await getPageBySlug('blog');
+  }
   
   if (!page) {
     return {
@@ -27,7 +30,7 @@ export async function generateMetadata(): Promise<Metadata> {
   }
 
   try {
-    const seo = await getPageSEO('blog');
+    const seo = await getPageSEO('wedding-photography-blog') || await getPageSEO('blog');
     
     return {
       title: seo?.title || 'Blog - Victoria Photography',
@@ -63,10 +66,10 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function Blog({ searchParams }: BlogPageProps) {
-  // Try both 'blog' and 'wedding-photography-blog' slugs
-  let page = await getPageBySlug('blog');
+  // Try both 'wedding-photography-blog' and 'blog' slugs (prioritize new slug)
+  let page = await getPageBySlug('wedding-photography-blog');
   if (!page) {
-    page = await getPageBySlug('wedding-photography-blog');
+    page = await getPageBySlug('blog');
   }
   
   if (!page) {
@@ -123,7 +126,7 @@ export default async function Blog({ searchParams }: BlogPageProps) {
     return (
     <main className="min-h-screen">
       {/* Hero Block from WordPress */}
-      <HeroBlock pageSlug="blog" />
+      <HeroBlock pageSlug="wedding-photography-blog" />
 
       {/* Blog Posts using CardGrid */}
       <section id="articles">
@@ -144,7 +147,7 @@ export default async function Blog({ searchParams }: BlogPageProps) {
             <Pagination
               currentPage={currentPage}
               totalPages={totalPages}
-              basePath="/blog"
+              basePath="/wedding-photography-blog"
             />
           </div>
         </div>
@@ -156,7 +159,7 @@ export default async function Blog({ searchParams }: BlogPageProps) {
     // Return page with hero and fallback content
     return (
       <main className="min-h-screen">
-        <HeroBlock pageSlug="blog" />
+        <HeroBlock pageSlug="wedding-photography-blog" />
         <section id="articles">
           <CardGrid
             heading="Real wedding stories"

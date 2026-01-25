@@ -7,10 +7,10 @@ const NavigationBlock = async () => {
 
   // Fallback menu items if WordPress menu is empty
   const fallbackMenuItems: WPMenuItem[] = [
-    { id: "pricing", label: "Pricing", url: "/pricing", path: "/pricing" },
-    { id: "photography", label: "Photography", url: "/photography", path: "/photography" },
-    { id: "blog", label: "Blog", url: "/blog", path: "/blog" },
-    { id: "about", label: "About me", url: "/about", path: "/about" },
+    { id: "pricing", label: "Pricing", url: "/wedding-photography-packages", path: "/wedding-photography-packages" },
+    { id: "photography", label: "Photography", url: "/wedding-photography", path: "/wedding-photography" },
+    { id: "blog", label: "Blog", url: "/wedding-photography-blog", path: "/wedding-photography-blog" },
+    { id: "about", label: "About me", url: "/about-vicki", path: "/about-vicki" },
   ];
 
   // Use WordPress menu if available, otherwise fallback

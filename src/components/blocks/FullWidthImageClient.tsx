@@ -24,11 +24,11 @@ const FullWidthImageClient = () => {
         // Extract slug from pathname
         if (pathname === '/') {
           slug = 'home';
-        } else if (pathname === '/blog') {
-          slug = 'blog';
-        } else if (pathname.startsWith('/blog/')) {
+        } else if (pathname === '/wedding-photography-blog' || pathname === '/blog') {
+          slug = 'wedding-photography-blog';
+        } else if (pathname.startsWith('/blog/') || pathname.startsWith('/wedding-photography-blog/')) {
           // For individual blog posts, we'll use the blog page featured image
-          slug = 'blog';
+          slug = 'wedding-photography-blog';
         } else if (pathname !== '/') {
           // For other pages, extract slug from pathname
           slug = pathname.substring(1); // Remove leading slash
