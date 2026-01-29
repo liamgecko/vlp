@@ -15,6 +15,9 @@ interface PageProps {
   params: Promise<{
     slug: string;
   }>;
+  searchParams: Promise<{
+    page?: string;
+  }>;
 }
 
 // Generate static params for all pages
@@ -73,7 +76,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   }
 }
 
-export default async function DynamicPage({ params }: PageProps) {
+export default async function DynamicPage({ params, searchParams }: PageProps) {
   const { slug } = await params;
   const page = await getPageBySlug(slug);
 
@@ -102,6 +105,8 @@ export default async function DynamicPage({ params }: PageProps) {
     try {
       const blogFields = await getBlogPageFields();
       const readingSettings = await getReadingSettings();
+      const resolvedSearchParams = await searchParams;
+      const currentPage = parseInt(resolvedSearchParams.page || '1', 10);
       const postsPerPage = readingSettings?.postsPerPage || 10;
       
       // Get all posts
@@ -110,10 +115,14 @@ export default async function DynamicPage({ params }: PageProps) {
       // Calculate pagination
       const totalPosts = posts.length;
       const totalPages = Math.ceil(totalPosts / postsPerPage);
-      const currentPage = 1; // Default to page 1 for now
+      
+      // Slice posts for current page
+      const startIndex = (currentPage - 1) * postsPerPage;
+      const endIndex = startIndex + postsPerPage;
+      const paginatedPosts = posts.slice(startIndex, endIndex);
       
       // Transform WordPress posts to CardGrid format
-      const cardGridPosts = posts.slice(0, postsPerPage).map((post) => ({
+      const cardGridPosts = paginatedPosts.map((post) => ({
         id: post.id,
         title: post.title,
         excerpt: post.excerpt.replace(/(<([^>]+)>)/gi, ""), // Remove HTML tags from excerpt
