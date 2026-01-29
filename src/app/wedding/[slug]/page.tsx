@@ -2,6 +2,8 @@ import { notFound } from 'next/navigation';
 import { getPostBySlug, getAllPosts, HeroBlock } from '@/lib/wp';
 import Hero from '@/components/Hero';
 
+export const dynamic = 'force-dynamic';
+
 interface PostPageProps {
   params: Promise<{
     slug: string;

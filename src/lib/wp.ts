@@ -3,6 +3,7 @@ import { getEnv } from './env';
 import { WPError, NotFoundError, NetworkError, safeAsync } from './errors';
 
 // Create GraphQL client with proper configuration
+// cache: 'no-store' ensures CMS edits appear immediately (no Next.js Data Cache)
 function createWPClient() {
   const env = getEnv();
   return new GraphQLClient(env.WP_GRAPHQL_ENDPOINT, {
@@ -12,6 +13,8 @@ function createWPClient() {
         'Authorization': `Bearer ${env.WP_ACCESS_TOKEN}`,
       }),
     },
+    cache: 'no-store',
+    next: { revalidate: 0 },
   });
 }
 

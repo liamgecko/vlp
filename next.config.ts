@@ -1,6 +1,13 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  experimental: {
+    // Disable Router Cache for dynamic pages so CMS edits appear on client navigation
+    staleTimes: {
+      dynamic: 0,
+      static: 0,
+    },
+  },
   images: {
     // DISABLED: Bypass Vercel image optimization to avoid hitting limits
     // Images will be served directly from source without optimization
